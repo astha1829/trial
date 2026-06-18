@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaign Details Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Inter', sans-serif;
+      --color-bg: #ffffff;
+      --color-text-main: #0f172a;
+      --color-text-muted: #64748b;
+      --color-border: #e2e8f0;
+      --color-success-bg: #dcfce7;
+      --color-success-text: #166534;
+      --color-success-accent: #16a34a;
+      --color-purple-light: #f3e8ff;
+      --color-purple-border: #e9d5ff;
+      --color-purple-text: #7e22ce;
+      --card-bg: #F8F9FC;
+      --card-border: rgba(15,23,42,0.08);
+      --card-shadow: 0 8px 30px rgba(15,23,42,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .hero-container {
+      display: flex;
+      gap: 64px;
+      max-width: 1100px;
+      width: 100%;
+      padding: 40px;
+      align-items: center;
+    }
+
+    /* LEFT SECTION */
+    .left-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .campaign-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #e9d5ff 0%, #c084fc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 8px 16px rgba(192, 132, 252, 0.2);
+      flex-shrink: 0;
+    }
+
+    .campaign-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--color-success-bg);
+      color: var(--color-success-text);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--color-success-accent);
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-text-main);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+
+    .metadata-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .metadata-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .metadata-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--color-text-muted);
+    }
+
+    .divider {
+      height: 1px;
+      background-color: var(--color-border);
+      width: 100%;
+      margin-bottom: 32px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 64px;
+      margin-bottom: 40px;
+    }
+
+    .info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-main);
+    }
+
+    .info-value.success {
+      color: var(--color-success-accent);
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-main);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .btn-secondary:hover {
+      background-color: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--color-text-muted);
+    }
+
+    .btn-purple {
+      background-color: var(--color-purple-light);
+      border: 1px solid var(--color-purple-border);
+      color: var(--color-purple-text);
+    }
+
+    .btn-purple:hover {
+      background-color: #e9d5ff;
+    }
+
+    .btn-purple svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--color-purple-text);
+    }
+
+    /* RIGHT SECTION */
+    .right-section {
+      width: 400px;
+      flex-shrink: 0;
+    }
+
+    .summary-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .success-circle-container {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .success-circle-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background-color: #f0fdf4;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .success-circle {
+      position: relative;
+      z-index: 1;
+      width: 64px;
+      height: 64px;
+      background-color: var(--color-success-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-success-accent);
+    }
+
+    .success-circle svg {
+      width: 32px;
+      height: 32px;
+      stroke-width: 2.5;
+    }
+
+    .card-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      margin-top: 32px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-cell:nth-child(1) {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .stat-cell:nth-child(2) {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .stat-cell:nth-child(3) {
+      border-right: 1px solid var(--color-border);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .progress-bar-container {
+      margin-top: 32px;
+      width: 100%;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background-color: var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-success-accent);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-container {
+        flex-direction: column;
+        gap: 48px;
+      }
+      .right-section {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-container">
+    
+    <!-- LEFT SECTION -->
+    <div class="left-section">
+      <div class="header-row">
+        <div class="campaign-icon">
+          <!-- Megaphone Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 11 18-5v12L3 14v-3z"></path>
+            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+          </svg>
+        </div>
+        <div class="header-content">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            COMPLETED
+          </div>
+          <h1 class="title">Hello World</h1>
+          <p class="subtitle">Bulkify ticket for office team announcement.</p>
+        </div>
+      </div>
+
+      <div class="metadata-row">
+        <div class="metadata-item">
+          <!-- Building Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+            <path d="M9 22v-4h6v4"></path>
+            <path d="M8 6h.01"></path>
+            <path d="M16 6h.01"></path>
+            <path d="M12 6h.01"></path>
+            <path d="M12 10h.01"></path>
+            <path d="M12 14h.01"></path>
+            <path d="M16 10h.01"></path>
+            <path d="M16 14h.01"></path>
+            <path d="M8 10h.01"></path>
+            <path d="M8 14h.01"></path>
+          </svg>
+          Office
+        </div>
+        <div class="metadata-item">
+          <!-- Ticket Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+            <path d="M13 5v2"></path>
+            <path d="M13 17v2"></path>
+            <path d="M13 11v2"></path>
+          </svg>
+          bulkify_ticket
+        </div>
+        <div class="metadata-item">
+          <!-- Users Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          3 Recipients
+        </div>
+        <div class="metadata-item">
+          <!-- Calendar Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Jun 15, 2026
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="info-row">
+        <div class="info-block">
+          <span class="info-label">Created</span>
+          <span class="info-value">Jun 15, 2026, 10:07:12 PM</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Completed</span>
+          <span class="info-value success">Jun 15, 2026, 10:07:15 PM</span>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn btn-secondary">
+          <!-- Eye Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          View Template
+        </button>
+        <button class="btn btn-secondary">
+          <!-- Copy Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Duplicate
+        </button>
+        <button class="btn btn-purple">
+          <!-- Download Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export Report
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="right-section">
+      <div class="summary-card">
+        
+        <div class="card-top">
+          <div class="success-circle-container">
+            <div class="success-circle-glow"></div>
+            <div class="success-circle">
+              <!-- Checkmark Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+          </div>
+          
+          <h2 class="card-heading">Campaign Completed!</h2>
+          <p class="card-subtitle">Your message has been successfully delivered.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <span class="stat-label">Success Rate</span>
+            <span class="stat-value">100%</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-label">Messages Sent</span>
+            <span class="stat-value">3</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-label">Failed</span>
+            <span class="stat-value">0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-label">Completion Time</span>
+            <span class="stat-value">10:07 PM</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
