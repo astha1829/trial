@@ -81,25 +81,26 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
 
   return (
     <div
-      className="w-full h-full rounded-[16px] border border-[rgba(255,255,255,0.06)] p-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.35)] flex flex-col justify-between"
+      className="w-full h-full rounded-[16px] border border-stats-card-border p-[24px] flex flex-col justify-between"
       style={{
-        background: "linear-gradient(180deg, rgba(10, 18, 40, 0.98), rgba(5, 12, 28, 0.98))",
+        background: "var(--stats-card-bg)",
+        boxShadow: "var(--stats-card-shadow)",
       }}
     >
       <div>
         {/* Header */}
         <div className="flex items-start justify-between mb-[20px] select-none">
           <div className="flex flex-col gap-[4px]">
-            <h2 className="text-[26px] font-bold text-white font-sans leading-[1.2]">
+            <h2 className="text-[26px] font-bold text-foreground font-sans leading-[1.2]">
               Recent Campaigns
             </h2>
-            <p className="text-[13px] font-normal text-[rgba(255,255,255,0.65)] font-sans">
+            <p className="text-[13px] font-normal text-muted-foreground font-sans">
               Live campaign dispatch timeline
             </p>
           </div>
           <a
             href="/campaigns"
-            className="text-[14px] font-semibold text-[#8B5CF6] hover:underline font-sans mt-[4px]"
+            className="text-[14px] font-semibold text-accent-purple hover:underline font-sans mt-[4px]"
           >
             View All
           </a>
@@ -122,7 +123,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                   <div
                     className="absolute left-[14px] top-[14px] h-[calc(100%+20px)] w-0 border-l border-dashed z-0"
                     style={{
-                      borderColor: event.status === "Failed" ? "rgba(255, 93, 122, 0.3)" : "rgba(16, 216, 118, 0.3)",
+                      borderColor: event.status === "Failed" ? "var(--status-failed-border)" : "var(--status-completed-border)",
                     }}
                   />
                 )}
@@ -133,55 +134,55 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                     <div
                       className="w-[28px] h-[28px] rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(255, 93, 122, 0.1)",
-                        border: "1px solid rgba(255, 93, 122, 0.4)",
-                        boxShadow: "0 0 8px rgba(255, 93, 122, 0.25)",
+                        background: "var(--status-failed-bg)",
+                        border: "1px solid var(--status-failed-border)",
+                        boxShadow: "0 0 8px var(--status-failed-glow)",
                       }}
                     >
-                      <X size={14} className="text-[#FF5D7A]" strokeWidth={3} />
+                      <X size={14} style={{ color: "var(--status-failed-text)" }} strokeWidth={3} />
                     </div>
                   ) : event.status === "Running" ? (
                     <div
                       className="w-[28px] h-[28px] rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(59, 130, 246, 0.1)",
-                        border: "1px solid rgba(59, 130, 246, 0.4)",
-                        boxShadow: "0 0 8px rgba(59, 130, 246, 0.25)",
+                        background: "var(--status-running-bg)",
+                        border: "1px solid var(--status-running-border)",
+                        boxShadow: "0 0 8px var(--status-running-glow)",
                       }}
                     >
-                      <Play size={12} className="text-[#3B82F6] fill-current" />
+                      <Play size={12} style={{ color: "var(--status-running-text)" }} className="fill-current" />
                     </div>
                   ) : event.status === "Scheduled" ? (
                     <div
                       className="w-[28px] h-[28px] rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(245, 158, 11, 0.1)",
-                        border: "1px solid rgba(245, 158, 11, 0.4)",
-                        boxShadow: "0 0 8px rgba(245, 158, 11, 0.25)",
+                        background: "var(--status-scheduled-bg)",
+                        border: "1px solid var(--status-scheduled-border)",
+                        boxShadow: "0 0 8px var(--status-scheduled-glow)",
                       }}
                     >
-                      <Clock size={14} className="text-[#F59E0B]" strokeWidth={2.5} />
+                      <Clock size={14} style={{ color: "var(--status-scheduled-text)" }} strokeWidth={2.5} />
                     </div>
                   ) : (
                     <div
                       className="w-[28px] h-[28px] rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(16, 216, 118, 0.1)",
-                        border: "1px solid rgba(16, 216, 118, 0.4)",
-                        boxShadow: "0 0 8px rgba(16, 216, 118, 0.25)",
+                        background: "var(--status-completed-bg)",
+                        border: "1px solid var(--status-completed-border)",
+                        boxShadow: "0 0 8px var(--status-completed-glow)",
                       }}
                     >
-                      <Check size={14} className="text-[#10D876]" strokeWidth={3} />
+                      <Check size={14} style={{ color: "var(--status-completed-text)" }} strokeWidth={3} />
                     </div>
                   )}
                 </div>
 
                 {/* Middle Info */}
                 <div className="flex-1 min-w-0 flex flex-col justify-center">
-                  <span className="text-[18px] font-semibold text-white font-sans leading-none">
+                  <span className="text-[18px] font-semibold text-foreground font-sans leading-none">
                     {event.name}
                   </span>
-                  <span className="text-[13px] text-[rgba(255,255,255,0.70)] font-sans mt-[4px] leading-none truncate">
+                  <span className="text-[13px] text-muted-foreground font-sans mt-[4px] leading-none truncate">
                     {event.description}
                   </span>
                 </div>
@@ -191,7 +192,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                   {event.time.split("\n").map((t, tIdx) => (
                     <span
                       key={tIdx}
-                      className="text-[13px] font-medium font-sans leading-none text-[rgba(255,255,255,0.70)]"
+                      className="text-[13px] font-medium font-sans leading-none text-muted-foreground"
                     >
                       {t}
                     </span>

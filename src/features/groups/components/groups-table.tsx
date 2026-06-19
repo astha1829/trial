@@ -60,9 +60,9 @@ export function GroupsTable({ groups }: GroupsTableProps) {
   };
 
   return (
-    <div className="flex flex-col bg-table-bg dark:bg-table-bg/60 dark:backdrop-blur-xl border border-border rounded-2xl shadow-lg dark:shadow-2xl transition-colors duration-300 select-none">
+    <div className="flex flex-col border rounded-2xl shadow-lg dark:shadow-2xl transition-colors duration-300 select-none groups-table-container dark:backdrop-blur-xl">
       {/* Table Toolbar */}
-      <div className="px-5 py-2.5 border-b border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-row-hover dark:bg-secondary/10 rounded-t-2xl transition-colors">
+      <div className="px-5 py-2.5 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-t-2xl transition-colors groups-table-toolbar">
         {/* Search */}
         <div className="relative w-full sm:w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/85 transition-colors" />
@@ -71,7 +71,8 @@ export function GroupsTable({ groups }: GroupsTableProps) {
             placeholder="Search groups by name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full h-10 pl-9 pr-4 rounded-xl bg-background border border-border text-[13px] font-medium text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/50 transition-all shadow-inner"
+            style={{ backgroundColor: "var(--groups-search-bg)", borderColor: "var(--groups-search-border)" }}
+            className="w-full h-10 pl-9 pr-4 rounded-xl bg-background border text-[13px] font-medium text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/50 transition-all shadow-inner"
           />
         </div>
         
@@ -86,17 +87,17 @@ export function GroupsTable({ groups }: GroupsTableProps) {
       {/* Table Container */}
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[700px]">
-          <thead className="sticky top-0 bg-secondary dark:bg-secondary/90 backdrop-blur-md z-10 border-b border-border/80 transition-colors">
+          <thead className="sticky top-0 backdrop-blur-md z-10 border-b transition-colors groups-table-header">
             <tr>
               <th 
-                className="px-5 py-3 text-[12px] md:text-[13px] font-black uppercase tracking-wider text-muted-foreground dark:text-muted-foreground/90 cursor-pointer group hover:bg-row-hover/50 dark:hover:bg-secondary/65 transition-colors select-none w-[30%]"
+                className="px-5 py-3 text-[12px] md:text-[13px] font-black uppercase tracking-wider text-muted-foreground dark:text-muted-foreground/90 cursor-pointer group hover:bg-secondary/10 dark:hover:bg-secondary/65 transition-colors select-none w-[30%]"
                 onClick={() => handleSort("title")}
               >
                 <div className="flex items-center gap-2">Group Name <SortIcon field="title" /></div>
               </th>
 
               <th 
-                className="px-5 py-3 text-[12px] md:text-[13px] font-black uppercase tracking-wider text-muted-foreground dark:text-muted-foreground/90 cursor-pointer group hover:bg-row-hover/50 dark:hover:bg-secondary/65 transition-colors select-none w-[60%]"
+                className="px-5 py-3 text-[12px] md:text-[13px] font-black uppercase tracking-wider text-muted-foreground dark:text-muted-foreground/90 cursor-pointer group hover:bg-secondary/10 dark:hover:bg-secondary/65 transition-colors select-none w-[60%]"
                 onClick={() => handleSort("description")}
               >
                 <div className="flex items-center gap-2">Description <SortIcon field="description" /></div>
@@ -111,7 +112,7 @@ export function GroupsTable({ groups }: GroupsTableProps) {
                 return (
                   <tr 
                     key={group.id} 
-                    className="min-h-[60px] h-[60px] group transition-all duration-150 border-b border-border/60 last:border-0 hover:bg-row-hover dark:hover:bg-secondary/40 cursor-pointer border-l-[3px] border-l-transparent hover:border-l-primary dark:hover:border-l-blue-500 shadow-sm hover:shadow-[0_4px_12px_rgba(0,0,0,0.01)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                    className="min-h-[60px] h-[60px] group transition-all duration-150 border-b border-border/60 last:border-0 cursor-pointer border-l-[3px] border-l-transparent hover:border-l-primary dark:hover:border-l-blue-500 shadow-sm hover:shadow-[0_4px_12px_rgba(0,0,0,0.01)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] groups-table-row"
                   >
                     <td className="px-5 py-3 align-middle whitespace-nowrap">
                       <div className="text-[15px] font-semibold text-foreground flex items-center gap-2">

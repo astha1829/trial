@@ -43,24 +43,24 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
         {/* Metric 1: Health & Approval */}
-        <div className="p-6 rounded-2xl bg-secondary/40 border border-border space-y-3 flex flex-col justify-center transition-all hover:bg-secondary/60">
+        <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
-            <CheckCircle2 className="h-4.5 w-4.5 text-emerald-400 transition-colors" />
+            <CheckCircle2 className="h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 transition-colors" />
             <span className="text-[14px] font-semibold text-muted-foreground transition-colors">Approval Health</span>
           </div>
           <div>
             <div className="text-[32px] font-black text-foreground leading-none transition-colors">{approvalRate}%</div>
             <p className="text-[14px] text-muted-foreground mt-2 transition-colors">{approvedTemplates} out of {totalTemplates} templates approved</p>
           </div>
-          <div className="w-full h-2 bg-background rounded-full overflow-hidden mt-3 transition-colors">
+          <div className="w-full h-2 bg-slate-100 dark:bg-background rounded-full overflow-hidden mt-3 transition-colors">
             <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${approvalRate}%` }} />
           </div>
         </div>
 
         {/* Metric 2: Engagement */}
-        <div className="p-6 rounded-2xl bg-secondary/40 border border-border space-y-3 flex flex-col justify-center transition-all hover:bg-secondary/60">
+        <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className="h-4.5 w-4.5 text-blue-400 transition-colors" />
+            <TrendingUp className="h-4.5 w-4.5 text-blue-600 dark:text-blue-400 transition-colors" />
             <span className="text-[14px] font-semibold text-muted-foreground transition-colors">Total Dispatch</span>
           </div>
           <div>
@@ -70,9 +70,9 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
         </div>
 
         {/* Metric 3: Most Used Template */}
-        <div className="p-6 rounded-2xl bg-secondary/40 border border-border space-y-3 flex flex-col justify-center transition-all hover:bg-secondary/60">
+        <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
-            <Activity className="h-4.5 w-4.5 text-purple-400 transition-colors" />
+            <Activity className="h-4.5 w-4.5 text-purple-600 dark:text-purple-400 transition-colors" />
             <span className="text-[14px] font-semibold text-muted-foreground transition-colors">Most Used Template</span>
           </div>
           <div>
@@ -86,9 +86,9 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
         </div>
 
         {/* Metric 4: Diversity */}
-        <div className="p-6 rounded-2xl bg-secondary/40 border border-border space-y-3 flex flex-col justify-center transition-all hover:bg-secondary/60">
+        <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
-            <Globe2 className="h-4.5 w-4.5 text-amber-400 transition-colors" />
+            <Globe2 className="h-4.5 w-4.5 text-amber-600 dark:text-amber-400 transition-colors" />
             <span className="text-[14px] font-semibold text-muted-foreground transition-colors">Content Diversity</span>
           </div>
           <div className="flex items-end gap-6 pt-1">
@@ -96,7 +96,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
               <div className="text-[32px] font-black text-foreground leading-none transition-colors">{uniqueCategories}</div>
               <p className="text-[14px] text-muted-foreground mt-2 transition-colors">Categories</p>
             </div>
-            <div className="w-px h-10 bg-border transition-colors" />
+            <div className="w-px h-10 bg-slate-200 dark:bg-border transition-colors" />
             <div>
               <div className="text-[32px] font-black text-foreground leading-none transition-colors">{uniqueLanguages}</div>
               <p className="text-[14px] text-muted-foreground mt-2 transition-colors">Languages</p>

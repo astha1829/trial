@@ -35,10 +35,10 @@ export function StatsCards({
         isPositive: true,
       },
       icon: Users,
-      iconColor: "#8B5CF6",
-      glowColor: "#8B5CF6",
-      iconGrad: "linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.05) 100%)",
-      iconBorder: "rgba(139, 92, 246, 0.3)",
+      iconColor: "var(--accent-purple)",
+      glowColor: "var(--accent-purple)",
+      iconGrad: "linear-gradient(135deg, var(--accent-purple-25) 0%, var(--accent-purple-5) 100%)",
+      iconBorder: "var(--accent-purple-30)",
     },
     {
       id: "groups",
@@ -50,10 +50,10 @@ export function StatsCards({
         isPositive: true,
       },
       icon: UsersRound,
-      iconColor: "#10D876",
-      glowColor: "#10D876",
-      iconGrad: "linear-gradient(135deg, rgba(16, 216, 118, 0.25) 0%, rgba(16, 216, 118, 0.05) 100%)",
-      iconBorder: "rgba(16, 216, 118, 0.3)",
+      iconColor: "var(--accent-green)",
+      glowColor: "var(--accent-green)",
+      iconGrad: "linear-gradient(135deg, var(--accent-green-25) 0%, var(--accent-green-5) 100%)",
+      iconBorder: "var(--accent-green-30)",
     },
     {
       id: "campaigns",
@@ -65,10 +65,10 @@ export function StatsCards({
         isPositive: true,
       },
       icon: Megaphone,
-      iconColor: "#3B82F6",
-      glowColor: "#3B82F6",
-      iconGrad: "linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.05) 100%)",
-      iconBorder: "rgba(59, 130, 246, 0.3)",
+      iconColor: "var(--accent-blue)",
+      glowColor: "var(--accent-blue)",
+      iconGrad: "linear-gradient(135deg, var(--accent-blue-25) 0%, var(--accent-blue-5) 100%)",
+      iconBorder: "var(--accent-blue-30)",
     },
     {
       id: "templates",
@@ -80,10 +80,10 @@ export function StatsCards({
         isPositive: false,
       },
       icon: FileText,
-      iconColor: "#F59E0B",
-      glowColor: "#8B5CF6", // Purple Glow for templates bottom line
-      iconGrad: "linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.05) 100%)",
-      iconBorder: "rgba(245, 158, 11, 0.3)",
+      iconColor: "var(--accent-orange)",
+      glowColor: "var(--accent-purple)", // Purple Glow for templates bottom line
+      iconGrad: "linear-gradient(135deg, var(--accent-orange-25) 0%, var(--accent-orange-5) 100%)",
+      iconBorder: "var(--accent-orange-30)",
     },
     {
       id: "messages",
@@ -95,10 +95,10 @@ export function StatsCards({
         isPositive: true,
       },
       icon: Send,
-      iconColor: "#FF4D7A",
-      glowColor: "#FF4D7A",
-      iconGrad: "linear-gradient(135deg, rgba(255, 77, 122, 0.25) 0%, rgba(255, 77, 122, 0.05) 100%)",
-      iconBorder: "rgba(255, 77, 122, 0.3)",
+      iconColor: "var(--accent-red)",
+      glowColor: "var(--accent-red)",
+      iconGrad: "linear-gradient(135deg, var(--accent-red-25) 0%, var(--accent-red-5) 100%)",
+      iconBorder: "var(--accent-red-30)",
     },
   ];
 
@@ -110,9 +110,10 @@ export function StatsCards({
           return (
             <div
               key={card.id}
-              className="relative h-[120px] rounded-[16px] border border-[rgba(255,255,255,0.06)] p-[22px] flex flex-row items-center gap-[20px] overflow-hidden hover:-translate-y-[2px] transition-transform duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.35)] select-none"
+              className="relative h-[120px] rounded-[16px] border border-stats-card-border p-[22px] flex flex-row items-center gap-[20px] overflow-hidden hover:-translate-y-[2px] transition-transform duration-300 select-none"
               style={{
-                background: "linear-gradient(180deg, rgba(10, 18, 40, 0.98), rgba(5, 12, 28, 0.98))",
+                background: "var(--stats-card-bg)",
+                boxShadow: "var(--stats-card-shadow)",
               }}
             >
               {/* Top-Left Icon Container */}
@@ -128,26 +129,32 @@ export function StatsCards({
                   strokeWidth={2}
                   style={{
                     color: card.iconColor,
-                    filter: `drop-shadow(0 0 5px ${card.iconColor}80)`,
+                    filter: `drop-shadow(0 0 5px ${card.iconColor})`,
                   }}
                 />
               </div>
 
               {/* Text Content */}
               <div className="flex flex-col items-start justify-between h-full py-[2px] flex-1">
-                <span className="text-[14px] font-medium text-[rgba(255,255,255,0.9)] font-sans leading-none tracking-normal">
+                <span 
+                  className="text-[14px] font-medium font-sans leading-none tracking-normal"
+                  style={{ color: "var(--stats-card-label-text)" }}
+                >
                   {card.label}
                 </span>
-                <span className="text-[42px] font-bold text-white font-sans leading-none my-[2px]">
+                <span 
+                  className="text-[42px] font-bold font-sans leading-none my-[2px]"
+                  style={{ color: "var(--stats-card-value-text)" }}
+                >
                   {card.value}
                 </span>
                 <div className="text-[13px] font-medium font-sans leading-none">
                   {card.trend.value === "No change" ? (
-                    <span className="text-[rgba(255,255,255,0.55)]">No change</span>
+                    <span style={{ color: "var(--stats-card-trend-text)" }}>No change</span>
                   ) : (
                     <>
-                      <span className="text-[#10D876]">{card.trend.value}</span>
-                      <span className="text-[rgba(255,255,255,0.55)] ml-1">
+                      <span className="text-accent-green">{card.trend.value}</span>
+                      <span className="ml-1" style={{ color: "var(--stats-card-trend-text)" }}>
                         {card.trend.label}
                       </span>
                     </>

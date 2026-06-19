@@ -149,9 +149,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Desktop Sidebar (Left Panel) */}
       <aside 
-        className="hidden lg:flex flex-col border-r border-border/80 bg-[#07111F] shrink-0 z-30 relative group"
+        className="hidden lg:flex flex-col border-r border-border/80 bg-sidebar-bg shrink-0 z-30 fixed top-0 left-0 group"
         style={{ 
-          width: isMounted && isSidebarCollapsed ? 80 : 240, 
+          width: isMounted && isSidebarCollapsed ? 72 : 240, 
           height: "100vh",
           transition: "all 0.25s ease"
         }}
@@ -162,11 +162,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           style={{ transition: "all 0.25s ease" }}
         >
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#7C5CFF] shadow-inner shadow-[#7C5CFF]/10">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-purple/10 border border-accent-purple/30 text-accent-purple shadow-inner shadow-accent-purple/10">
               <MessageSquare className="h-5 w-5" />
             </div>
             {!isSidebarCollapsed && (
-              <span className="text-sm font-black uppercase tracking-widest text-white whitespace-nowrap">
+              <span className="text-sm font-black uppercase tracking-widest text-foreground whitespace-nowrap">
                 NEXUS CRM
               </span>
             )}
@@ -189,18 +189,21 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   title={isSidebarCollapsed ? item.name : undefined}
                   className={`flex items-center rounded-xl transition-all duration-300 relative border ${
                     isActive
-                      ? "border-[#7C5CFF]/30 bg-[#7C5CFF]/10 text-[#A894FF] font-bold"
+                      ? "border-accent-purple/30 bg-accent-purple/10 font-bold"
                       : "border-transparent text-muted-foreground hover:text-foreground hover:bg-secondary/40"
                   } ${isSidebarCollapsed ? "justify-center p-3" : "gap-3 px-4 py-3"}`}
-                  style={{ transition: "all 0.25s ease" }}
+                  style={{ transition: "all 0.25s ease", color: isActive ? "var(--sidebar-nav-active-text)" : undefined }}
                 >
                   {/* Active highlight bar on the left */}
                   {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-[#7C5CFF] rounded-r-full shadow-[0_0_12px_rgba(124,92,255,0.8)]" />
+                    <div 
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-accent-purple rounded-r-full"
+                      style={{ boxShadow: "0 0 12px var(--accent-purple)" }}
+                    />
                   )}
                   
                   <Icon className={`h-4.5 w-4.5 shrink-0 transition-colors ${
-                    isActive ? "text-[#7C5CFF]" : "text-muted-foreground"
+                    isActive ? "text-accent-purple" : "text-muted-foreground"
                   }`} />
                   
                   {!isSidebarCollapsed && (
@@ -214,61 +217,32 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Sidebar widgets at bottom */}
         <div 
-          className="mt-auto p-3 space-y-3 border-t border-border/30 shrink-0"
+          className="mt-auto p-3 border-t border-border/30 shrink-0"
           style={{ transition: "all 0.25s ease" }}
         >
-          {/* System Status Widget */}
-          <div 
-            className={`transition-all duration-300 ${
-              isSidebarCollapsed ? "opacity-0 h-0 overflow-hidden pointer-events-none mt-0 p-0 border-none" : "opacity-100 h-auto p-4 rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] shadow-inner"
-            }`}
-            style={{ transition: "all 0.25s ease" }}
-          >
-            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">System Status</span>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#10D876]">
-              <span className="h-2 w-2 rounded-full bg-[#10D876] animate-pulse" />
-              <span>All systems operational</span>
-            </div>
-            <div className="flex items-center justify-between text-[10px] text-muted-foreground/80 mt-3 pt-2.5 border-t border-border/20">
-              <span>Last Sync</span>
-              <div className="flex items-center gap-1.5">
-                <span>2 mins ago</span>
-                <button 
-                  onClick={handleSyncStatus} 
-                  className={`hover:text-foreground transition-all cursor-pointer ${isSyncing ? "animate-spin text-[#7C5CFF]" : ""}`}
-                >
-                  <RefreshCw className="h-3 w-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
           {/* User Profile Footer Card */}
           <div 
             onClick={handleLogout}
-            className={`rounded-[18px] transition-all duration-300 cursor-pointer ${
+            className={`transition-all duration-300 cursor-pointer flex items-center ${
               isSidebarCollapsed 
-                ? "p-1.5 flex justify-center hover:opacity-80 border-transparent bg-transparent" 
-                : "p-[16px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] flex items-center justify-between shadow-sm relative group hover:border-border"
+                ? "justify-center p-2 hover:opacity-80" 
+                : "px-3 py-2.5 rounded-xl hover:bg-secondary/40 flex items-center justify-between"
             }`}
             style={{ transition: "all 0.25s ease" }}
             title={isSidebarCollapsed ? `${userName} (Logout)` : undefined}
           >
-            <div className="flex items-center gap-[12px] min-w-0">
-              <div className="h-[44px] w-[44px] shrink-0 rounded-full bg-[#7C5CFF] text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="h-8 w-8 shrink-0 rounded-full bg-accent-purple text-white flex items-center justify-center font-bold text-xs shadow-sm">
                 {initials}
               </div>
-              <div 
-                className={`min-w-0 transition-all duration-300 ${
-                  isSidebarCollapsed ? "opacity-0 w-0 overflow-hidden" : "opacity-100 w-auto"
-                }`}
-              >
-                <h4 className="text-[15px] font-semibold text-white truncate pr-1 leading-none whitespace-nowrap">{userName}</h4>
-                <p className="text-[12px] font-medium text-muted-foreground tracking-wider mt-[4px] leading-none whitespace-nowrap">{userRole}</p>
-              </div>
+              {!isSidebarCollapsed && (
+                <span className="text-[13px] font-semibold text-foreground truncate leading-none">
+                  {userName}
+                </span>
+              )}
             </div>
             {!isSidebarCollapsed && (
-              <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
             )}
           </div>
         </div>
@@ -276,7 +250,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Sidebar Toggle Floating Button on right border */}
         <button
           onClick={toggleSidebar}
-          className="absolute -right-3 top-[26px] z-40 h-6 w-6 rounded-full border border-border/80 bg-[#07111F] text-white flex items-center justify-center shadow-lg hover:border-[#7C5CFF]/60 hover:bg-[#101a30] cursor-pointer transition-all duration-300 opacity-0 group-hover:opacity-100"
+          className="absolute -right-3 top-[26px] z-40 h-6 w-6 rounded-full border border-border/80 flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 opacity-0 group-hover:opacity-100 sidebar-toggle-btn"
           style={{
             transform: "translateX(50%)",
             opacity: isSidebarCollapsed ? 1 : undefined,
@@ -373,9 +347,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       </AnimatePresence>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 z-10 relative">
+      <div 
+        className={`flex-1 flex flex-col min-w-0 z-10 relative ${
+          isMounted && isSidebarCollapsed ? "lg:ml-[72px]" : "lg:ml-[240px]"
+        }`}
+        style={{ 
+          transition: "all 0.25s ease" 
+        }}
+      >
         {/* Top Header */}
-        <header className="h-16 border-b border-border bg-card/40 backdrop-blur-xl flex items-center justify-between px-6 z-20 shrink-0 transition-colors duration-300">
+        <header 
+          className="h-16 border-b border-border bg-card/40 backdrop-blur-xl flex items-center justify-between px-6 z-20 shrink-0 transition-colors duration-300"
+          style={{ boxShadow: "var(--header-shadow)" }}
+        >
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -393,7 +377,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <input
               type="text"
               placeholder="Search templates, logs, contacts..."
-              className="w-full h-9 pl-9 pr-20 rounded-xl border border-border hover:border-border/80 focus:border-[#7C5CFF]/60 bg-secondary/30 focus:bg-secondary/50 text-[12px] font-medium text-foreground placeholder-muted-foreground focus:outline-none transition-all"
+              className="w-full h-9 pl-9 pr-20 rounded-xl border border-border hover:border-border/80 focus:border-accent-purple/60 bg-secondary/30 focus:bg-secondary/50 text-[12px] font-medium text-foreground placeholder-muted-foreground focus:outline-none transition-all"
             />
             {/* Shortcut Badge Ctrl + K */}
             <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center px-2 py-0.5 rounded border border-border/80 bg-secondary font-mono text-[9px] text-muted-foreground/80 font-semibold select-none">
@@ -407,7 +391,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="relative">
               <button className="relative p-2 rounded-xl border border-border bg-secondary/30 hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-all cursor-pointer">
                 <Bell className="h-4 w-4 text-muted-foreground" />
-                <span className="absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#7C5CFF] text-[9px] font-black text-white border-2 border-[#0b0e22] shadow-[0_0_10px_rgba(124,92,255,0.4)]">
+                <span 
+                  className="absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-accent-purple text-[9px] font-black text-white border-2"
+                  style={{ borderColor: "var(--badge-border)", boxShadow: "0 0 10px var(--accent-purple-30)" }}
+                >
                   4
                 </span>
               </button>
@@ -417,11 +404,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
             {/* User Profile avatar info inside header */}
             <div className="flex items-center gap-3 pl-2 select-none border-l border-border/40">
-              <div className="h-9 w-9 rounded-full bg-[#7C5CFF] text-white font-extrabold flex items-center justify-center text-xs shadow-inner">
+              <div className="h-9 w-9 rounded-full bg-accent-purple text-white font-extrabold flex items-center justify-center text-xs shadow-inner">
                 {initials}
               </div>
               <div className="hidden sm:flex flex-col text-left">
-                <span className="text-[11px] font-black text-white leading-tight flex items-center gap-1">
+                <span className="text-[11px] font-black text-foreground leading-tight flex items-center gap-1">
                   {userName}
                   <ChevronDown className="h-3 w-3 text-muted-foreground" />
                 </span>

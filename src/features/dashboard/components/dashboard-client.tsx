@@ -143,13 +143,14 @@ export function DashboardClient() {
   const totalMessagesSent = campaignsData.reduce((acc: number, c: any) => acc + (c.sent || 0), 0) || 0;
 
   return (
-    <div className="max-w-[1600px] mx-auto flex flex-col gap-6 select-none animate-fade-in pb-8 text-white w-full">
+    <div className="max-w-[1600px] mx-auto flex flex-col gap-6 select-none animate-fade-in pb-8 text-foreground w-full">
       
       {/* ROW 1: Welcome Header Banner */}
       <div
-        className="w-full min-h-[195px] lg:h-[205px] rounded-[16px] border border-[rgba(255,255,255,0.06)] px-[24px] py-[34px] shadow-[0_10px_40px_rgba(0,0,0,0.35)] relative overflow-hidden group transition-all duration-300 flex items-center"
+        className="w-full min-h-[195px] lg:h-[205px] rounded-[16px] border border-stats-card-border px-[24px] py-[34px] relative overflow-hidden group transition-all duration-300 flex items-center"
         style={{
-          background: "linear-gradient(90deg, #071326 0%, #08162B 40%, #0A1831 70%, #0C1B35 100%)",
+          background: "var(--welcome-banner-bg)",
+          boxShadow: "var(--stats-card-shadow)",
         }}
       >
         <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full gap-6 relative z-10">
@@ -157,10 +158,10 @@ export function DashboardClient() {
           <div className="flex-1 flex flex-col justify-center h-full w-full">
             {/* Title & Subtitle */}
             <div className="flex flex-col gap-[10px]">
-              <h1 className="text-[30px] font-bold text-white font-sans leading-none tracking-tight">
+              <h1 className="text-[30px] font-bold text-foreground font-sans leading-none tracking-tight">
                 Welcome back, {userName}! 👋
               </h1>
-              <p className="text-[13px] font-normal text-[rgba(255,255,255,0.65)] font-sans leading-none">
+              <p className="text-[13px] font-normal text-muted-foreground font-sans leading-none">
                 CRM operations are running smoothly.
               </p>
             </div>
@@ -169,23 +170,23 @@ export function DashboardClient() {
             <div className="flex flex-row flex-wrap gap-[50px] items-center mt-[26px]">
               {/* Stat 1 */}
               <div className="flex items-center gap-[12px]">
-                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] text-[#8B5CF6]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-purple/12 border border-accent-purple/25 text-accent-purple">
                   <MessageSquare size={16} />
                 </div>
                 <div className="flex flex-col gap-[4px] justify-center">
-                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalCampaigns}</span>
-                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4] whitespace-nowrap">Active Campaigns</span>
+                  <span className="text-[34px] font-bold text-foreground font-sans leading-none">{totalCampaigns}</span>
+                  <span className="text-[14px] font-medium text-muted-foreground font-sans leading-[1.4] whitespace-nowrap">Active Campaigns</span>
                 </div>
               </div>
 
               {/* Stat 2 */}
               <div className="flex items-center gap-[12px]">
-                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(16,216,118,0.12)] border border-[rgba(16,216,118,0.25)] text-[#10D876]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-green/12 border border-accent-green/25 text-accent-green">
                   <Users size={16} />
                 </div>
                 <div className="flex flex-col gap-[4px] justify-center">
-                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalContacts}</span>
-                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4]">
+                  <span className="text-[34px] font-bold text-foreground font-sans leading-none">{totalContacts}</span>
+                  <span className="text-[14px] font-medium text-muted-foreground font-sans leading-[1.4]">
                     Contacts Added<br />This Week
                   </span>
                 </div>
@@ -193,12 +194,12 @@ export function DashboardClient() {
 
               {/* Stat 3 */}
               <div className="flex items-center gap-[12px]">
-                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(16,216,118,0.12)] border border-[rgba(16,216,118,0.25)] text-[#10D876]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-green/12 border border-accent-green/25 text-accent-green">
                   <Layers size={16} />
                 </div>
                 <div className="flex flex-col gap-[4px] justify-center">
-                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalGroups}</span>
-                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4] whitespace-nowrap">Active Group</span>
+                  <span className="text-[34px] font-bold text-foreground font-sans leading-none">{totalGroups}</span>
+                  <span className="text-[14px] font-medium text-muted-foreground font-sans leading-[1.4] whitespace-nowrap">Active Group</span>
                 </div>
               </div>
             </div>
@@ -210,7 +211,7 @@ export function DashboardClient() {
             <div
               className="absolute right-[40px] top-[50%] -translate-y-[50%] w-[360px] h-[360px] rounded-full pointer-events-none filter blur-[70px] z-0"
               style={{
-                background: "radial-gradient(circle, rgba(124, 92, 255, 0.22) 0%, transparent 70%)",
+                background: "radial-gradient(circle, var(--accent-purple-25) 0%, transparent 70%)",
               }}
             />
 
@@ -218,32 +219,32 @@ export function DashboardClient() {
             <div
               className="absolute bottom-[-10px] right-[10px] w-[390px] h-[2px] opacity-80"
               style={{
-                background: "linear-gradient(90deg, transparent, #7C5CFF, transparent)",
-                boxShadow: "0 0 10px rgba(124, 92, 255, 0.6)",
+                background: "linear-gradient(90deg, transparent, var(--accent-purple), transparent)",
+                boxShadow: "0 0 10px var(--accent-purple)",
               }}
             />
 
             {/* Floating Diamond Particles */}
             {/* Particle 1: Left */}
-            <div className="absolute left-[20px] top-[50px] opacity-50 text-[#7C5CFF] animate-pulse">
+            <div className="absolute left-[20px] top-[50px] opacity-50 text-accent-purple animate-pulse">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
             {/* Particle 2: Top Right */}
-            <div className="absolute right-[25px] top-[12px] opacity-40 text-[#7C5CFF]">
+            <div className="absolute right-[25px] top-[12px] opacity-40 text-accent-purple">
               <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
             {/* Particle 3: Bottom Left */}
-            <div className="absolute left-[55px] bottom-[2px] opacity-40 text-[#7C5CFF]">
+            <div className="absolute left-[55px] bottom-[2px] opacity-40 text-accent-purple">
               <svg width="8" height="8" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
             {/* Particle 4: Bottom Right */}
-            <div className="absolute right-[35px] bottom-[12px] opacity-50 text-[#7C5CFF] animate-pulse">
+            <div className="absolute right-[35px] bottom-[12px] opacity-50 text-accent-purple animate-pulse">
               <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
@@ -251,9 +252,9 @@ export function DashboardClient() {
 
             {/* Glass Panel */}
             <div
-              className="relative z-10 w-[325px] h-[123px] rounded-[12px] border border-[rgba(124,92,255,0.20)] p-[12px] flex flex-row items-center justify-between overflow-hidden"
+              className="relative z-10 w-[325px] h-[123px] rounded-[12px] border border-accent-purple/20 p-[12px] flex flex-row items-center justify-between overflow-hidden"
               style={{
-                background: "linear-gradient(180deg, rgba(124, 92, 255, 0.18) 0%, rgba(124, 92, 255, 0.08) 100%)",
+                background: "var(--glass-panel-bg)",
                 backdropFilter: "blur(4px)",
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.2)",
               }}
@@ -263,18 +264,18 @@ export function DashboardClient() {
                 <svg width="100%" height="100%" viewBox="0 0 190 98">
                   <defs>
                     <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#7C5CFF" />
-                      <stop offset="100%" stopColor="rgba(124, 92, 255, 0.2)" />
+                      <stop offset="0%" stopColor="var(--accent-purple)" />
+                      <stop offset="100%" stopColor="var(--accent-purple-5)" />
                     </linearGradient>
                     <linearGradient id="lineFillGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#7C5CFF" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#7C5CFF" stopOpacity="0.0" />
+                      <stop offset="0%" stopColor="var(--accent-purple)" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="var(--accent-purple)" stopOpacity="0.0" />
                     </linearGradient>
                   </defs>
 
                   {/* Widget Pill Top Left */}
                   <rect x="0" y="2" width="60" height="14" rx="4" ry="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-                  <circle cx="7" cy="9" r="2.5" fill="#7C5CFF" />
+                  <circle cx="7" cy="9" r="2.5" fill="var(--accent-purple)" />
                   <line x1="15" y1="9" x2="52" y2="9" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
 
                   {/* Grid Lines */}
@@ -293,7 +294,7 @@ export function DashboardClient() {
                   <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10 L 185 86 L 0 86 Z" fill="url(#lineFillGrad)" />
                   
                   {/* Line Chart Stroke */}
-                  <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10" fill="none" stroke="#7C5CFF" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10" fill="none" stroke="var(--accent-purple)" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
               </div>
 
@@ -302,8 +303,8 @@ export function DashboardClient() {
                 <svg width="86" height="86" viewBox="0 0 86 86">
                   <defs>
                     <linearGradient id="donutGrad" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#7C5CFF" />
-                      <stop offset="100%" stopColor="#3B82F6" />
+                      <stop offset="0%" stopColor="var(--accent-purple)" />
+                      <stop offset="100%" stopColor="var(--accent-blue)" />
                     </linearGradient>
                   </defs>
                   
@@ -323,7 +324,7 @@ export function DashboardClient() {
                     fill="none"
                     transform="rotate(-90 43 43)"
                     style={{
-                      filter: "drop-shadow(0 0 5px rgba(124, 92, 255, 0.5))",
+                      filter: "drop-shadow(0 0 5px var(--accent-purple))",
                     }}
                   />
                 </svg>

@@ -110,15 +110,15 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-fade-in">
       {/* Backdrop overlay */}
       <div 
-        className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
+        className="absolute inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md"
         onClick={onClose}
       />
       
       {/* Premium Modal Container */}
-      <div className="relative w-full max-w-[1100px] w-[80vw] max-h-[90vh] flex flex-col bg-card border border-border rounded-3xl shadow-sm dark:shadow-2xl overflow-hidden animate-slide-up shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] transition-colors">
+      <div className="relative w-full max-w-[1100px] w-[80vw] max-h-[90vh] flex flex-col bg-white dark:bg-card border border-slate-200 dark:border-border rounded-3xl shadow-sm dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden animate-slide-up transition-colors">
         
         {/* Modal Header */}
-        <div className="flex items-start justify-between p-6 border-b border-border bg-secondary/60 shrink-0 transition-colors">
+        <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-border bg-slate-50/50 dark:bg-secondary/60 shrink-0 transition-colors">
           <div className="space-y-1">
             <h2 className="text-2xl font-black text-foreground tracking-tight leading-none transition-colors">{template.template_name}</h2>
             <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest pt-1 transition-colors">
@@ -127,16 +127,16 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
               <span>{template.language}</span>
               <span className="h-1 w-1 rounded-full bg-muted-foreground transition-colors" />
               <span className={`px-2 py-0.5 rounded-full border ${
-                template.status.toLowerCase() === "approved" ? "border-emerald-500/20 text-emerald-400 bg-emerald-500/10" : 
-                template.status.toLowerCase() === "pending" ? "border-amber-500/20 text-amber-400 bg-amber-500/10" : 
-                "border-rose-500/20 text-rose-400 bg-rose-500/10"
+                template.status.toLowerCase() === "approved" ? "border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10" : 
+                template.status.toLowerCase() === "pending" ? "border-amber-200 dark:border-amber-500/20 text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10" : 
+                "border-rose-200 dark:border-rose-500/20 text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-500/10"
               }`}>{template.status}</span>
             </div>
             <p className="text-[10px] text-muted-foreground font-mono pt-1 transition-colors">Template ID: {template.template_id}</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all cursor-pointer bg-secondary border border-border"
+            className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-secondary/80 transition-all cursor-pointer bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border"
           >
             <X className="h-5 w-5" />
           </button>
@@ -159,28 +159,28 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
               
               {/* Template Information Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-4 rounded-2xl bg-secondary border border-border space-y-1 transition-colors">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border space-y-1 transition-colors">
                   <div className="flex items-center gap-2 text-muted-foreground mb-2 transition-colors">
                     <Tag className="h-4 w-4" />
                     <span className="text-xs font-bold uppercase tracking-widest">Category</span>
                   </div>
                   <p className="text-sm font-bold text-foreground truncate transition-colors">{template.category}</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-secondary border border-border space-y-1 transition-colors">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border space-y-1 transition-colors">
                   <div className="flex items-center gap-2 text-muted-foreground mb-2 transition-colors">
                     <Globe className="h-4 w-4" />
                     <span className="text-xs font-bold uppercase tracking-widest">Language</span>
                   </div>
                   <p className="text-sm font-bold text-foreground truncate transition-colors">{template.language}</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-secondary border border-border space-y-1 transition-colors">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border space-y-1 transition-colors">
                   <div className="flex items-center gap-2 text-muted-foreground mb-2 transition-colors">
                     <FileText className="h-4 w-4" />
                     <span className="text-xs font-bold uppercase tracking-widest">Format</span>
                   </div>
                   <p className="text-sm font-bold text-foreground truncate transition-colors">{template.parameter_format || "Named"}</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-secondary border border-border space-y-1 transition-colors">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border space-y-1 transition-colors">
                   <div className="flex items-center gap-2 text-muted-foreground mb-2 transition-colors">
                     <Activity className="h-4 w-4" />
                     <span className="text-xs font-bold uppercase tracking-widest">Last Synced</span>
@@ -196,9 +196,9 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                 <div>
                   <h3 className="text-sm font-black uppercase text-muted-foreground tracking-widest mb-4 flex items-center justify-between transition-colors">
                     <span>Dynamic Parameters</span>
-                    {isLoadingReqs && <Loader2 className="h-4 w-4 animate-spin text-blue-400" />}
+                    {isLoadingReqs && <Loader2 className="h-4 w-4 animate-spin text-blue-600 dark:text-blue-400" />}
                   </h3>
-                  <div className="space-y-4 bg-secondary/50 p-6 rounded-3xl border border-border transition-colors">
+                  <div className="space-y-4 bg-slate-50/50 dark:bg-secondary/50 p-6 rounded-3xl border border-slate-200 dark:border-border transition-colors">
                     {/* Header Image Upload */}
                     {requiresImage && (
                       <div className="space-y-2">
@@ -213,7 +213,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                             onChange={handleImageUpload}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
-                          <button type="button" className={`w-full h-12 rounded-xl bg-background border ${!params.header_image ? 'border-destructive/50 bg-destructive/5' : 'border-dashed border-border hover:border-primary/50 hover:bg-primary/5'} transition-all text-sm font-bold ${!params.header_image ? 'text-destructive' : 'text-primary'} flex items-center justify-center gap-2 relative`}>
+                          <button type="button" className={`w-full h-12 rounded-xl bg-white dark:bg-background border ${!params.header_image ? 'border-destructive/50 bg-destructive/5' : 'border-dashed border-slate-200 dark:border-border hover:border-primary/50 hover:bg-primary/5'} transition-all text-sm font-bold ${!params.header_image ? 'text-destructive' : 'text-primary'} flex items-center justify-center gap-2 relative`}>
                             <UploadCloud className="h-4 w-4" />
                             {params.header_image ? 'Image Uploaded' : 'Upload Media'}
                           </button>
@@ -244,7 +244,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                               value={params[req.param_name] || ""}
                               onChange={(e) => handleParamChange(req.param_name, e.target.value)}
                               placeholder={`Enter ${paramName}...`}
-                              className="w-full h-12 rounded-xl bg-background border border-border px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors"
+                              className="w-full h-12 rounded-xl bg-white dark:bg-background border border-slate-200 dark:border-border px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors"
                             />
                           </div>
                         );
@@ -264,7 +264,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                               value={params[field] || ""}
                               onChange={(e) => handleParamChange(field, e.target.value)}
                               placeholder={`Enter ${paramName}...`}
-                              className="w-full h-12 rounded-xl bg-background border border-border px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors"
+                              className="w-full h-12 rounded-xl bg-white dark:bg-background border border-slate-200 dark:border-border px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors"
                             />
                           </div>
                         );
@@ -275,8 +275,8 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
               )}
 
               {/* Primary Dispatch Section */}
-              <div className="pt-4 border-t border-border transition-colors">
-                <h3 className="text-sm font-black uppercase text-blue-400 tracking-widest mb-2 flex items-center gap-2">
+              <div className="pt-4 border-t border-slate-200 dark:border-border transition-colors">
+                <h3 className="text-sm font-black uppercase text-blue-600 dark:text-blue-400 tracking-widest mb-2 flex items-center gap-2">
                   <Send className="h-4 w-4" />
                   Message Dispatch
                 </h3>
@@ -285,40 +285,40 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                 </p>
                 
                 {isSuccess ? (
-                  <div className="p-8 rounded-3xl border border-emerald-500/20 bg-emerald-500/10 text-center space-y-4 animate-scale-in">
+                  <div className="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-500/20 bg-emerald-50 dark:bg-emerald-500/10 text-center space-y-4 animate-scale-in">
                     <div className="mx-auto h-16 w-16 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                      <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+                      <CheckCircle2 className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
                       <h4 className="text-xl font-black text-foreground transition-colors">Message Dispatched!</h4>
-                      <p className="text-emerald-400 text-sm font-medium mt-1">Template delivered successfully.</p>
+                      <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1">Template delivered successfully.</p>
                     </div>
                     <button 
                       onClick={() => setIsSuccess(false)}
-                      className="mt-4 px-6 h-10 bg-secondary hover:bg-secondary/80 text-foreground text-sm font-bold rounded-xl border border-border transition-colors"
+                      className="mt-4 px-6 h-10 bg-slate-100 dark:bg-secondary hover:bg-slate-200 dark:hover:bg-secondary/80 text-foreground text-sm font-bold rounded-xl border border-slate-200 dark:border-border transition-colors"
                     >
                       Send Another
                     </button>
                   </div>
                 ) : (
-                  <div className="p-6 rounded-3xl border border-blue-500/20 bg-blue-500/5 shadow-inner">
+                  <div className="p-6 rounded-3xl border border-blue-200 dark:border-blue-500/20 bg-blue-50/50 dark:bg-blue-500/5 shadow-inner">
                     <div className="space-y-4">
                       <label className="text-sm font-bold text-muted-foreground transition-colors">Select Contact</label>
                       {isLoadingContacts ? (
-                        <div className="w-full h-12 rounded-xl bg-secondary border border-border animate-pulse transition-colors" />
+                        <div className="w-full h-12 rounded-xl bg-slate-100 dark:bg-secondary border border-slate-200 dark:border-border animate-pulse transition-colors" />
                       ) : (
                         <div className="relative">
                           <select 
                             value={selectedContact}
                             onChange={(e) => setSelectedContact(e.target.value)}
-                            className="w-full h-12 rounded-xl bg-background border border-border px-4 text-sm font-medium text-foreground focus:outline-none focus:border-blue-500/50 transition-colors appearance-none shadow-sm cursor-pointer hover:bg-secondary"
+                            className="w-full h-12 rounded-xl bg-white dark:bg-background border border-slate-200 dark:border-border px-4 text-sm font-medium text-foreground focus:outline-none focus:border-blue-500/50 transition-colors appearance-none shadow-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-secondary"
                           >
-                            <option value="" disabled>Select a contact...</option>
+                            <option value="" disabled className="bg-white dark:bg-gray-900 text-slate-900 dark:text-white">Select a contact...</option>
                             {contacts?.map((c: Contact, idx) => {
                               const id = c.id || c.contact_id || String(idx);
                               const label = `${c.first_name || c.name || "Unknown"} (${c.mobile_number || c.phone || "No number"})`;
                               return (
-                                <option key={id} value={id}>{label}</option>
+                                <option key={id} value={id} className="bg-white dark:bg-gray-900 text-slate-900 dark:text-white">{label}</option>
                               );
                             })}
                           </select>

@@ -71,9 +71,15 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
   };
 
   return (
-    <div className="flex flex-col bg-background border border-border/50 rounded-xl shadow-sm transition-colors duration-300 w-full h-full">
+    <div 
+      className="flex flex-col border rounded-xl shadow-sm transition-colors duration-300 w-full h-full"
+      style={{ backgroundColor: "var(--contacts-table-bg)", borderColor: "var(--contacts-card-border)" }}
+    >
       {/* Table Toolbar */}
-      <div className="px-5 py-4 border-b border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-background rounded-t-xl z-20">
+      <div 
+        className="px-5 py-4 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-t-xl z-20"
+        style={{ backgroundColor: "var(--contacts-table-bg)", borderColor: "var(--contacts-card-border)" }}
+      >
         {/* Search */}
         <div className="relative w-full max-w-md group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-indigo-400 transition-colors" />
@@ -82,7 +88,8 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
             placeholder="Search contacts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full h-11 pl-9 pr-14 rounded-lg bg-secondary/20 border border-border/50 hover:border-border text-[15px] font-medium text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500/50 focus:bg-background transition-all shadow-sm"
+            className="w-full h-11 pl-9 pr-14 rounded-lg border text-[15px] font-medium text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all shadow-sm contacts-search-input"
+            style={{ backgroundColor: "var(--contacts-search-bg)", borderColor: "var(--contacts-search-border)" }}
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none">
             <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border border-border/50 bg-secondary px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
@@ -102,7 +109,10 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
       {/* Table Container */}
       <div className="w-full overflow-x-auto overflow-y-auto max-h-[600px] relative rounded-b-xl">
         <table className="w-full text-left border-collapse min-w-[900px]">
-          <thead className="sticky top-0 bg-secondary/80 backdrop-blur-md z-10 border-b border-border transition-colors">
+          <thead 
+            className="sticky top-0 backdrop-blur-md z-10 border-b transition-colors"
+            style={{ backgroundColor: "var(--contacts-table-header-bg)", borderColor: "var(--contacts-card-border)" }}
+          >
             <tr>
               <th 
                 className="px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-muted-foreground cursor-pointer group hover:bg-secondary transition-colors select-none w-[35%]"
@@ -135,7 +145,10 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
               <th className="px-5 py-3.5 text-right text-sm font-bold uppercase tracking-wider text-muted-foreground w-[10%] transition-colors"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border/40 transition-colors bg-background">
+          <tbody 
+            className="divide-y divide-border/40 transition-colors"
+            style={{ backgroundColor: "var(--contacts-table-bg)" }}
+          >
             {filteredAndSorted.length > 0 ? (
               filteredAndSorted.map((contact) => {
                 const initials = getInitials(contact.first_name, contact.last_name);
@@ -143,7 +156,7 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
                 return (
                   <tr 
                     key={contact.id} 
-                    className="h-16 group transition-all duration-200 hover:bg-secondary/30 cursor-pointer"
+                    className="h-16 group transition-all duration-200 cursor-pointer contacts-table-row"
                   >
                     <td className="px-5 py-3 align-middle whitespace-nowrap">
                       <div className="flex items-center gap-3.5">
@@ -224,7 +237,8 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
                             <DropdownMenu.Content
                               align="end"
                               sideOffset={4}
-                              className="rounded-xl border border-border/80 bg-background/95 backdrop-blur-xl p-1 shadow-xl z-[9999] animate-fade-in text-left select-none w-44 focus:outline-none"
+                              className="rounded-xl border border-border/80 backdrop-blur-xl p-1 shadow-xl z-[9999] animate-fade-in text-left select-none w-44 focus:outline-none"
+                              style={{ backgroundColor: "var(--contacts-dropdown-bg)" }}
                             >
                               <DropdownMenu.Item
                                 disabled

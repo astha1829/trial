@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #F8FAFC;
   --foreground: #0F172A;
@@ -23,6 +25,192 @@
   --border: #E2E8F0;
   --input: #E2E8F0;
   --ring: #2563EB;
+
+  /* Accent Colors */
+  --accent-purple: #7C3AED;
+  --accent-purple-25: rgba(124, 58, 237, 0.25);
+  --accent-purple-5: rgba(124, 58, 237, 0.05);
+  --accent-purple-30: rgba(124, 58, 237, 0.3);
+
+  --accent-green: #10B981;
+  --accent-green-25: rgba(16, 185, 129, 0.25);
+  --accent-green-5: rgba(16, 185, 129, 0.05);
+  --accent-green-30: rgba(16, 185, 129, 0.3);
+
+  --accent-blue: #2563EB;
+  --accent-blue-25: rgba(37, 99, 235, 0.25);
+  --accent-blue-5: rgba(37, 99, 235, 0.05);
+  --accent-blue-30: rgba(37, 99, 235, 0.3);
+
+  --accent-orange: #F59E0B;
+  --accent-orange-25: rgba(245, 158, 11, 0.25);
+  --accent-orange-5: rgba(245, 158, 11, 0.05);
+  --accent-orange-30: rgba(245, 158, 11, 0.3);
+
+  --accent-red: #EF4444;
+  --accent-red-25: rgba(239, 68, 68, 0.25);
+  --accent-red-5: rgba(239, 68, 68, 0.05);
+  --accent-red-30: rgba(239, 68, 68, 0.3);
+
+  /* Sidebar Component */
+  --sidebar-bg: #FFFFFF;
+  --sidebar-nav-active-text: #7C3AED;
+  --sidebar-card-bg: #F8FAFC;
+  --sidebar-card-text: #0F172A;
+  --sidebar-logo-text: #0F172A;
+  --sidebar-toggle-hover: #F1F5F9;
+
+  /* Header Component */
+  --header-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --badge-border: #FFFFFF;
+
+  /* Card Component */
+  --stats-card-bg: #FFFFFF;
+  --stats-card-border: #E2E8F0;
+  --stats-card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --stats-card-label-text: #64748B;
+  --stats-card-value-text: #0F172A;
+  --stats-card-trend-text: #64748B;
+
+  /* Welcome Banner Component */
+  --welcome-banner-bg: linear-gradient(90deg, #F1F5F9 0%, #F8FAFC 100%);
+  --glass-panel-bg: linear-gradient(180deg, rgba(124, 92, 255, 0.08) 0%, rgba(124, 92, 255, 0.03) 100%);
+
+  /* Campaign Overview Status */
+  --status-running-text: #2563EB;
+  --status-running-bg: rgba(37, 99, 235, 0.08);
+  --status-running-border: rgba(37, 99, 235, 0.15);
+  --status-running-glow: rgba(37, 99, 235, 0.1);
+
+  --status-completed-text: #10B981;
+  --status-completed-bg: rgba(16, 185, 129, 0.08);
+  --status-completed-border: rgba(16, 185, 129, 0.15);
+  --status-completed-glow: rgba(16, 185, 129, 0.1);
+
+  --status-scheduled-text: #F59E0B;
+  --status-scheduled-bg: rgba(245, 158, 11, 0.08);
+  --status-scheduled-border: rgba(245, 158, 11, 0.15);
+  --status-scheduled-glow: rgba(245, 158, 11, 0.1);
+
+  --status-failed-text: #EF4444;
+  --status-failed-bg: rgba(239, 68, 68, 0.08);
+  --status-failed-border: rgba(239, 68, 68, 0.15);
+  --status-failed-glow: rgba(239, 68, 68, 0.1);
+
+  /* Quick Actions & Lists */
+  --quick-action-bg: #FFFFFF;
+  --quick-action-border: #E2E8F0;
+  --quick-action-hover-bg: #F8FAFC;
+  --quick-action-hover-border: #CBD5E1;
+  --quick-action-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  --item-bg: #FFFFFF;
+  --item-border: #E2E8F0;
+  --item-hover-bg: #F8FAFC;
+
+  --active-badge-bg: rgba(16, 185, 129, 0.15);
+  --active-badge-text: #10B981;
+
+  --empty-state-bg: #F8FAFC;
+  --empty-state-border: #E2E8F0;
+
+  /* Contacts Page Component Variables */
+  --contacts-card-bg: #FFFFFF;
+  --contacts-card-hover: #F1F5F9;
+  --contacts-card-border: #E2E8F0;
+  
+  --contacts-quick-bg: #FFFFFF;
+  --contacts-quick-border: #E2E8F0;
+  --contacts-quick-hover: #F1F5F9;
+  
+  --contacts-table-bg: #FFFFFF;
+  --contacts-table-header-bg: rgba(248, 250, 252, 0.95);
+  --contacts-row-hover: #F1F5F9;
+  --contacts-dropdown-bg: #FFFFFF;
+
+  --contacts-search-bg: #FFFFFF;
+  --contacts-search-border: #E2E8F0;
+  --contacts-search-focus-bg: #FFFFFF;
+
+  /* Groups Page Component Variables */
+  --groups-badge-bg: rgba(37, 99, 235, 0.05);
+  --groups-badge-border: rgba(37, 99, 235, 0.15);
+  --groups-badge-text: #2563EB;
+  --groups-create-btn-bg: rgba(37, 99, 235, 0.08);
+  --groups-create-btn-border: rgba(37, 99, 235, 0.15);
+  --groups-create-btn-text: #2563EB;
+  --groups-create-btn-hover-bg: rgba(37, 99, 235, 0.15);
+  --groups-create-btn-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  --groups-table-bg: #FFFFFF;
+  --groups-table-toolbar-bg: #F1F5F9;
+  --groups-table-header-bg: #F1F5F9;
+  --groups-row-hover: #F8FAFC;
+  --groups-search-bg: #FFFFFF;
+  --groups-search-border: #E2E8F0;
+
+  /* Campaigns Page Component Variables */
+  --campaign-page-bg: #F8FAFC;
+  --campaign-hero-bg: #FFFFFF;
+  --campaign-hero-border: #E2E8F0;
+  --campaign-hero-glow-opacity: 0.3;
+  --campaign-icon-bg: #F1F5F9;
+  --campaign-icon-border: #E2E8F0;
+  --campaign-icon-text: #0F172A;
+  --campaign-card-bg: #FFFFFF;
+  --campaign-card-border: #E2E8F0;
+  --campaign-card-hover-bg: #F8FAFC;
+  --campaign-card-hover-border: #CBD5E1;
+  --campaign-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --campaign-card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --campaign-text-bright: #0F172A;
+  --campaign-text-medium: #64748B;
+  --campaign-text-muted: #94A3B8;
+  --campaign-progress-track-bg: #F1F5F9;
+  --campaign-btn-secondary-bg: #F1F5F9;
+  --campaign-btn-secondary-border: #E2E8F0;
+  --campaign-btn-secondary-text: #64748B;
+  --campaign-btn-secondary-hover: #E2E8F0;
+
+  /* Templates Page Component Variables */
+  --templates-metrics-bg: #FFFFFF;
+  --templates-metrics-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --templates-table-header-bg: #F1F5F9;
+  --templates-table-row-hover: #F8FAFC;
+  --templates-activity-timeline-bg: #FFFFFF;
+  --templates-activity-timeline-glow: rgba(37, 99, 235, 0.02);
+
+  /* Settings Page Component Variables */
+  --settings-page-bg: #F8FAFC;
+  --settings-hero-bg: #FFFFFF;
+  --settings-hero-border: #E2E8F0;
+  --settings-avatar-border: #FFFFFF;
+  --settings-card-bg: #FFFFFF;
+  --settings-card-border: #E2E8F0;
+  --settings-input-bg: #FFFFFF;
+  --settings-input-border: #E2E8F0;
+  --settings-input-focus-bg: #FFFFFF;
+  --settings-input-text: #0F172A;
+  --settings-text-bright: #0F172A;
+  --settings-text-medium: #64748B;
+  --settings-text-muted: #94A3B8;
+
+  /* Shared Modals, Popovers & Dropdowns */
+  --modal-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
+  --dropdown-border: #E2E8F0;
+  --dropdown-bg: #FFFFFF;
+  --dropdown-hover-bg: #F1F5F9;
+  --dropdown-text: #0F172A;
+
+  /* WhatsApp Preview Mockup */
+  --wa-header-bg: #008069;
+  --wa-header-text: #FFFFFF;
+  --wa-header-sub: #D1F4E4;
+  --wa-chat-bg: #EFEAE2;
+  --wa-msg-bg: #FFFFFF;
+  --wa-msg-text: #111B21;
+  --wa-msg-sub: #667781;
+  --wa-border: #E1E1E1;
+  --wa-notch: #00735E;
 }
 
 .dark {
@@ -46,6 +234,192 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.06);
   --ring: #7C5CFF;
+
+  /* Accent Colors */
+  --accent-purple: #8B5CF6;
+  --accent-purple-25: rgba(139, 92, 246, 0.25);
+  --accent-purple-5: rgba(139, 92, 246, 0.05);
+  --accent-purple-30: rgba(139, 92, 246, 0.3);
+
+  --accent-green: #10D876;
+  --accent-green-25: rgba(16, 216, 118, 0.25);
+  --accent-green-5: rgba(16, 216, 118, 0.05);
+  --accent-green-30: rgba(16, 216, 118, 0.3);
+
+  --accent-blue: #3B82F6;
+  --accent-blue-25: rgba(59, 130, 246, 0.25);
+  --accent-blue-5: rgba(59, 130, 246, 0.05);
+  --accent-blue-30: rgba(59, 130, 246, 0.3);
+
+  --accent-orange: #F59E0B;
+  --accent-orange-25: rgba(245, 158, 11, 0.25);
+  --accent-orange-5: rgba(245, 158, 11, 0.05);
+  --accent-orange-30: rgba(245, 158, 11, 0.3);
+
+  --accent-red: #FF4D7A;
+  --accent-red-25: rgba(255, 77, 122, 0.25);
+  --accent-red-5: rgba(255, 77, 122, 0.05);
+  --accent-red-30: rgba(255, 77, 122, 0.3);
+
+  /* Sidebar Component */
+  --sidebar-bg: #07111F;
+  --sidebar-nav-active-text: #A894FF;
+  --sidebar-card-bg: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.95));
+  --sidebar-card-text: #FFFFFF;
+  --sidebar-logo-text: #FFFFFF;
+  --sidebar-toggle-hover: #101a30;
+
+  /* Header Component */
+  --header-shadow: none;
+  --badge-border: #0b0e22;
+
+  /* Card Component */
+  --stats-card-bg: linear-gradient(180deg, rgba(10, 18, 40, 0.98), rgba(5, 12, 28, 0.98));
+  --stats-card-border: rgba(255, 255, 255, 0.06);
+  --stats-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --stats-card-label-text: rgba(255, 255, 255, 0.9);
+  --stats-card-value-text: #FFFFFF;
+  --stats-card-trend-text: rgba(255, 255, 255, 0.55);
+
+  /* Welcome Banner Component */
+  --welcome-banner-bg: linear-gradient(90deg, #071326 0%, #08162B 40%, #0A1831 70%, #0C1B35 100%);
+  --glass-panel-bg: linear-gradient(180deg, rgba(124, 92, 255, 0.18) 0%, rgba(124, 92, 255, 0.08) 100%);
+
+  /* Campaign Overview Status */
+  --status-running-text: #3B82F6;
+  --status-running-bg: rgba(59, 130, 246, 0.08);
+  --status-running-border: rgba(59, 130, 246, 0.15);
+  --status-running-glow: rgba(59, 130, 246, 0.37);
+
+  --status-completed-text: #10D876;
+  --status-completed-bg: rgba(16, 216, 118, 0.08);
+  --status-completed-border: rgba(16, 216, 118, 0.15);
+  --status-completed-glow: rgba(16, 216, 118, 0.37);
+
+  --status-scheduled-text: #F59E0B;
+  --status-scheduled-bg: rgba(245, 158, 11, 0.08);
+  --status-scheduled-border: rgba(245, 158, 11, 0.15);
+  --status-scheduled-glow: rgba(245, 158, 11, 0.37);
+
+  --status-failed-text: #FF5D7A;
+  --status-failed-bg: rgba(255, 93, 122, 0.08);
+  --status-failed-border: rgba(255, 93, 122, 0.15);
+  --status-failed-glow: rgba(255, 93, 122, 0.37);
+
+  /* Quick Actions & Lists */
+  --quick-action-bg: rgba(255, 255, 255, 0.02);
+  --quick-action-border: rgba(255, 255, 255, 0.05);
+  --quick-action-hover-bg: rgba(255, 255, 255, 0.02);
+  --quick-action-hover-border: rgba(255, 255, 255, 0.10);
+  --quick-action-hover-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+
+  --item-bg: rgba(255, 255, 255, 0.02);
+  --item-border: rgba(255, 255, 255, 0.05);
+  --item-hover-bg: rgba(255, 255, 255, 0.04);
+
+  --active-badge-bg: rgba(16, 216, 118, 0.15);
+  --active-badge-text: #10D876;
+
+  --empty-state-bg: rgba(255, 255, 255, 0.01);
+  --empty-state-border: rgba(255, 255, 255, 0.05);
+
+  /* Contacts Page Component Variables */
+  --contacts-card-bg: rgba(255, 255, 255, 0.004);
+  --contacts-card-hover: rgba(255, 255, 255, 0.008);
+  --contacts-card-border: rgba(255, 255, 255, 0.04);
+  
+  --contacts-quick-bg: rgba(255, 255, 255, 0.004);
+  --contacts-quick-border: rgba(255, 255, 255, 0.04);
+  --contacts-quick-hover: rgba(255, 255, 255, 0.012);
+  
+  --contacts-table-bg: #050B1A;
+  --contacts-table-header-bg: rgba(255, 255, 255, 0.032);
+  --contacts-row-hover: rgba(255, 255, 255, 0.012);
+  --contacts-dropdown-bg: rgba(5, 11, 26, 0.95);
+
+  --contacts-search-bg: rgba(255, 255, 255, 0.008);
+  --contacts-search-border: rgba(255, 255, 255, 0.04);
+  --contacts-search-focus-bg: #050B1A;
+
+  /* Groups Page Component Variables */
+  --groups-badge-bg: rgba(59, 130, 246, 0.05);
+  --groups-badge-border: rgba(59, 130, 246, 0.2);
+  --groups-badge-text: #60A5FA;
+  --groups-create-btn-bg: rgba(37, 99, 235, 0.2);
+  --groups-create-btn-border: rgba(37, 99, 235, 0.2);
+  --groups-create-btn-text: #60A5FA;
+  --groups-create-btn-hover-bg: rgba(37, 99, 235, 0.3);
+  --groups-create-btn-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+  --groups-table-bg: transparent;
+  --groups-table-toolbar-bg: rgba(255, 255, 255, 0.04);
+  --groups-table-header-bg: rgba(255, 255, 255, 0.05);
+  --groups-row-hover: rgba(255, 255, 255, 0.04);
+  --groups-search-bg: transparent;
+  --groups-search-border: rgba(255, 255, 255, 0.08);
+
+  /* Campaigns Page Component Variables */
+  --campaign-page-bg: #050816;
+  --campaign-hero-bg: rgba(255, 255, 255, 0.02);
+  --campaign-hero-border: rgba(255, 255, 255, 0.08);
+  --campaign-hero-glow-opacity: 1;
+  --campaign-icon-bg: linear-gradient(to tr, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  --campaign-icon-border: rgba(255, 255, 255, 0.1);
+  --campaign-icon-text: rgba(255, 255, 255, 0.8);
+  --campaign-card-bg: rgba(255, 255, 255, 0.015);
+  --campaign-card-border: rgba(255, 255, 255, 0.04);
+  --campaign-card-hover-bg: rgba(255, 255, 255, 0.03);
+  --campaign-card-hover-border: rgba(168, 85, 247, 0.3);
+  --campaign-card-shadow: none;
+  --campaign-card-hover-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.2);
+  --campaign-text-bright: #FFFFFF;
+  --campaign-text-medium: rgba(255, 255, 255, 0.6);
+  --campaign-text-muted: rgba(255, 255, 255, 0.4);
+  --campaign-progress-track-bg: rgba(255, 255, 255, 0.05);
+  --campaign-btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --campaign-btn-secondary-border: rgba(255, 255, 255, 0.1);
+  --campaign-btn-secondary-text: #FFFFFF;
+  --campaign-btn-secondary-hover: rgba(255, 255, 255, 0.1);
+
+  /* Templates Page Component Variables */
+  --templates-metrics-bg: rgba(11, 19, 40, 0.6);
+  --templates-metrics-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --templates-table-header-bg: rgba(255, 255, 255, 0.05);
+  --templates-table-row-hover: rgba(255, 255, 255, 0.04);
+  --templates-activity-timeline-bg: rgba(255, 255, 255, 0.04);
+  --templates-activity-timeline-glow: rgba(59, 130, 246, 0.05);
+
+  /* Settings Page Component Variables */
+  --settings-page-bg: #050816;
+  --settings-hero-bg: rgba(255, 255, 255, 0.02);
+  --settings-hero-border: rgba(255, 255, 255, 0.08);
+  --settings-avatar-border: #050816;
+  --settings-card-bg: rgba(255, 255, 255, 0.02);
+  --settings-card-border: rgba(255, 255, 255, 0.08);
+  --settings-input-bg: rgba(0, 0, 0, 0.2);
+  --settings-input-border: rgba(255, 255, 255, 0.08);
+  --settings-input-focus-bg: rgba(255, 255, 255, 0.05);
+  --settings-input-text: #FFFFFF;
+  --settings-text-bright: #FFFFFF;
+  --settings-text-medium: rgba(255, 255, 255, 0.5);
+  --settings-text-muted: rgba(255, 255, 255, 0.4);
+
+  /* Shared Modals, Popovers & Dropdowns */
+  --modal-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.8);
+  --dropdown-border: rgba(255, 255, 255, 0.08);
+  --dropdown-bg: rgba(11, 18, 40, 0.95);
+  --dropdown-hover-bg: rgba(255, 255, 255, 0.06);
+  --dropdown-text: rgba(255, 255, 255, 0.8);
+
+  /* WhatsApp Preview Mockup */
+  --wa-header-bg: #202C33;
+  --wa-header-text: #E9EDEF;
+  --wa-header-sub: #8696A0;
+  --wa-chat-bg: #0B141A;
+  --wa-msg-bg: #202C33;
+  --wa-msg-text: #E9EDEF;
+  --wa-msg-sub: #8696A0;
+  --wa-border: #202C33;
+  --wa-notch: #202C33;
 }
 
 @theme {
@@ -70,6 +444,14 @@
   --color-ring: var(--ring);
   --color-success: var(--success);
   --color-warning: var(--warning);
+
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-red: var(--accent-red);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-stats-card-border: var(--stats-card-border);
 
   --color-brand-50: #f5f7ff;
   --color-brand-100: #ebf0fe;
@@ -195,4 +577,200 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--foreground) !important;
   -webkit-box-shadow: 0 0 0 30px var(--card) inset !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Quick Actions Button Styling */
+.quick-action-btn {
+  background-color: var(--quick-action-bg);
+  border: 1px solid var(--quick-action-border);
+  box-shadow: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-action-btn:hover {
+  background-color: var(--quick-action-hover-bg);
+  border-color: var(--quick-action-hover-border);
+  box-shadow: var(--quick-action-hover-shadow);
+  transform: translateY(-4px);
+}
+
+/* Sidebar Toggle Floating Button Styling */
+.sidebar-toggle-btn {
+  background-color: var(--sidebar-bg);
+  color: var(--foreground);
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: var(--sidebar-toggle-hover);
+  border-color: var(--accent-purple);
+}
+
+/* Contacts Page Styles */
+.contacts-summary-card {
+  background-color: var(--contacts-card-bg);
+  border: 1px solid var(--contacts-card-border);
+  transition: all 0.2s ease;
+}
+
+.contacts-summary-card:hover {
+  background-color: var(--contacts-card-hover);
+}
+
+.contacts-quick-btn {
+  background-color: var(--contacts-quick-bg);
+  border: 1px solid var(--contacts-quick-border);
+  transition: all 0.2s ease;
+}
+
+.contacts-quick-btn:hover {
+  background-color: var(--contacts-quick-hover);
+}
+
+.contacts-search-input:focus {
+  background-color: var(--contacts-search-focus-bg) !important;
+}
+
+.contacts-table-row {
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.contacts-table-row:hover {
+  background-color: var(--contacts-row-hover) !important;
+}
+
+/* Groups Page helper classes */
+.groups-badge {
+  background-color: var(--groups-badge-bg) !important;
+  border-color: var(--groups-badge-border) !important;
+  color: var(--groups-badge-text) !important;
+}
+
+.groups-create-btn {
+  background-color: var(--groups-create-btn-bg) !important;
+  border-color: var(--groups-create-btn-border) !important;
+  color: var(--groups-create-btn-text) !important;
+  box-shadow: var(--groups-create-btn-shadow) !important;
+}
+
+.groups-create-btn:hover {
+  background-color: var(--groups-create-btn-hover-bg) !important;
+}
+
+.groups-table-container {
+  background-color: var(--groups-table-bg);
+  border-color: var(--border);
+}
+
+.groups-table-toolbar {
+  background-color: var(--groups-table-toolbar-bg);
+  border-color: var(--border);
+}
+
+.groups-table-header {
+  background-color: var(--groups-table-header-bg);
+  border-color: var(--border);
+}
+
+.groups-table-row {
+  background-color: transparent;
+  transition: all 0.15s ease;
+}
+
+.groups-table-row:hover {
+  background-color: var(--groups-row-hover) !important;
+}
+
+/* Campaigns Page helper classes */
+.campaign-container-bg {
+  background-color: var(--campaign-page-bg) !important;
+}
+
+.campaign-hero {
+  background-color: var(--campaign-hero-bg) !important;
+  border-color: var(--campaign-hero-border) !important;
+}
+
+.campaign-card {
+  background-color: var(--campaign-card-bg) !important;
+  border-color: var(--campaign-card-border) !important;
+  box-shadow: var(--campaign-card-shadow) !important;
+  transition: all 0.25s ease !important;
+}
+
+.campaign-card:hover {
+  background-color: var(--campaign-card-hover-bg) !important;
+  border-color: var(--campaign-card-hover-border) !important;
+  box-shadow: var(--campaign-card-hover-shadow) !important;
+}
+
+.campaign-btn-secondary {
+  background-color: var(--campaign-btn-secondary-bg) !important;
+  border-color: var(--campaign-btn-secondary-border) !important;
+  color: var(--campaign-btn-secondary-text) !important;
+}
+
+.campaign-btn-secondary:hover {
+  background-color: var(--campaign-btn-secondary-hover) !important;
+}
+
+.campaign-progress-track {
+  background-color: var(--campaign-progress-track-bg) !important;
+}
+
+.campaign-text-bright {
+  color: var(--campaign-text-bright) !important;
+}
+
+.campaign-text-medium {
+  color: var(--campaign-text-medium) !important;
+}
+
+.campaign-text-muted {
+  color: var(--campaign-text-muted) !important;
+}
+
+
+
+.dropdown-portal-content {
+  background-color: var(--dropdown-bg) !important;
+  border-color: var(--dropdown-border) !important;
+}
+
+.dropdown-portal-item {
+  color: var(--dropdown-text) !important;
+}
+
+.dropdown-portal-item:hover, .dropdown-portal-item:focus {
+  background-color: var(--dropdown-hover-bg) !important;
+}
+
+/* WhatsApp Preview Mockup classes */
+.wa-mockup-phone {
+  background-color: var(--wa-chat-bg) !important;
+  border-color: var(--wa-border) !important;
+}
+.wa-mockup-notch {
+  background-color: var(--wa-notch) !important;
+}
+.wa-mockup-header {
+  background-color: var(--wa-header-bg) !important;
+}
+.wa-mockup-header-text {
+  color: var(--wa-header-text) !important;
+}
+.wa-mockup-header-sub {
+  color: var(--wa-header-sub) !important;
+}
+.wa-mockup-chat {
+  background-color: var(--wa-chat-bg) !important;
+}
+.wa-mockup-msg {
+  background-color: var(--wa-msg-bg) !important;
+}
+.wa-mockup-msg-text {
+  color: var(--wa-msg-text) !important;
+}
+.wa-mockup-msg-sub {
+  color: var(--wa-msg-sub) !important;
 }

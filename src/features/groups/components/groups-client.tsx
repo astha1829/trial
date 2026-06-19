@@ -23,7 +23,7 @@ export function GroupsClient() {
       {/* Top Command Center */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0">
         <div className="space-y-3">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[10px] font-black tracking-widest uppercase self-start w-fit">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] font-black tracking-widest uppercase self-start w-fit groups-badge">
             <Layers className="h-3.5 w-3.5" />
             <span>CRM Audience Segments</span>
           </div>
@@ -46,7 +46,7 @@ export function GroupsClient() {
           </button>
           <button 
             onClick={() => setIsCreateModalOpen(true)}
-            className="flex items-center gap-2 h-10 px-5 rounded-xl border border-blue-500/20 bg-blue-600/20 hover:bg-blue-600/30 transition-all text-sm font-bold text-blue-400 shadow-[0_0_20px_rgba(37,99,235,0.2)] cursor-pointer"
+            className="flex items-center gap-2 h-10 px-5 rounded-xl border transition-all text-sm font-bold cursor-pointer groups-create-btn"
           >
             <Plus className="h-4 w-4" />
             Create Group

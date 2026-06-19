@@ -115,7 +115,7 @@ export function ContactsClient() {
         {/* Premium Summary Panel */}
         {!isError && contacts && contacts.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex flex-col gap-2 p-4 rounded-xl border border-border/50 bg-secondary/10 hover:bg-secondary/20 transition-colors">
+            <div className="flex flex-col gap-2 p-4 rounded-xl contacts-summary-card">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Users className="h-4 w-4 text-indigo-400" />
                 <span className="text-sm font-semibold uppercase tracking-wider">Total Contacts</span>
@@ -125,7 +125,7 @@ export function ContactsClient() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 p-4 rounded-xl border border-border/50 bg-secondary/10 hover:bg-secondary/20 transition-colors">
+            <div className="flex flex-col gap-2 p-4 rounded-xl contacts-summary-card">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Phone className="h-4 w-4 text-emerald-400" />
                 <span className="text-sm font-semibold uppercase tracking-wider">Reachable</span>
@@ -135,7 +135,7 @@ export function ContactsClient() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 p-4 rounded-xl border border-border/50 bg-secondary/10 hover:bg-secondary/20 transition-colors">
+            <div className="flex flex-col gap-2 p-4 rounded-xl contacts-summary-card">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Layers className="h-4 w-4 text-amber-400" />
                 <span className="text-sm font-semibold uppercase tracking-wider">Active Groups</span>
@@ -145,7 +145,7 @@ export function ContactsClient() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 p-4 rounded-xl border border-border/50 bg-secondary/10 hover:bg-secondary/20 transition-colors">
+            <div className="flex flex-col gap-2 p-4 rounded-xl contacts-summary-card">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Clock className="h-4 w-4 text-purple-400" />
                 <span className="text-sm font-semibold uppercase tracking-wider">Latest Added</span>
@@ -180,14 +180,14 @@ export function ContactsClient() {
             <div className="flex flex-col gap-2">
               <button 
                 onClick={handleExportData}
-                className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-secondary/10 hover:bg-secondary/30 transition-colors group cursor-pointer"
+                className="flex items-center justify-between p-3 rounded-lg contacts-quick-btn group cursor-pointer"
               >
                 <span className="text-[15px] font-medium text-foreground">Export Data</span>
                 <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
               </button>
               <button 
                 onClick={() => router.push('/groups')}
-                className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-secondary/10 hover:bg-secondary/30 transition-colors group cursor-pointer"
+                className="flex items-center justify-between p-3 rounded-lg contacts-quick-btn group cursor-pointer"
               >
                 <span className="text-[15px] font-medium text-foreground">Manage Groups</span>
                 <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />

@@ -15,8 +15,11 @@ export function GroupsEmptyState({ onCreateClick }: GroupsEmptyStateProps) {
         {/* Composite Icon Container */}
         <div className="relative mb-8 group-hover:scale-105 transition-transform duration-500">
           <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full" />
-          <div className="h-28 w-28 rounded-[2rem] bg-secondary flex items-center justify-center border border-border shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative z-10 transition-colors">
-            <Layers className="h-12 w-12 text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.4)]" />
+          <div 
+            style={{ boxShadow: "var(--modal-shadow)" }}
+            className="h-28 w-28 rounded-[2rem] bg-secondary flex items-center justify-center border border-border relative z-10 transition-colors"
+          >
+            <Layers className="h-12 w-12 text-blue-500 dark:text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.4)]" />
           </div>
         </div>
         
@@ -27,7 +30,7 @@ export function GroupsEmptyState({ onCreateClick }: GroupsEmptyStateProps) {
         
         <button
           onClick={onCreateClick}
-          className="flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 transition-all text-sm font-bold text-white shadow-[0_0_30px_rgba(37,99,235,0.3)] border border-blue-500/50 cursor-pointer"
+          className="flex items-center justify-center gap-2 h-12 px-6 rounded-xl transition-all text-sm font-bold cursor-pointer groups-create-btn"
         >
           <Plus className="h-5 w-5" />
           Create Group

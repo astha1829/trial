@@ -8,7 +8,7 @@ interface TemplatesEmptyStateProps {
 
 export function TemplatesEmptyState({ onSync, isSyncing }: TemplatesEmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-32 px-4 text-center rounded-3xl border border-border bg-card dark:bg-card dark:bg-card/40 dark:backdrop-blur-3xl relative overflow-hidden group shadow-sm dark:shadow-2xl transition-colors">
+    <div className="flex flex-col items-center justify-center py-32 px-4 text-center rounded-3xl border border-slate-200 dark:border-border bg-white dark:bg-card/40 dark:backdrop-blur-3xl relative overflow-hidden group shadow-sm dark:shadow-2xl transition-colors">
       {/* Background ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
       
@@ -16,8 +16,8 @@ export function TemplatesEmptyState({ onSync, isSyncing }: TemplatesEmptyStatePr
         {/* Premium Illustration Placeholder (Icon composite) */}
         <div className="relative mb-8 group-hover:scale-105 transition-transform duration-500">
           <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full" />
-          <div className="h-28 w-28 rounded-[2rem] bg-secondary flex items-center justify-center border border-border shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative z-10 transition-colors">
-            <FolderOpenDot className="h-12 w-12 text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.4)]" />
+          <div className="h-28 w-28 rounded-[2rem] bg-slate-50 dark:bg-secondary flex items-center justify-center border border-slate-200 dark:border-border shadow-md dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative z-10 transition-colors">
+            <FolderOpenDot className="h-12 w-12 text-blue-600 dark:text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.4)]" />
           </div>
         </div>
         

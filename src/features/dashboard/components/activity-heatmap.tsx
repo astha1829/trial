@@ -68,25 +68,26 @@ export function ActivityHeatmap({ contacts = [] }: ActivityHeatmapProps) {
 
   return (
     <div
-      className="w-full h-full rounded-[16px] border border-[rgba(255,255,255,0.06)] p-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.35)] flex flex-col justify-between"
+      className="w-full h-full rounded-[16px] border border-stats-card-border p-[24px] flex flex-col justify-between"
       style={{
-        background: "linear-gradient(180deg, rgba(10, 18, 40, 0.98), rgba(5, 12, 28, 0.98))",
+        background: "var(--stats-card-bg)",
+        boxShadow: "var(--stats-card-shadow)",
       }}
     >
       <div>
         {/* Header */}
         <div className="flex items-start justify-between mb-[20px] select-none">
           <div className="flex flex-col gap-[4px]">
-            <h2 className="text-[26px] font-bold text-white font-sans leading-[1.2]">
+            <h2 className="text-[26px] font-bold text-foreground font-sans leading-[1.2]">
               Recently Created Contacts
             </h2>
-            <p className="text-[13px] font-normal text-[rgba(255,255,255,0.65)] font-sans">
+            <p className="text-[13px] font-normal text-muted-foreground font-sans">
               Latest contacts added to the system
             </p>
           </div>
           <a
             href="/contacts"
-            className="text-[14px] font-semibold text-[#8B5CF6] hover:underline font-sans mt-[4px]"
+            className="text-[14px] font-semibold text-accent-purple hover:underline font-sans mt-[4px]"
           >
             View All
           </a>
@@ -97,22 +98,22 @@ export function ActivityHeatmap({ contacts = [] }: ActivityHeatmapProps) {
           {displayContacts.map((contact) => (
             <div
               key={contact.id}
-              className="flex items-center justify-between gap-[10px] p-[12px] h-[66px] rounded-[12px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.04)] transition-colors"
+              className="flex items-center justify-between gap-[10px] p-[12px] h-[66px] rounded-[12px] bg-[var(--item-bg)] border border-[var(--item-border)] hover:bg-[var(--item-hover-bg)] transition-colors"
             >
               <div className="flex items-center gap-[12px] min-w-0">
-                <div className="w-[40px] h-[40px] rounded-[10px] bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 text-[#8B5CF6] flex items-center justify-center shrink-0">
+                <div className="w-[40px] h-[40px] rounded-[10px] bg-accent-purple/10 border border-accent-purple/20 text-accent-purple flex items-center justify-center shrink-0">
                   <Phone size={18} />
                 </div>
                 <div className="min-w-0 flex flex-col">
-                  <span className="text-[16px] font-semibold text-white truncate font-sans leading-none">
+                  <span className="text-[16px] font-semibold text-foreground truncate font-sans leading-none">
                     {contact.name}
                   </span>
-                  <span className="text-[13px] text-[rgba(255,255,255,0.70)] truncate font-sans mt-[4px] leading-none">
+                  <span className="text-[13px] text-muted-foreground truncate font-sans mt-[4px] leading-none">
                     {contact.detail}
                   </span>
                 </div>
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[rgba(255,255,255,0.50)] font-sans shrink-0">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground shrink-0">
                 {contact.time}
               </span>
             </div>

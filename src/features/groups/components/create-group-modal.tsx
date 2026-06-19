@@ -67,7 +67,10 @@ export function CreateGroupModal({ isOpen, onClose }: CreateGroupModalProps) {
       />
       
       {/* Premium Modal Container */}
-      <div className="relative w-full max-w-[640px] flex flex-col bg-card border border-border rounded-3xl shadow-sm dark:shadow-2xl overflow-hidden animate-slide-up shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] transition-colors">
+      <div 
+        style={{ boxShadow: "var(--modal-shadow)" }}
+        className="relative w-full max-w-[640px] flex flex-col bg-card border border-border rounded-3xl overflow-hidden animate-slide-up transition-colors"
+      >
         
         {/* Modal Header */}
         <div className="flex items-center justify-between p-6 md:p-8 border-b border-border bg-secondary/60 shrink-0 transition-colors">

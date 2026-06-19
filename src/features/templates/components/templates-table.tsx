@@ -58,13 +58,13 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
 
   const SortIcon = ({ field }: { field: SortField }) => {
     if (sortField !== field) return <ChevronDown className="h-3 w-3 text-slate-600 opacity-0 group-hover:opacity-100" />;
-    return sortOrder === "asc" ? <ChevronUp className="h-3 w-3 text-blue-400" /> : <ChevronDown className="h-3 w-3 text-blue-400" />;
+    return sortOrder === "asc" ? <ChevronUp className="h-3 w-3 text-blue-600 dark:text-blue-400" /> : <ChevronDown className="h-3 w-3 text-blue-600 dark:text-blue-400" />;
   };
 
   return (
-    <div className="flex flex-col bg-card/60 backdrop-blur-xl border border-border rounded-2xl shadow-2xl transition-colors duration-300">
+    <div className="flex flex-col bg-white dark:bg-card/60 backdrop-blur-xl border border-slate-200 dark:border-border rounded-2xl shadow-sm dark:shadow-2xl transition-colors duration-300">
       {/* Table Toolbar */}
-      <div className="p-5 border-b border-border flex items-center justify-between bg-secondary/40 rounded-t-2xl transition-colors">
+      <div className="p-5 border-b border-slate-200 dark:border-border flex items-center justify-between bg-slate-50/50 dark:bg-secondary/40 rounded-t-2xl transition-colors">
         <div className="flex items-center gap-4">
           <div className="relative w-80">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors" />
@@ -73,7 +73,7 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
               placeholder="Search templates..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-10 pl-10 pr-4 rounded-xl bg-background border border-border text-sm font-medium text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors shadow-inner"
+              className="w-full h-10 pl-10 pr-4 rounded-xl bg-white dark:bg-background border border-slate-200 dark:border-border text-sm font-medium text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500/50 transition-colors shadow-inner"
             />
           </div>
           <div className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold transition-colors">
@@ -85,40 +85,40 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
       {/* Table Container */}
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[1100px]">
-          <thead className="sticky top-0 bg-secondary/95 backdrop-blur-md z-10 shadow-sm border-b border-border transition-colors">
+          <thead className="sticky top-0 bg-slate-50/95 dark:bg-secondary/95 backdrop-blur-md z-10 shadow-sm border-b border-slate-200 dark:border-border transition-colors">
             <tr>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none w-[20%]"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none w-[20%]"
                 onClick={() => handleSort("template_name")}
               >
                 <div className="flex items-center gap-2">Template <SortIcon field="template_name" /></div>
               </th>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none"
                 onClick={() => handleSort("category")}
               >
                 <div className="flex items-center gap-2">Category <SortIcon field="category" /></div>
               </th>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none"
                 onClick={() => handleSort("status")}
               >
                 <div className="flex items-center gap-2">Status <SortIcon field="status" /></div>
               </th>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none"
                 onClick={() => handleSort("messages_sent")}
               >
                 <div className="flex items-center justify-end gap-2 text-right w-full">Sent <SortIcon field="messages_sent" /></div>
               </th>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none"
                 onClick={() => handleSort("success_rate")}
               >
                 <div className="flex items-center justify-end gap-2 text-right w-full">Success Rate <SortIcon field="success_rate" /></div>
               </th>
               <th 
-                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-secondary/50 transition-colors select-none"
+                className="px-6 py-5 text-[13px] md:text-[14px] font-black text-muted-foreground tracking-widest cursor-pointer group hover:bg-slate-100 dark:hover:bg-secondary/50 transition-colors select-none"
                 onClick={() => handleSort("last_used")}
               >
                 <div className="flex items-center gap-2">Last Used <SortIcon field="last_used" /></div>
@@ -144,12 +144,12 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
                     onClick={() => onSelect(template)}
                     className={`group cursor-pointer transition-all duration-200 ${
                       isSelected 
-                        ? "bg-blue-500/10 border-l-[3px] border-l-blue-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.05)]" 
-                        : "hover:bg-secondary/30 border-l-[3px] border-l-transparent"
+                        ? "bg-blue-50 dark:bg-blue-500/10 border-l-[3px] border-l-blue-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.05)]" 
+                        : "hover:bg-slate-50 dark:hover:bg-secondary/30 border-l-[3px] border-l-transparent"
                     }`}
                   >
                     <td className="px-6 py-5 whitespace-nowrap">
-                      <div className="text-[15px] md:text-[16px] font-semibold text-foreground group-hover:text-blue-400 transition-colors flex items-center gap-2">
+                      <div className="text-[15px] md:text-[16px] font-semibold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-2">
                         {template.template_name}
                       </div>
                       <div className="text-[12px] md:text-[13px] text-muted-foreground font-mono mt-1 opacity-70 group-hover:opacity-100 transition-opacity">
@@ -157,20 +157,20 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
                       </div>
                     </td>
                     <td className="px-6 py-5 whitespace-nowrap">
-                      <span className="px-3 py-1.5 rounded-md bg-secondary text-[12px] md:text-[13px] text-foreground font-medium border border-border transition-colors">
+                      <span className="px-3 py-1.5 rounded-md bg-slate-50 dark:bg-secondary text-[12px] md:text-[13px] text-foreground font-medium border border-slate-200 dark:border-border transition-colors">
                         {template.category}
                       </span>
                     </td>
                     <td className="px-6 py-5 whitespace-nowrap">
                       <div className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-[12px] font-bold tracking-wider w-fit transition-colors ${
-                        isApproved ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : 
-                        isPending ? "bg-amber-500/10 text-amber-400 border-amber-500/20" : 
-                        isRejected ? "bg-rose-500/10 text-rose-400 border-rose-500/20" : "bg-secondary text-muted-foreground border-border"
+                        isApproved ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20" : 
+                        isPending ? "bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/20" : 
+                        isRejected ? "bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20" : "bg-slate-50 dark:bg-secondary text-slate-500 dark:text-muted-foreground border-slate-200 dark:border-border"
                       }`}>
                         <span className={`h-2 w-2 rounded-full ${
-                          isApproved ? "bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" : 
-                          isPending ? "bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]" : 
-                          isRejected ? "bg-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.8)]" : "bg-slate-400"
+                          isApproved ? "bg-emerald-500 dark:bg-emerald-400" : 
+                          isPending ? "bg-amber-500 dark:bg-amber-400" : 
+                          isRejected ? "bg-rose-500 dark:bg-rose-400" : "bg-slate-400"
                         }`} />
                         <span className="uppercase">{template.status}</span>
                       </div>
@@ -181,7 +181,7 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
                       </div>
                     </td>
                     <td className="px-6 py-5 whitespace-nowrap text-right">
-                      <div className={`text-[14px] md:text-[15px] font-semibold transition-colors ${successRate >= 90 ? 'text-emerald-400' : successRate > 0 ? 'text-amber-400' : 'text-muted-foreground'}`}>
+                      <div className={`text-[14px] md:text-[15px] font-semibold transition-colors ${successRate >= 90 ? 'text-emerald-600 dark:text-emerald-400' : successRate > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-muted-foreground'}`}>
                         {successRate > 0 ? `${successRate.toFixed(1)}%` : "N/A"}
                       </div>
                     </td>
@@ -196,21 +196,21 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
                         <button 
                           onClick={(e) => { e.stopPropagation(); onSelect(template); }}
                           title="Preview Template"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-blue-500/20 hover:text-blue-400 transition-colors"
+                          className="p-2 rounded-lg text-muted-foreground hover:bg-blue-50 dark:hover:bg-blue-500/20 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); onSelect(template); }}
                           title="Send Test"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-emerald-500/20 hover:text-emerald-400 transition-colors"
+                          className="p-2 rounded-lg text-muted-foreground hover:bg-emerald-50 dark:hover:bg-emerald-500/20 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                         >
                           <Send className="h-4 w-4" />
                         </button>
                         <button 
                           onClick={(e) => copyTemplateId(e, template.template_id)}
                           title="Copy ID"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-secondary transition-colors"
                         >
                           <Copy className="h-4 w-4" />
                         </button>

@@ -5,31 +5,31 @@ export function TemplatesSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
       {/* Compact Metrics Strip Skeleton */}
-      <div className="w-full rounded-xl border border-border bg-card dark:bg-card/40 px-6 py-4 flex items-center gap-8 transition-colors">
+      <div className="w-full rounded-xl border border-slate-200 dark:border-border bg-white dark:bg-card/40 px-6 py-4 flex items-center gap-8 transition-colors">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="flex items-center gap-3">
             <div className="h-2 w-16 bg-secondary rounded transition-colors"></div>
             <div className="h-4 w-8 bg-secondary rounded transition-colors"></div>
-            {i !== 4 && <div className="h-4 w-[1px] bg-border hidden sm:block ml-8 transition-colors" />}
+            {i !== 4 && <div className="h-4 w-[1px] bg-slate-200 dark:bg-border hidden sm:block ml-8 transition-colors" />}
           </div>
         ))}
       </div>
 
       {/* Table Skeleton */}
-      <div className="w-full h-[600px] rounded-2xl border border-border bg-card dark:bg-card/40 shadow-sm dark:shadow-xl overflow-hidden flex flex-col transition-colors">
+      <div className="w-full h-[600px] rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card/40 shadow-sm dark:shadow-xl overflow-hidden flex flex-col transition-colors">
         {/* Toolbar Skeleton */}
-        <div className="p-4 border-b border-border bg-secondary/40 flex justify-between transition-colors">
+        <div className="p-4 border-b border-slate-200 dark:border-border bg-slate-50/50 dark:bg-secondary/40 flex justify-between transition-colors">
           <div className="h-9 w-72 bg-secondary rounded-lg transition-colors"></div>
           <div className="h-4 w-32 bg-secondary rounded transition-colors"></div>
         </div>
         
         {/* Header Skeleton */}
-        <div className="h-10 bg-secondary border-b border-border w-full flex items-center px-5 gap-10 transition-colors">
-          <div className="h-3 w-20 bg-muted-foreground/30 rounded transition-colors"></div>
-          <div className="h-3 w-16 bg-muted-foreground/30 rounded transition-colors"></div>
-          <div className="h-3 w-16 bg-muted-foreground/30 rounded transition-colors"></div>
-          <div className="h-3 w-16 bg-muted-foreground/30 rounded transition-colors"></div>
-          <div className="h-3 w-16 bg-muted-foreground/30 rounded transition-colors"></div>
+        <div className="h-10 bg-slate-50 dark:bg-secondary border-b border-slate-200 dark:border-border w-full flex items-center px-5 gap-10 transition-colors">
+          <div className="h-3 w-20 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
+          <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
+          <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
+          <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
+          <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
         </div>
 
         {/* Rows Skeleton */}
@@ -65,7 +65,7 @@ export function TemplatesErrorState({ onRetry }: { onRetry: () => void }) {
       </p>
       <button
         onClick={onRetry}
-        className="flex items-center gap-2 h-10 px-5 rounded-xl bg-secondary hover:bg-secondary/80 border border-border transition-all text-sm font-bold text-foreground shadow-sm dark:shadow-lg"
+        className="flex items-center gap-2 h-10 px-5 rounded-xl bg-secondary hover:bg-secondary/80 border border-slate-200 dark:border-border transition-all text-sm font-bold text-foreground shadow-sm dark:shadow-lg"
       >
         <RefreshCw className="h-4 w-4" />
         Retry Connection
