@@ -34,7 +34,7 @@ export function TemplatesClient() {
 
   return (
     <div ref={containerRef} className="space-y-6 select-none animate-fade-in pb-12 flex flex-col">
-      {/* Top Command Center */}
+      {}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0">
         <div className="space-y-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/20 bg-blue-50 dark:bg-blue-500/5 text-blue-600 dark:text-blue-400 text-[10px] font-black tracking-widest uppercase self-start w-fit">
@@ -69,7 +69,7 @@ export function TemplatesClient() {
         </div>
       </div>
 
-      {/* Main Content State Management */}
+      {}
       {isLoading ? (
         <TemplatesSkeleton />
       ) : isError ? (
@@ -78,12 +78,12 @@ export function TemplatesClient() {
         <TemplatesEmptyState onSync={handleSync} isSyncing={isSyncing} />
       ) : (
         <div className="flex flex-col gap-6 animate-fade-in">
-          {/* Command Center KPIs */}
+          {}
           <div className="shrink-0 z-20 relative">
             <TemplatesMetrics templates={templates} />
           </div>
 
-          {/* Main Full-Width Table */}
+          {}
           <div className="w-full relative">
             <TemplatesTable 
               templates={templates} 
@@ -92,14 +92,14 @@ export function TemplatesClient() {
             />
           </div>
           
-          {/* Bottom Data Section: 50/50 Layout */}
+          {}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            {/* Left: Operational Timeline */}
+            {}
             <div>
               <TemplateActivityTimeline />
             </div>
             
-            {/* Right: Insights Panel */}
+            {}
             <div>
               <TemplateInsightsPanel 
                 templates={templates} 
@@ -109,7 +109,7 @@ export function TemplatesClient() {
         </div>
       )}
 
-      {/* Global Template Details Modal Overlay */}
+      {}
       {selectedTemplate && (
         <TemplateDetailsModal 
           template={selectedTemplate} 

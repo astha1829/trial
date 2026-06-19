@@ -141,13 +141,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans flex transition-colors duration-300">
-      {/* Background radial glows for premium layout */}
+      {}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 dark:block hidden">
         <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px] mix-blend-screen" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#7C5CFF]/5 blur-[120px] mix-blend-screen" />
       </div>
 
-      {/* Desktop Sidebar (Left Panel) */}
+      {}
       <aside 
         className="hidden lg:flex flex-col border-r border-border/80 bg-sidebar-bg shrink-0 z-30 fixed top-0 left-0 group"
         style={{ 
@@ -156,7 +156,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           transition: "all 0.25s ease"
         }}
       >
-        {/* Brand logo section */}
+        {}
         <div 
           className={`h-16 flex items-center ${isSidebarCollapsed ? "justify-center" : "justify-between px-6"} border-b border-border/50 shrink-0 overflow-hidden`}
           style={{ transition: "all 0.25s ease" }}
@@ -173,7 +173,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>
 
-        {/* Sidebar Nav links */}
+        {}
         <div 
           className="flex-grow flex-1 overflow-y-auto overflow-x-hidden p-3 hide-scrollbar"
           style={{ transition: "all 0.25s ease" }}
@@ -194,7 +194,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   } ${isSidebarCollapsed ? "justify-center p-3" : "gap-3 px-4 py-3"}`}
                   style={{ transition: "all 0.25s ease", color: isActive ? "var(--sidebar-nav-active-text)" : undefined }}
                 >
-                  {/* Active highlight bar on the left */}
+                  {}
                   {isActive && (
                     <div 
                       className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-accent-purple rounded-r-full"
@@ -215,12 +215,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </nav>
         </div>
 
-        {/* Sidebar widgets at bottom */}
+        {}
         <div 
           className="mt-auto p-3 border-t border-border/30 shrink-0"
           style={{ transition: "all 0.25s ease" }}
         >
-          {/* User Profile Footer Card */}
+          {}
           <div 
             onClick={handleLogout}
             className={`transition-all duration-300 cursor-pointer flex items-center ${
@@ -247,7 +247,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>
 
-        {/* Sidebar Toggle Floating Button on right border */}
+        {}
         <button
           onClick={toggleSidebar}
           className="absolute -right-3 top-[26px] z-40 h-6 w-6 rounded-full border border-border/80 flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 opacity-0 group-hover:opacity-100 sidebar-toggle-btn"
@@ -265,7 +265,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </button>
       </aside>
 
-      {/* Mobile Sidebar overlay */}
+      {}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -321,7 +321,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 })}
               </nav>
 
-              {/* Mobile Profile Footer */}
+              {}
               <div className="p-4 border-t border-white/5 space-y-3">
                 <div className="p-3 rounded-xl border border-border bg-secondary/40 flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
@@ -346,7 +346,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         )}
       </AnimatePresence>
 
-      {/* Main Content Area */}
+      {}
       <div 
         className={`flex-1 flex flex-col min-w-0 z-10 relative ${
           isMounted && isSidebarCollapsed ? "lg:ml-[72px]" : "lg:ml-[240px]"
@@ -355,7 +355,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           transition: "all 0.25s ease" 
         }}
       >
-        {/* Top Header */}
+        {}
         <header 
           className="h-16 border-b border-border bg-card/40 backdrop-blur-xl flex items-center justify-between px-6 z-20 shrink-0 transition-colors duration-300"
           style={{ boxShadow: "var(--header-shadow)" }}
@@ -369,7 +369,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </button>
           </div>
 
-          {/* Search bar inside header */}
+          {}
           <div className="relative w-96 xl:w-[480px] max-w-lg">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground">
               <Search className="h-4 w-4 text-muted-foreground/80" />
@@ -379,15 +379,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               placeholder="Search templates, logs, contacts..."
               className="w-full h-9 pl-9 pr-20 rounded-xl border border-border hover:border-border/80 focus:border-accent-purple/60 bg-secondary/30 focus:bg-secondary/50 text-[12px] font-medium text-foreground placeholder-muted-foreground focus:outline-none transition-all"
             />
-            {/* Shortcut Badge Ctrl + K */}
+            {}
             <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center px-2 py-0.5 rounded border border-border/80 bg-secondary font-mono text-[9px] text-muted-foreground/80 font-semibold select-none">
               Ctrl + K
             </div>
           </div>
 
-          {/* Notifications and profile avatar inside header */}
+          {}
           <div className="flex items-center gap-4">
-            {/* Notifications Bell */}
+            {}
             <div className="relative">
               <button className="relative p-2 rounded-xl border border-border bg-secondary/30 hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-all cursor-pointer">
                 <Bell className="h-4 w-4 text-muted-foreground" />
@@ -402,7 +402,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
             <ThemeToggle />
 
-            {/* User Profile avatar info inside header */}
+            {}
             <div className="flex items-center gap-3 pl-2 select-none border-l border-border/40">
               <div className="h-9 w-9 rounded-full bg-accent-purple text-white font-extrabold flex items-center justify-center text-xs shadow-inner">
                 {initials}
@@ -418,7 +418,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </header>
 
-        {/* Page Main Content Body */}
+        {}
         <main className="flex-1 overflow-y-auto p-6 space-y-6 bg-background">
           {children}
         </main>

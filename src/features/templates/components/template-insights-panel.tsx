@@ -14,12 +14,12 @@ interface TemplateInsightsPanelProps {
 }
 
 export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps) {
-  // Compute Analytics
+  
   const totalTemplates = templates.length;
   const approvedTemplates = templates.filter(t => t.status.toLowerCase() === "approved").length;
   const approvalRate = totalTemplates > 0 ? Math.round((approvedTemplates / totalTemplates) * 100) : 0;
   
-  // Find most used template
+  
   const mostUsed = [...templates].sort((a, b) => {
     const aSent = typeof a.messages_sent === 'number' ? a.messages_sent : 0;
     const bSent = typeof b.messages_sent === 'number' ? b.messages_sent : 0;
@@ -30,7 +30,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
     return acc + (typeof t.messages_sent === 'number' ? t.messages_sent : 0);
   }, 0);
 
-  // Get unique categories and languages
+  
   const uniqueCategories = new Set(templates.map(t => t.category)).size;
   const uniqueLanguages = new Set(templates.map(t => t.language)).size;
 
@@ -42,7 +42,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
-        {/* Metric 1: Health & Approval */}
+        {}
         <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
             <CheckCircle2 className="h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 transition-colors" />
@@ -57,7 +57,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
           </div>
         </div>
 
-        {/* Metric 2: Engagement */}
+        {}
         <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
             <TrendingUp className="h-4.5 w-4.5 text-blue-600 dark:text-blue-400 transition-colors" />
@@ -69,7 +69,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
           </div>
         </div>
 
-        {/* Metric 3: Most Used Template */}
+        {}
         <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
             <Activity className="h-4.5 w-4.5 text-purple-600 dark:text-purple-400 transition-colors" />
@@ -85,7 +85,7 @@ export function TemplateInsightsPanel({ templates }: TemplateInsightsPanelProps)
           </div>
         </div>
 
-        {/* Metric 4: Diversity */}
+        {}
         <div className="p-6 rounded-2xl bg-white dark:bg-secondary/40 border border-slate-200 dark:border-border space-y-3 flex flex-col justify-center transition-all hover:bg-slate-50 dark:hover:bg-secondary/60 shadow-sm dark:shadow-none">
           <div className="flex items-center gap-2 mb-1">
             <Globe2 className="h-4.5 w-4.5 text-amber-600 dark:text-amber-400 transition-colors" />

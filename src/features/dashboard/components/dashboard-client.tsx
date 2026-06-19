@@ -61,7 +61,7 @@ export function DashboardClient() {
       setTemplatesData(templatesRes.data?.data || []);
       setCampaignsData(campaignsRes.data?.data || []);
     } catch (error) {
-      // Quiet fallback
+      
     } finally {
       setIsLoading(false);
     }
@@ -71,7 +71,7 @@ export function DashboardClient() {
     fetchData();
   }, []);
 
-  // Fetch username dynamically from profile or localStorage/token fallback
+  
   useEffect(() => {
     if (profile?.email) {
       const part = profile.email.split("@")[0];
@@ -128,7 +128,7 @@ export function DashboardClient() {
     }
   };
 
-  // Campaign overview metrics
+  
   const campaignOverview = {
     running: campaignsData.filter((c: any) => c.status?.toLowerCase() === "running").length || 0,
     completed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "completed").length || 0,
@@ -145,7 +145,7 @@ export function DashboardClient() {
   return (
     <div className="max-w-[1600px] mx-auto flex flex-col gap-6 select-none animate-fade-in pb-8 text-foreground w-full">
       
-      {/* ROW 1: Welcome Header Banner */}
+      {}
       <div
         className="w-full min-h-[195px] lg:h-[205px] rounded-[16px] border border-stats-card-border px-[24px] py-[34px] relative overflow-hidden group transition-all duration-300 flex items-center"
         style={{
@@ -154,9 +154,9 @@ export function DashboardClient() {
         }}
       >
         <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full gap-6 relative z-10">
-          {/* Left Welcome Text and mini stats */}
+          {}
           <div className="flex-1 flex flex-col justify-center h-full w-full">
-            {/* Title & Subtitle */}
+            {}
             <div className="flex flex-col gap-[10px]">
               <h1 className="text-[30px] font-bold text-foreground font-sans leading-none tracking-tight">
                 Welcome back, {userName}! 👋
@@ -166,9 +166,9 @@ export function DashboardClient() {
               </p>
             </div>
 
-            {/* Mini Stats Row */}
+            {}
             <div className="flex flex-row flex-wrap gap-[50px] items-center mt-[26px]">
-              {/* Stat 1 */}
+              {}
               <div className="flex items-center gap-[12px]">
                 <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-purple/12 border border-accent-purple/25 text-accent-purple">
                   <MessageSquare size={16} />
@@ -179,7 +179,7 @@ export function DashboardClient() {
                 </div>
               </div>
 
-              {/* Stat 2 */}
+              {}
               <div className="flex items-center gap-[12px]">
                 <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-green/12 border border-accent-green/25 text-accent-green">
                   <Users size={16} />
@@ -192,7 +192,7 @@ export function DashboardClient() {
                 </div>
               </div>
 
-              {/* Stat 3 */}
+              {}
               <div className="flex items-center gap-[12px]">
                 <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-accent-green/12 border border-accent-green/25 text-accent-green">
                   <Layers size={16} />
@@ -205,9 +205,9 @@ export function DashboardClient() {
             </div>
           </div>
 
-          {/* Right Side Illustration Block */}
+          {}
           <div className="relative shrink-0 flex items-center justify-end h-[128px] w-[390px] select-none">
-            {/* Radial Glow Behind Panel */}
+            {}
             <div
               className="absolute right-[40px] top-[50%] -translate-y-[50%] w-[360px] h-[360px] rounded-full pointer-events-none filter blur-[70px] z-0"
               style={{
@@ -215,7 +215,7 @@ export function DashboardClient() {
               }}
             />
 
-            {/* Glowing horizontal purple line beneath illustration */}
+            {}
             <div
               className="absolute bottom-[-10px] right-[10px] w-[390px] h-[2px] opacity-80"
               style={{
@@ -224,33 +224,33 @@ export function DashboardClient() {
               }}
             />
 
-            {/* Floating Diamond Particles */}
-            {/* Particle 1: Left */}
+            {}
+            {}
             <div className="absolute left-[20px] top-[50px] opacity-50 text-accent-purple animate-pulse">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
-            {/* Particle 2: Top Right */}
+            {}
             <div className="absolute right-[25px] top-[12px] opacity-40 text-accent-purple">
               <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
-            {/* Particle 3: Bottom Left */}
+            {}
             <div className="absolute left-[55px] bottom-[2px] opacity-40 text-accent-purple">
               <svg width="8" height="8" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
-            {/* Particle 4: Bottom Right */}
+            {}
             <div className="absolute right-[35px] bottom-[12px] opacity-50 text-accent-purple animate-pulse">
               <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
                 <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
               </svg>
             </div>
 
-            {/* Glass Panel */}
+            {}
             <div
               className="relative z-10 w-[325px] h-[123px] rounded-[12px] border border-accent-purple/20 p-[12px] flex flex-row items-center justify-between overflow-hidden"
               style={{
@@ -259,7 +259,7 @@ export function DashboardClient() {
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.2)",
               }}
             >
-              {/* Left Side Charts inside Panel */}
+              {}
               <div className="w-[190px] h-[98px] relative">
                 <svg width="100%" height="100%" viewBox="0 0 190 98">
                   <defs>
@@ -273,32 +273,32 @@ export function DashboardClient() {
                     </linearGradient>
                   </defs>
 
-                  {/* Widget Pill Top Left */}
+                  {}
                   <rect x="0" y="2" width="60" height="14" rx="4" ry="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
                   <circle cx="7" cy="9" r="2.5" fill="var(--accent-purple)" />
                   <line x1="15" y1="9" x2="52" y2="9" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
 
-                  {/* Grid Lines */}
+                  {}
                   <line x1="0" y1="30" x2="185" y2="30" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
                   <line x1="0" y1="52" x2="185" y2="52" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
                   <line x1="0" y1="74" x2="185" y2="74" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
 
-                  {/* Ascending Bars */}
+                  {}
                   <rect x="100" y="60" width="7" height="26" rx="1.5" fill="url(#barGrad)" />
                   <rect x="114" y="48" width="7" height="38" rx="1.5" fill="url(#barGrad)" />
                   <rect x="128" y="38" width="7" height="48" rx="1.5" fill="url(#barGrad)" />
                   <rect x="142" y="28" width="7" height="58" rx="1.5" fill="url(#barGrad)" />
                   <rect x="156" y="16" width="7" height="70" rx="1.5" fill="url(#barGrad)" />
 
-                  {/* Line Chart Area Fill */}
+                  {}
                   <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10 L 185 86 L 0 86 Z" fill="url(#lineFillGrad)" />
                   
-                  {/* Line Chart Stroke */}
+                  {}
                   <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10" fill="none" stroke="var(--accent-purple)" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
               </div>
 
-              {/* Right Side Donut Chart inside Panel */}
+              {}
               <div className="w-[90px] h-[90px] relative flex items-center justify-center">
                 <svg width="86" height="86" viewBox="0 0 86 86">
                   <defs>
@@ -308,10 +308,10 @@ export function DashboardClient() {
                     </linearGradient>
                   </defs>
                   
-                  {/* Donut Track */}
+                  {}
                   <circle cx="43" cy="43" r="28" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="8" fill="none" />
                   
-                  {/* Donut Segment */}
+                  {}
                   <circle
                     cx="43"
                     cy="43"
@@ -342,7 +342,7 @@ export function DashboardClient() {
         totalMessagesSent={totalMessagesSent}
       />
 
-      {/* ROW 3: Quick Actions & Campaign Overview */}
+      {}
       <QuickActionsCampaignOverview
         handleActionClick={handleActionClick}
         handleSyncData={handleSyncData}
@@ -355,26 +355,26 @@ export function DashboardClient() {
         groupsCount={totalGroups}
       />
 
-      {/* ROW 4: Bottom 3-Column Grid */}
+      {}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-[16px] items-stretch">
         
-        {/* Left Column: Recent Campaigns */}
+        {}
         <div className="h-full">
           <ActivityTimeline campaigns={campaignsData} />
         </div>
 
-        {/* Center Column: Recently Created Contacts */}
+        {}
         <div className="h-full">
           <ActivityHeatmap contacts={contactsData} />
         </div>
 
-        {/* Right Column: Recently Created Groups */}
+        {}
         <div className="h-full">
           <AiCopilot groups={groupsData} contacts={contactsData} />
         </div>
       </div>
 
-      {/* Global Modals for full production operational flows */}
+      {}
       <CreateContactModal 
         isOpen={isContactModalOpen}
         onClose={() => {

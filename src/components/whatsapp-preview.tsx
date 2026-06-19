@@ -12,7 +12,7 @@ export function WhatsAppPreview({ content, params = {} }: WhatsAppPreviewProps) 
   try {
     parsedContent = JSON.parse(rawContentStr);
   } catch (e) {
-    // If not JSON, stays null
+    
   }
 
   const hasImage = rawContentStr.includes("image=true") || rawContentStr.includes("IMAGE") || parsedContent?.header_type === "IMAGE";
@@ -21,13 +21,13 @@ export function WhatsAppPreview({ content, params = {} }: WhatsAppPreviewProps) 
   let bodyText = parsedContent?.text || parsedContent?.body || (!parsedContent ? rawContentStr : JSON.stringify(parsedContent, null, 2));
   let footerText = parsedContent?.footer_text || parsedContent?.footer || null;
 
-  // Substitute parameters in real-time
+  
   const substitute = (text: string | null) => {
     if (!text) return text;
     let newText = text;
     Object.entries(params).forEach(([key, value]) => {
       if (!value) return;
-      // Replace both {{key}} and {{key}} (standard WA formats)
+      
       const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
       newText = newText.replace(regex, value);
     });
@@ -40,10 +40,10 @@ export function WhatsAppPreview({ content, params = {} }: WhatsAppPreviewProps) 
 
   return (
     <div className="rounded-[2rem] bg-[#0b141a] p-4 md:p-6 shadow-inner relative overflow-hidden border border-white/5 flex flex-col min-h-[400px]">
-      {/* WA Background pattern */}
+      {}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
       
-      {/* WA Bubble */}
+      {}
       <div className="bg-[#005c4b] rounded-2xl rounded-tr-sm p-3 max-w-[95%] relative z-10 shadow-md ml-auto self-end min-w-[200px]">
         {(hasImage || params?.header_image) && (
           <div className="w-full h-36 bg-black/20 rounded-xl mb-3 flex items-center justify-center border border-white/5 relative overflow-hidden">

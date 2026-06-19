@@ -31,7 +31,7 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortField(field);
-      setSortOrder("desc"); // Default to desc for performance metrics
+      setSortOrder("desc"); 
     }
   };
 
@@ -63,7 +63,7 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
 
   return (
     <div className="flex flex-col bg-white dark:bg-card/60 backdrop-blur-xl border border-slate-200 dark:border-border rounded-2xl shadow-sm dark:shadow-2xl transition-colors duration-300">
-      {/* Table Toolbar */}
+      {}
       <div className="p-5 border-b border-slate-200 dark:border-border flex items-center justify-between bg-slate-50/50 dark:bg-secondary/40 rounded-t-2xl transition-colors">
         <div className="flex items-center gap-4">
           <div className="relative w-80">
@@ -82,7 +82,7 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
         </div>
       </div>
 
-      {/* Table Container */}
+      {}
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[1100px]">
           <thead className="sticky top-0 bg-slate-50/95 dark:bg-secondary/95 backdrop-blur-md z-10 shadow-sm border-b border-slate-200 dark:border-border transition-colors">

@@ -48,7 +48,7 @@ export function useLogin() {
         router.push("/dashboard");
       }, 1500);
     } catch (err) {
-      // Error handled by toast
+      
     } finally {
       setIsLoading(false);
     }

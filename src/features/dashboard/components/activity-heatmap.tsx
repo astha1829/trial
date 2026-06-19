@@ -75,7 +75,7 @@ export function ActivityHeatmap({ contacts = [] }: ActivityHeatmapProps) {
       }}
     >
       <div>
-        {/* Header */}
+        {}
         <div className="flex items-start justify-between mb-[20px] select-none">
           <div className="flex flex-col gap-[4px]">
             <h2 className="text-[26px] font-bold text-foreground font-sans leading-[1.2]">
@@ -93,7 +93,7 @@ export function ActivityHeatmap({ contacts = [] }: ActivityHeatmapProps) {
           </a>
         </div>
 
-        {/* Contacts List */}
+        {}
         <div className="flex flex-col gap-[14px]">
           {displayContacts.map((contact) => (
             <div

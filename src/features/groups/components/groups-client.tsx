@@ -20,7 +20,7 @@ export function GroupsClient() {
 
   return (
     <div className="space-y-5 select-none animate-fade-in pb-10 flex flex-col">
-      {/* Top Command Center */}
+      {}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0">
         <div className="space-y-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] font-black tracking-widest uppercase self-start w-fit groups-badge">
@@ -54,7 +54,7 @@ export function GroupsClient() {
         </div>
       </div>
 
-      {/* Main Content States */}
+      {}
       {(isLoading || isRefetching) ? (
         <GroupsSkeleton />
       ) : isError ? (
@@ -63,9 +63,9 @@ export function GroupsClient() {
         <GroupsEmptyState onCreateClick={() => setIsCreateModalOpen(true)} />
       ) : (
         <div className="space-y-4 animate-fade-in">
-          {/* Statistics Section */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* 1. Total Groups */}
+            {}
             <div className="rounded-2xl border border-border bg-card dark:bg-card/60 dark:backdrop-blur-xl p-4 shadow-lg dark:shadow-2xl flex flex-col justify-between h-auto relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
               <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 blur-xl pointer-events-none rounded-full" />
               <div className="flex items-center justify-between relative z-10">
@@ -80,7 +80,7 @@ export function GroupsClient() {
               </div>
             </div>
 
-            {/* 2. Recently Created */}
+            {}
             <div className="rounded-2xl border border-border bg-card dark:bg-card/60 dark:backdrop-blur-xl p-4 shadow-lg dark:shadow-2xl flex flex-col justify-between h-auto relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
               <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 blur-xl pointer-events-none rounded-full" />
               <div className="flex items-center justify-between relative z-10">
@@ -95,7 +95,7 @@ export function GroupsClient() {
               </div>
             </div>
 
-            {/* 3. Total Contacts */}
+            {}
             <div className="rounded-2xl border border-border bg-card dark:bg-card/60 dark:backdrop-blur-xl p-4 shadow-lg dark:shadow-2xl flex flex-col justify-between h-auto relative overflow-hidden group hover:border-indigo-500/30 transition-all duration-300">
               <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 blur-xl pointer-events-none rounded-full" />
               <div className="flex items-center justify-between relative z-10">
@@ -117,7 +117,7 @@ export function GroupsClient() {
         </div>
       )}
 
-      {/* Create Group Modal */}
+      {}
       <CreateGroupModal 
         isOpen={isCreateModalOpen} 
         onClose={() => setIsCreateModalOpen(false)} 

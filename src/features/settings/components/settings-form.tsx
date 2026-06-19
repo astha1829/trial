@@ -107,7 +107,7 @@ export function SettingsForm() {
     
     return (
       <div className="relative group bg-white dark:bg-[rgba(255,255,255,0.02)] hover:bg-slate-50 dark:hover:bg-[rgba(255,255,255,0.04)] border border-slate-200 dark:border-[rgba(255,255,255,0.06)] hover:border-slate-300 dark:hover:border-[rgba(255,255,255,0.1)] rounded-[20px] p-4 sm:p-5 transition-all duration-500 overflow-hidden shadow-sm dark:shadow-none">
-        {/* Subtle hover gradient */}
+        {}
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 transition-all duration-500" />
         
         <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-4">
@@ -186,9 +186,9 @@ export function SettingsForm() {
     <div className="w-full min-h-[calc(100vh-4rem)] bg-slate-50 dark:bg-[#050816] flex flex-col items-center pt-2 pb-6 px-4 sm:px-8">
       <div className="w-full max-w-[1400px] flex flex-col gap-4">
 
-        {/* TOP HERO SECTION */}
+        {}
         <div className="relative w-full rounded-[24px] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] bg-white dark:bg-[rgba(255,255,255,0.02)] backdrop-blur-3xl overflow-hidden shadow-sm dark:shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
-          {/* Animated Gradient Background */}
+          {}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/10 via-purple-600/10 to-violet-600/10 opacity-50" />
           <div className="absolute -top-[100px] -right-[100px] w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute -bottom-[100px] -left-[100px] w-[400px] h-[400px] bg-violet-500/20 rounded-full blur-[100px] pointer-events-none" />
@@ -254,7 +254,7 @@ export function SettingsForm() {
 
         <div className="flex flex-col lg:flex-row gap-4 w-full">
           
-          {/* SETTINGS AREA (70%) */}
+          {}
           <div className="lg:w-[70%] flex flex-col gap-4">
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-[rgba(255,255,255,0.02)] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-5 sm:p-8 backdrop-blur-xl shadow-sm dark:shadow-2xl flex flex-col relative overflow-hidden">
               
@@ -287,7 +287,7 @@ export function SettingsForm() {
                   icon={Phone} 
                 />
                 
-                {/* Access Token Security - Highlight Card */}
+                {}
                 <div className="relative group bg-gradient-to-b from-[rgba(99,102,241,0.08)] to-white dark:to-[rgba(255,255,255,0.02)] border border-indigo-500/20 hover:border-indigo-500/40 rounded-[20px] p-5 sm:p-6 transition-all duration-500 overflow-hidden mt-1 shadow-[0_4px_12px_rgba(99,102,241,0.05)] dark:shadow-[0_0_30px_rgba(99,102,241,0.05)] hover:shadow-[0_8px_24px_rgba(99,102,241,0.1)] dark:hover:shadow-[0_0_50px_rgba(99,102,241,0.1)]">
                   <div className="absolute top-0 right-0 p-4">
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-widest shadow-inner">
@@ -362,10 +362,10 @@ export function SettingsForm() {
             </form>
           </div>
 
-          {/* RIGHT SIDEBAR (30%) */}
+          {}
           <div className="lg:w-[30%] flex flex-col gap-4">
             
-            {/* Configuration Status */}
+            {}
             <div className="bg-white dark:bg-[rgba(255,255,255,0.02)] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-6 backdrop-blur-xl shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
               <h3 className="text-[12px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest mb-6 flex items-center gap-2">
                 <Globe className="w-4 h-4" /> System Health
@@ -410,7 +410,7 @@ export function SettingsForm() {
               </div>
             </div>
 
-            {/* Workspace Info */}
+            {}
             <div className="bg-white dark:bg-[rgba(255,255,255,0.02)] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-6 backdrop-blur-xl shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
               <h3 className="text-[12px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest mb-6 flex items-center gap-2">
                 <Building2 className="w-4 h-4" /> Account Identity

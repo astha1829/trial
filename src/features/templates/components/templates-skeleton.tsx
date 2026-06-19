@@ -4,7 +4,7 @@ import { RefreshCw } from "lucide-react";
 export function TemplatesSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
-      {/* Compact Metrics Strip Skeleton */}
+      {}
       <div className="w-full rounded-xl border border-slate-200 dark:border-border bg-white dark:bg-card/40 px-6 py-4 flex items-center gap-8 transition-colors">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="flex items-center gap-3">
@@ -15,15 +15,15 @@ export function TemplatesSkeleton() {
         ))}
       </div>
 
-      {/* Table Skeleton */}
+      {}
       <div className="w-full h-[600px] rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card/40 shadow-sm dark:shadow-xl overflow-hidden flex flex-col transition-colors">
-        {/* Toolbar Skeleton */}
+        {}
         <div className="p-4 border-b border-slate-200 dark:border-border bg-slate-50/50 dark:bg-secondary/40 flex justify-between transition-colors">
           <div className="h-9 w-72 bg-secondary rounded-lg transition-colors"></div>
           <div className="h-4 w-32 bg-secondary rounded transition-colors"></div>
         </div>
         
-        {/* Header Skeleton */}
+        {}
         <div className="h-10 bg-slate-50 dark:bg-secondary border-b border-slate-200 dark:border-border w-full flex items-center px-5 gap-10 transition-colors">
           <div className="h-3 w-20 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
           <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
@@ -32,7 +32,7 @@ export function TemplatesSkeleton() {
           <div className="h-3 w-16 bg-slate-200 dark:bg-muted-foreground/30 rounded transition-colors"></div>
         </div>
 
-        {/* Rows Skeleton */}
+        {}
         <div className="flex-1 p-5 space-y-6">
           {[1, 2, 3, 4, 5, 6, 7].map((i) => (
             <div key={i} className="flex items-center justify-between w-full">

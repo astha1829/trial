@@ -48,7 +48,7 @@ export function AiCopilot({ groups = [], contacts = [] }: AiCopilotProps) {
       }}
     >
       <div className="flex-1 flex flex-col gap-[20px]">
-        {/* Header */}
+        {}
         <div className="flex items-start justify-between select-none">
           <div className="flex flex-col gap-[4px]">
             <h2 className="text-[26px] font-bold text-foreground font-sans leading-[1.2]">
@@ -66,9 +66,9 @@ export function AiCopilot({ groups = [], contacts = [] }: AiCopilotProps) {
           </a>
         </div>
 
-        {/* Content Area */}
+        {}
         <div className="flex-1 flex flex-col gap-[12px]">
-          {/* Top Group Card */}
+          {}
           {group && (
             <div
               className="w-full h-[68px] rounded-[12px] bg-[var(--item-bg)] border border-[var(--item-border)] px-[16px] flex items-center justify-between gap-[10px] hover:bg-[var(--item-hover-bg)] transition-colors shrink-0"
@@ -104,7 +104,7 @@ export function AiCopilot({ groups = [], contacts = [] }: AiCopilotProps) {
             </div>
           )}
 
-          {/* Empty State Card */}
+          {}
           <div className="flex-1 flex flex-col items-center justify-center text-center p-[24px] rounded-[12px] bg-[var(--empty-state-bg)] border border-[var(--empty-state-border)] gap-[16px]">
             <Users size={38} className="text-muted-foreground/80" />
             <div className="flex flex-col gap-[8px]">

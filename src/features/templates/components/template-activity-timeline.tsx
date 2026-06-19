@@ -10,7 +10,7 @@ export function TemplateActivityTimeline() {
       </div>
       
       <div className="flex-grow flex flex-col items-center justify-center rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-secondary/40 p-8 min-h-[300px] transition-colors text-center relative overflow-hidden shadow-sm dark:shadow-none">
-        {/* Background ambient glow */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-blue-500/5 blur-[80px] pointer-events-none" />
         
         <div className="relative z-10 flex flex-col items-center max-w-sm">

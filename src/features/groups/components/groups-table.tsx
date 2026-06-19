@@ -61,9 +61,9 @@ export function GroupsTable({ groups }: GroupsTableProps) {
 
   return (
     <div className="flex flex-col border rounded-2xl shadow-lg dark:shadow-2xl transition-colors duration-300 select-none groups-table-container dark:backdrop-blur-xl">
-      {/* Table Toolbar */}
+      {}
       <div className="px-5 py-2.5 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-t-2xl transition-colors groups-table-toolbar">
-        {/* Search */}
+        {}
         <div className="relative w-full sm:w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/85 transition-colors" />
           <input
@@ -76,7 +76,7 @@ export function GroupsTable({ groups }: GroupsTableProps) {
           />
         </div>
         
-        {/* Count */}
+        {}
         <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
           <div className="px-2.5 py-1 rounded bg-secondary/80 dark:bg-secondary/50 text-[10px] font-black uppercase tracking-wider text-muted-foreground border border-border transition-colors">
             {filteredAndSorted.length} {filteredAndSorted.length === 1 ? "group" : "groups"}
@@ -84,7 +84,7 @@ export function GroupsTable({ groups }: GroupsTableProps) {
         </div>
       </div>
 
-      {/* Table Container */}
+      {}
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[700px]">
           <thead className="sticky top-0 backdrop-blur-md z-10 border-b transition-colors groups-table-header">

@@ -52,16 +52,16 @@ export function RecipientDetailsModal({ recipient, onClose }: RecipientDetailsMo
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-fade-in">
-      {/* Backdrop overlay */}
+      {}
       <div 
         className="absolute inset-0 bg-slate-900/60 dark:bg-[#050816]/80 backdrop-blur-md"
         onClick={onClose}
       />
       
-      {/* Modal Container */}
+      {}
       <div className="relative w-full max-w-[500px] flex flex-col bg-white dark:bg-[#0b1228] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] shadow-sm dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden animate-slide-up">
         
-        {/* Modal Header */}
+        {}
         <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-[rgba(255,255,255,0.05)] bg-slate-50/50 dark:bg-[rgba(255,255,255,0.02)]">
           <div className="space-y-1">
             <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Recipient Details</h2>
@@ -75,10 +75,10 @@ export function RecipientDetailsModal({ recipient, onClose }: RecipientDetailsMo
           </button>
         </div>
 
-        {/* Modal Body */}
+        {}
         <div className="p-6 md:p-8 space-y-6">
           
-          {/* Identity Card */}
+          {}
           <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-[rgba(255,255,255,0.03)] border border-slate-200 dark:border-[rgba(255,255,255,0.05)]">
             <div className="w-14 h-14 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
               <UserCircle2 className="w-8 h-8" />

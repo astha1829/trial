@@ -37,7 +37,7 @@ export function useForgotPassword() {
       setIsSuccess(true);
       form.reset({ email: "" });
     } catch (err) {
-      // Error handled by toast
+      
     } finally {
       setIsLoading(false);
     }

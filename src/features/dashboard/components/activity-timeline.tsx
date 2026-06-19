@@ -88,7 +88,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
       }}
     >
       <div>
-        {/* Header */}
+        {}
         <div className="flex items-start justify-between mb-[20px] select-none">
           <div className="flex flex-col gap-[4px]">
             <h2 className="text-[26px] font-bold text-foreground font-sans leading-[1.2]">
@@ -106,7 +106,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
           </a>
         </div>
 
-        {/* Timeline body with dynamic indicators */}
+        {}
         <div className="relative flex flex-col gap-[20px]">
           <AnimatePresence initial={false}>
             {events.map((event, idx) => (
@@ -118,7 +118,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                 transition={{ duration: 0.3 }}
                 className="relative flex flex-row items-center gap-[12px]"
               >
-                {/* Connector Line */}
+                {}
                 {idx < events.length - 1 && (
                   <div
                     className="absolute left-[14px] top-[14px] h-[calc(100%+20px)] w-0 border-l border-dashed z-0"
@@ -128,7 +128,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                   />
                 )}
 
-                {/* Status Circle Indicator */}
+                {}
                 <div className="relative z-10 shrink-0">
                   {event.status === "Failed" ? (
                     <div
@@ -177,7 +177,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                   )}
                 </div>
 
-                {/* Middle Info */}
+                {}
                 <div className="flex-1 min-w-0 flex flex-col justify-center">
                   <span className="text-[18px] font-semibold text-foreground font-sans leading-none">
                     {event.name}
@@ -187,7 +187,7 @@ export function ActivityTimeline({ campaigns = [] }: ActivityTimelineProps) {
                   </span>
                 </div>
 
-                {/* Right Info (Date & Time) */}
+                {}
                 <div className="text-right shrink-0 flex flex-col justify-center gap-[2px]">
                   {event.time.split("\n").map((t, tIdx) => (
                     <span

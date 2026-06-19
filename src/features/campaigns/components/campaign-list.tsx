@@ -49,9 +49,9 @@ export function CampaignList() {
     <div className="w-full min-h-[calc(100vh-4rem)] flex flex-col pt-2 pb-6 px-4 sm:px-6 campaign-container-bg">
       <div className="w-full mx-auto flex flex-col gap-6">
         
-        {/* HERO SECTION */}
+        {}
         <div className="relative w-full rounded-2xl border backdrop-blur-3xl overflow-hidden shadow-sm campaign-hero">
-          {/* Subtle radial purple glow behind the title area */}
+          {}
           <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 -translate-x-1/4" />
           
           <div className="relative z-10 p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
@@ -82,7 +82,7 @@ export function CampaignList() {
           </div>
         </div>
 
-        {/* STATS STRIP */}
+        {}
         {campaigns && campaigns.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
             <div className="rounded-xl p-5 flex flex-col gap-1.5 shadow-sm campaign-card">
@@ -104,7 +104,7 @@ export function CampaignList() {
           </div>
         )}
 
-        {/* LIST SECTION */}
+        {}
         {(!campaigns || campaigns.length === 0) ? (
           <div className="flex-1 flex flex-col items-center justify-center py-24 rounded-xl border backdrop-blur-xl campaign-card">
             <Rocket className="w-10 h-10 mb-4 campaign-text-muted opacity-50" />
@@ -146,7 +146,7 @@ export function CampaignList() {
                     onClick={() => router.push(`/campaigns/${campaign.campaign_id || campaign.id}`)}
                     className="group grid grid-cols-1 md:grid-cols-12 gap-4 items-center rounded-xl px-5 py-5 min-h-[84px] cursor-pointer transition-all duration-300 hover:-translate-y-1 campaign-card"
                   >
-                    {/* Campaign Name */}
+                    {}
                     <div className="col-span-3 flex flex-col gap-1.5">
                       <span className="text-[18px] font-semibold transition-colors campaign-text-bright group-hover:text-purple-600 dark:group-hover:text-purple-300">
                         {campaign.title || campaign.name || "Untitled Campaign"}
@@ -157,7 +157,7 @@ export function CampaignList() {
                       </div>
                     </div>
 
-                    {/* Configuration */}
+                    {}
                     <div className="col-span-3 flex flex-col gap-1.5">
                       <div className="flex items-center gap-2">
                         {campaign.group_title || campaign.group_name ? (
@@ -172,12 +172,12 @@ export function CampaignList() {
                       </div>
                     </div>
 
-                    {/* Status */}
+                    {}
                     <div className="col-span-2">
                       {getStatusBadge(campaign.status || "Draft")}
                     </div>
 
-                    {/* Delivery Progress */}
+                    {}
                     <div className="col-span-2">
                       {!hasNoDeliveryData ? (
                         <div className="w-full flex flex-col gap-2 pr-4">
@@ -193,7 +193,7 @@ export function CampaignList() {
                       )}
                     </div>
 
-                    {/* Date & Hover Action */}
+                    {}
                     <div className="col-span-2 flex items-center justify-end relative h-full min-h-[40px]">
                       <span className="text-[14px] font-medium group-hover:opacity-0 transition-opacity duration-300 absolute right-0 campaign-text-medium">
                         {campaign.created_at ? new Date(campaign.created_at).toLocaleDateString() : "-"}

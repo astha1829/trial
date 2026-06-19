@@ -75,12 +75,12 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
       className="flex flex-col border rounded-xl shadow-sm transition-colors duration-300 w-full h-full"
       style={{ backgroundColor: "var(--contacts-table-bg)", borderColor: "var(--contacts-card-border)" }}
     >
-      {/* Table Toolbar */}
+      {}
       <div 
         className="px-5 py-4 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-t-xl z-20"
         style={{ backgroundColor: "var(--contacts-table-bg)", borderColor: "var(--contacts-card-border)" }}
       >
-        {/* Search */}
+        {}
         <div className="relative w-full max-w-md group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-indigo-400 transition-colors" />
           <input
@@ -98,7 +98,7 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
           </div>
         </div>
         
-        {/* Count */}
+        {}
         <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
           <div className="px-2.5 py-1 rounded-md bg-secondary/40 border border-border/30 text-[11px] font-semibold tracking-wider uppercase text-muted-foreground transition-colors">
             {filteredAndSorted.length} {filteredAndSorted.length === 1 ? "Result" : "Results"}
@@ -106,7 +106,7 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
         </div>
       </div>
 
-      {/* Table Container */}
+      {}
       <div className="w-full overflow-x-auto overflow-y-auto max-h-[600px] relative rounded-b-xl">
         <table className="w-full text-left border-collapse min-w-[900px]">
           <thead 
@@ -160,7 +160,7 @@ export function ContactsTable({ contacts, groups }: ContactsTableProps) {
                   >
                     <td className="px-5 py-3 align-middle whitespace-nowrap">
                       <div className="flex items-center gap-3.5">
-                        {/* Avatar */}
+                        {}
                         <div className="h-9 w-9 shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-[1px] group-hover:shadow-[0_0_12px_rgba(99,102,241,0.4)] transition-shadow">
                           <div className="h-full w-full rounded-full bg-background flex items-center justify-center">
                             <span className="text-[11px] font-bold bg-clip-text text-transparent bg-gradient-to-br from-indigo-400 to-purple-400">

@@ -41,7 +41,7 @@ export function useSignup() {
 
       setIsSuccess(true);
       
-      // Clear form after successful registration
+      
       form.reset({
         email: "",
         password: "",
@@ -52,7 +52,7 @@ export function useSignup() {
         router.push("/login");
       }, 1500);
     } catch (err) {
-      // Error handled by toast
+      
     } finally {
       setIsLoading(false);
     }

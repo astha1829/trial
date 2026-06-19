@@ -26,7 +26,7 @@
   --input: #E2E8F0;
   --ring: #2563EB;
 
-  /* Accent Colors */
+  
   --accent-purple: #7C3AED;
   --accent-purple-25: rgba(124, 58, 237, 0.25);
   --accent-purple-5: rgba(124, 58, 237, 0.05);
@@ -52,7 +52,7 @@
   --accent-red-5: rgba(239, 68, 68, 0.05);
   --accent-red-30: rgba(239, 68, 68, 0.3);
 
-  /* Sidebar Component */
+  
   --sidebar-bg: #FFFFFF;
   --sidebar-nav-active-text: #7C3AED;
   --sidebar-card-bg: #F8FAFC;
@@ -60,11 +60,11 @@
   --sidebar-logo-text: #0F172A;
   --sidebar-toggle-hover: #F1F5F9;
 
-  /* Header Component */
+  
   --header-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   --badge-border: #FFFFFF;
 
-  /* Card Component */
+  
   --stats-card-bg: #FFFFFF;
   --stats-card-border: #E2E8F0;
   --stats-card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
@@ -72,11 +72,11 @@
   --stats-card-value-text: #0F172A;
   --stats-card-trend-text: #64748B;
 
-  /* Welcome Banner Component */
+  
   --welcome-banner-bg: linear-gradient(90deg, #F1F5F9 0%, #F8FAFC 100%);
   --glass-panel-bg: linear-gradient(180deg, rgba(124, 92, 255, 0.08) 0%, rgba(124, 92, 255, 0.03) 100%);
 
-  /* Campaign Overview Status */
+  
   --status-running-text: #2563EB;
   --status-running-bg: rgba(37, 99, 235, 0.08);
   --status-running-border: rgba(37, 99, 235, 0.15);
@@ -97,7 +97,7 @@
   --status-failed-border: rgba(239, 68, 68, 0.15);
   --status-failed-glow: rgba(239, 68, 68, 0.1);
 
-  /* Quick Actions & Lists */
+  
   --quick-action-bg: #FFFFFF;
   --quick-action-border: #E2E8F0;
   --quick-action-hover-bg: #F8FAFC;
@@ -114,7 +114,7 @@
   --empty-state-bg: #F8FAFC;
   --empty-state-border: #E2E8F0;
 
-  /* Contacts Page Component Variables */
+  
   --contacts-card-bg: #FFFFFF;
   --contacts-card-hover: #F1F5F9;
   --contacts-card-border: #E2E8F0;
@@ -132,7 +132,7 @@
   --contacts-search-border: #E2E8F0;
   --contacts-search-focus-bg: #FFFFFF;
 
-  /* Groups Page Component Variables */
+  
   --groups-badge-bg: rgba(37, 99, 235, 0.05);
   --groups-badge-border: rgba(37, 99, 235, 0.15);
   --groups-badge-text: #2563EB;
@@ -148,7 +148,7 @@
   --groups-search-bg: #FFFFFF;
   --groups-search-border: #E2E8F0;
 
-  /* Campaigns Page Component Variables */
+  
   --campaign-page-bg: #F8FAFC;
   --campaign-hero-bg: #FFFFFF;
   --campaign-hero-border: #E2E8F0;
@@ -171,7 +171,7 @@
   --campaign-btn-secondary-text: #64748B;
   --campaign-btn-secondary-hover: #E2E8F0;
 
-  /* Templates Page Component Variables */
+  
   --templates-metrics-bg: #FFFFFF;
   --templates-metrics-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   --templates-table-header-bg: #F1F5F9;
@@ -179,7 +179,7 @@
   --templates-activity-timeline-bg: #FFFFFF;
   --templates-activity-timeline-glow: rgba(37, 99, 235, 0.02);
 
-  /* Settings Page Component Variables */
+  
   --settings-page-bg: #F8FAFC;
   --settings-hero-bg: #FFFFFF;
   --settings-hero-border: #E2E8F0;
@@ -194,14 +194,14 @@
   --settings-text-medium: #64748B;
   --settings-text-muted: #94A3B8;
 
-  /* Shared Modals, Popovers & Dropdowns */
+  
   --modal-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
   --dropdown-border: #E2E8F0;
   --dropdown-bg: #FFFFFF;
   --dropdown-hover-bg: #F1F5F9;
   --dropdown-text: #0F172A;
 
-  /* WhatsApp Preview Mockup */
+  
   --wa-header-bg: #008069;
   --wa-header-text: #FFFFFF;
   --wa-header-sub: #D1F4E4;
@@ -214,12 +214,12 @@
 }
 
 .dark {
-  --background: #050B1A; /* deep dark blue */
+  --background: #050B1A; 
   --foreground: #FFFFFF;
-  --card: #0B1328; /* card background */
+  --card: #0B1328; 
   --popover: #07111F;
   --popover-foreground: #FFFFFF;
-  --primary: #7C5CFF; /* primary purple */
+  --primary: #7C5CFF; 
   --primary-foreground: #FFFFFF;
   --secondary: rgba(255, 255, 255, 0.04);
   --secondary-foreground: #FFFFFF;
@@ -227,15 +227,15 @@
   --muted-foreground: rgba(255, 255, 255, 0.65);
   --accent: rgba(255, 255, 255, 0.04);
   --accent-foreground: #FFFFFF;
-  --destructive: #FF5D7A; /* red accent */
+  --destructive: #FF5D7A; 
   --destructive-foreground: #FFFFFF;
-  --success: #10D876; /* green accent */
-  --warning: #F59E0B; /* orange accent */
+  --success: #10D876; 
+  --warning: #F59E0B; 
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.06);
   --ring: #7C5CFF;
 
-  /* Accent Colors */
+  
   --accent-purple: #8B5CF6;
   --accent-purple-25: rgba(139, 92, 246, 0.25);
   --accent-purple-5: rgba(139, 92, 246, 0.05);
@@ -261,7 +261,7 @@
   --accent-red-5: rgba(255, 77, 122, 0.05);
   --accent-red-30: rgba(255, 77, 122, 0.3);
 
-  /* Sidebar Component */
+  
   --sidebar-bg: #07111F;
   --sidebar-nav-active-text: #A894FF;
   --sidebar-card-bg: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(10, 15, 30, 0.95));
@@ -269,11 +269,11 @@
   --sidebar-logo-text: #FFFFFF;
   --sidebar-toggle-hover: #101a30;
 
-  /* Header Component */
+  
   --header-shadow: none;
   --badge-border: #0b0e22;
 
-  /* Card Component */
+  
   --stats-card-bg: linear-gradient(180deg, rgba(10, 18, 40, 0.98), rgba(5, 12, 28, 0.98));
   --stats-card-border: rgba(255, 255, 255, 0.06);
   --stats-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
@@ -281,11 +281,11 @@
   --stats-card-value-text: #FFFFFF;
   --stats-card-trend-text: rgba(255, 255, 255, 0.55);
 
-  /* Welcome Banner Component */
+  
   --welcome-banner-bg: linear-gradient(90deg, #071326 0%, #08162B 40%, #0A1831 70%, #0C1B35 100%);
   --glass-panel-bg: linear-gradient(180deg, rgba(124, 92, 255, 0.18) 0%, rgba(124, 92, 255, 0.08) 100%);
 
-  /* Campaign Overview Status */
+  
   --status-running-text: #3B82F6;
   --status-running-bg: rgba(59, 130, 246, 0.08);
   --status-running-border: rgba(59, 130, 246, 0.15);
@@ -306,7 +306,7 @@
   --status-failed-border: rgba(255, 93, 122, 0.15);
   --status-failed-glow: rgba(255, 93, 122, 0.37);
 
-  /* Quick Actions & Lists */
+  
   --quick-action-bg: rgba(255, 255, 255, 0.02);
   --quick-action-border: rgba(255, 255, 255, 0.05);
   --quick-action-hover-bg: rgba(255, 255, 255, 0.02);
@@ -323,7 +323,7 @@
   --empty-state-bg: rgba(255, 255, 255, 0.01);
   --empty-state-border: rgba(255, 255, 255, 0.05);
 
-  /* Contacts Page Component Variables */
+  
   --contacts-card-bg: rgba(255, 255, 255, 0.004);
   --contacts-card-hover: rgba(255, 255, 255, 0.008);
   --contacts-card-border: rgba(255, 255, 255, 0.04);
@@ -341,7 +341,7 @@
   --contacts-search-border: rgba(255, 255, 255, 0.04);
   --contacts-search-focus-bg: #050B1A;
 
-  /* Groups Page Component Variables */
+  
   --groups-badge-bg: rgba(59, 130, 246, 0.05);
   --groups-badge-border: rgba(59, 130, 246, 0.2);
   --groups-badge-text: #60A5FA;
@@ -357,7 +357,7 @@
   --groups-search-bg: transparent;
   --groups-search-border: rgba(255, 255, 255, 0.08);
 
-  /* Campaigns Page Component Variables */
+  
   --campaign-page-bg: #050816;
   --campaign-hero-bg: rgba(255, 255, 255, 0.02);
   --campaign-hero-border: rgba(255, 255, 255, 0.08);
@@ -380,7 +380,7 @@
   --campaign-btn-secondary-text: #FFFFFF;
   --campaign-btn-secondary-hover: rgba(255, 255, 255, 0.1);
 
-  /* Templates Page Component Variables */
+  
   --templates-metrics-bg: rgba(11, 19, 40, 0.6);
   --templates-metrics-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   --templates-table-header-bg: rgba(255, 255, 255, 0.05);
@@ -388,7 +388,7 @@
   --templates-activity-timeline-bg: rgba(255, 255, 255, 0.04);
   --templates-activity-timeline-glow: rgba(59, 130, 246, 0.05);
 
-  /* Settings Page Component Variables */
+  
   --settings-page-bg: #050816;
   --settings-hero-bg: rgba(255, 255, 255, 0.02);
   --settings-hero-border: rgba(255, 255, 255, 0.08);
@@ -403,14 +403,14 @@
   --settings-text-medium: rgba(255, 255, 255, 0.5);
   --settings-text-muted: rgba(255, 255, 255, 0.4);
 
-  /* Shared Modals, Popovers & Dropdowns */
+  
   --modal-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.8);
   --dropdown-border: rgba(255, 255, 255, 0.08);
   --dropdown-bg: rgba(11, 18, 40, 0.95);
   --dropdown-hover-bg: rgba(255, 255, 255, 0.06);
   --dropdown-text: rgba(255, 255, 255, 0.8);
 
-  /* WhatsApp Preview Mockup */
+  
   --wa-header-bg: #202C33;
   --wa-header-text: #E9EDEF;
   --wa-header-sub: #8696A0;
@@ -499,7 +499,7 @@
   }
 }
 
-/* Custom Base Styles */
+
 html,
 body {
   margin: 0;
@@ -512,7 +512,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Scrollbar Customization */
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -528,7 +528,7 @@ body {
   background: rgba(156, 163, 175, 0.45);
 }
 
-/* Glassmorphism Utilities */
+
 .glass-panel {
   background: var(--card);
   backdrop-filter: blur(16px);
@@ -551,7 +551,7 @@ body {
     0 10px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
-/* Animation Delays */
+
 .animation-delay-2000 {
   animation-delay: 2s;
 }
@@ -559,7 +559,7 @@ body {
   animation-delay: 4s;
 }
 
-/* Custom Grid Pattern Utility */
+
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image: 
@@ -569,7 +569,7 @@ body {
   transition: background-image 0.3s ease;
 }
 
-/* Fix browser autofill styles to keep text correct and background white/dark */
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -579,7 +579,7 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Quick Actions Button Styling */
+
 .quick-action-btn {
   background-color: var(--quick-action-bg);
   border: 1px solid var(--quick-action-border);
@@ -594,7 +594,7 @@ input:-webkit-autofill:active {
   transform: translateY(-4px);
 }
 
-/* Sidebar Toggle Floating Button Styling */
+
 .sidebar-toggle-btn {
   background-color: var(--sidebar-bg);
   color: var(--foreground);
@@ -605,7 +605,7 @@ input:-webkit-autofill:active {
   border-color: var(--accent-purple);
 }
 
-/* Contacts Page Styles */
+
 .contacts-summary-card {
   background-color: var(--contacts-card-bg);
   border: 1px solid var(--contacts-card-border);
@@ -639,7 +639,7 @@ input:-webkit-autofill:active {
   background-color: var(--contacts-row-hover) !important;
 }
 
-/* Groups Page helper classes */
+
 .groups-badge {
   background-color: var(--groups-badge-bg) !important;
   border-color: var(--groups-badge-border) !important;
@@ -681,7 +681,7 @@ input:-webkit-autofill:active {
   background-color: var(--groups-row-hover) !important;
 }
 
-/* Campaigns Page helper classes */
+
 .campaign-container-bg {
   background-color: var(--campaign-page-bg) !important;
 }
@@ -745,7 +745,7 @@ input:-webkit-autofill:active {
   background-color: var(--dropdown-hover-bg) !important;
 }
 
-/* WhatsApp Preview Mockup classes */
+
 .wa-mockup-phone {
   background-color: var(--wa-chat-bg) !important;
   border-color: var(--wa-border) !important;

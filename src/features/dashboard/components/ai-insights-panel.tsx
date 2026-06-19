@@ -73,7 +73,7 @@ export function AiInsightsPanel({ running, completed, scheduled, failed }: AiIns
           </button>
         </div>
 
-        {/* Campaign Metrics list */}
+        {}
         <div className="flex flex-col gap-2.5">
           {campaignMetrics.map((metric) => (
             <div 

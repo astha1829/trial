@@ -129,7 +129,7 @@ export function CreateCampaignForm() {
         router.push(`/campaigns`);
       }
     } catch (error) {
-      // toast is handled in mutation
+      
     }
   };
 
@@ -147,12 +147,12 @@ export function CreateCampaignForm() {
     <div className="w-full h-[calc(100vh-4rem)] campaign-container-bg flex flex-col pt-0 pb-0 px-4 sm:px-8 xl:px-12 overflow-hidden">
       <div className="w-[95%] max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-8 h-full min-h-0 pt-6 pb-6">
         
-        {/* FORM SECTION */}
+        {}
         <div className="flex-1 min-w-0 flex flex-col">
           <form onSubmit={handleSubmit} className="campaign-card rounded-[24px] p-8 sm:p-10 backdrop-blur-xl flex flex-col relative overflow-hidden h-full flex-1 min-h-0">
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
             
-            {/* Header */}
+            {}
             <div className="mb-10 relative z-10 shrink-0">
               <h1 className="text-[42px] font-black campaign-text-bright tracking-tight leading-none flex items-center gap-4">
                 <div className="w-14 h-14 rounded-[16px] bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)]">
@@ -164,7 +164,7 @@ export function CreateCampaignForm() {
             </div>
 
             <div className="flex-1 min-h-0 flex flex-col relative z-10">
-              {/* Steps Indicator */}
+              {}
               <div className="flex items-center gap-2 sm:gap-4 mb-8 shrink-0 border-b border-slate-200 dark:border-[rgba(255,255,255,0.05)] pb-6">
                 {[
                   { num: 1, label: "Audience" },
@@ -194,9 +194,9 @@ export function CreateCampaignForm() {
               </div>
 
               <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-4 space-y-8">
-                {/* STEP 1: Audience */}
+                {}
                 <div className={`space-y-8 transition-all duration-500 ${step === 1 ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
-                  {/* Title */}
+                  {}
                   <div>
                     <label className="block text-[12px] font-bold campaign-text-medium uppercase tracking-wider mb-2">Campaign Title</label>
                     <input
@@ -209,7 +209,7 @@ export function CreateCampaignForm() {
                     />
                   </div>
 
-                  {/* Group */}
+                  {}
                   <div>
                     <label className="block text-[12px] font-bold campaign-text-medium uppercase tracking-wider mb-2">Target Group</label>
                     <select
@@ -226,9 +226,9 @@ export function CreateCampaignForm() {
                   </div>
                 </div>
 
-                {/* STEP 2: Template */}
+                {}
                 <div className={`space-y-8 transition-all duration-500 ${step === 2 ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
-                  {/* Template */}
+                  {}
                   <div>
                     <label className="block text-[12px] font-bold campaign-text-medium uppercase tracking-wider mb-2">Message Template</label>
                     <select
@@ -244,7 +244,7 @@ export function CreateCampaignForm() {
                     </select>
                   </div>
 
-                  {/* Dynamic Parameters */}
+                  {}
                   {selectedTemplate && ((selectedTemplate.fields?.length > 0) || (selectedTemplate.content as any)?.image) ? (
                     <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[rgba(0,0,0,0.2)] border border-slate-100 dark:border-[rgba(255,255,255,0.04)] shadow-inner space-y-5">
                       <h3 className="text-[14px] font-bold campaign-text-bright tracking-wide flex items-center gap-2">
@@ -286,9 +286,9 @@ export function CreateCampaignForm() {
                   ) : null}
                 </div>
 
-                {/* STEP 3: Delivery */}
+                {}
                 <div className={`space-y-8 transition-all duration-500 ${step === 3 ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
-                  {/* Schedule */}
+                  {}
                   <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[rgba(0,0,0,0.2)] border border-slate-100 dark:border-[rgba(255,255,255,0.04)] shadow-inner">
                     <div className="flex items-center justify-between mb-6">
                       <div>
@@ -329,7 +329,7 @@ export function CreateCampaignForm() {
                 </div>
               )}
 
-              {/* Wizard Footer Actions */}
+              {}
               <div className="pt-4 mt-2 flex items-center justify-between border-t border-slate-200 dark:border-[rgba(255,255,255,0.05)] shrink-0">
                 <button
                   type="button"
@@ -368,18 +368,18 @@ export function CreateCampaignForm() {
           </form>
         </div>
 
-        {/* PREVIEW SECTION (WhatsApp style) */}
+        {}
         <div className="lg:w-[460px] xl:w-[500px] shrink-0 h-full flex flex-col">
           <div className="bg-slate-100/80 dark:bg-[rgba(11,18,40,0.6)] rounded-[32px] border border-slate-200 dark:border-[rgba(255,255,255,0.08)] overflow-hidden shadow-lg dark:shadow-[0_30px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl flex flex-col h-full flex-1 p-3">
             <div className="wa-mockup-phone rounded-[24px] border overflow-hidden flex flex-col h-full shadow-inner relative">
               
-              {/* Phone Camera Notch */}
+              {}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[24px] wa-mockup-notch rounded-b-[16px] z-20 flex items-end justify-center pb-1 gap-2 shadow-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-black/50" />
                 <div className="w-8 h-1.5 rounded-full bg-black/50" />
               </div>
 
-              {/* WhatsApp Header */}
+              {}
               <div className="wa-mockup-header px-6 pt-8 pb-4 flex items-center gap-4 z-10 shadow-md">
                 <div className="w-12 h-12 rounded-full bg-black/10 dark:bg-[rgba(255,255,255,0.1)] flex items-center justify-center shrink-0">
                   <Smartphone className="w-6 h-6 wa-mockup-header-text" />
@@ -390,16 +390,16 @@ export function CreateCampaignForm() {
                 </div>
               </div>
 
-              {/* Chat Background */}
+              {}
               <div className="flex-1 p-6 wa-mockup-chat relative overflow-y-auto custom-scrollbar flex flex-col">
-                {/* Fixed background image pattern */}
+                {}
                 <div className="absolute inset-0 pointer-events-none opacity-[0.06] dark:opacity-[0.15]" style={{ backgroundImage: 'url("https://static.whatsapp.net/rsrc.php/v3/yl/r/rro_2R-YJ8N.png")', backgroundSize: 'cover' }} />
                 
                 {!templateId ? (
                   <div className="flex-1 relative flex flex-col justify-end pb-8">
-                    {/* Simulated Empty State Mockup */}
+                    {}
                     <div className="wa-mockup-msg rounded-[12px] p-3 max-w-[85%] relative z-10 shadow-lg ml-auto opacity-40 blur-[1px]">
-                      {/* Tail */}
+                      {}
                       <div className="absolute top-0 -right-2 w-3 h-3 wa-mockup-msg" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
                       <div className="px-1.5 pb-1">
                         <div className="wa-mockup-msg-text text-[15px] leading-[1.4]">
@@ -412,7 +412,7 @@ export function CreateCampaignForm() {
                     </div>
 
                     <div className="wa-mockup-msg rounded-[12px] p-3 max-w-[85%] relative z-10 shadow-lg mt-4 opacity-70">
-                      {/* Tail */}
+                      {}
                       <div className="absolute top-0 -left-2 w-3 h-3 wa-mockup-msg" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
                       <div className="px-1.5 pb-1">
                         <div className="wa-mockup-msg-text text-[15px] font-bold mb-2">
@@ -432,7 +432,7 @@ export function CreateCampaignForm() {
                   </div>
                 ) : (
                   <div className="wa-mockup-msg rounded-[12px] p-3 max-w-[95%] relative z-10 shadow-sm mt-4">
-                    {/* Tail */}
+                    {}
                     <div className="absolute top-0 -left-2 w-3 h-3 wa-mockup-msg" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }} />
                     
                     <div className="px-1.5 pb-1">

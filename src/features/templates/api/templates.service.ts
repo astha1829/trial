@@ -19,7 +19,7 @@ export async function syncTemplates(): Promise<SyncTemplatesResponse> {
 }
 
 export async function fetchTemplateRequirements(templateId: string): Promise<TemplateRequirement[]> {
-  // If the endpoint doesn't exist yet, we'll gracefully return an empty array or handle the 404
+  
   try {
     const response = await api.get(`/api/v1/messages/templates/${templateId}/requirements`);
     return response.data?.data || [];

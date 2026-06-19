@@ -60,19 +60,19 @@ export function CreateGroupModal({ isOpen, onClose }: CreateGroupModalProps) {
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 animate-fade-in select-none">
-      {/* Backdrop overlay */}
+      {}
       <div 
         className="absolute inset-0 bg-slate-950/80 backdrop-blur-md cursor-pointer"
         onClick={handleModalClose}
       />
       
-      {/* Premium Modal Container */}
+      {}
       <div 
         style={{ boxShadow: "var(--modal-shadow)" }}
         className="relative w-full max-w-[640px] flex flex-col bg-card border border-border rounded-3xl overflow-hidden animate-slide-up transition-colors"
       >
         
-        {/* Modal Header */}
+        {}
         <div className="flex items-center justify-between p-6 md:p-8 border-b border-border bg-secondary/60 shrink-0 transition-colors">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 text-white shadow-sm shadow-blue-500/20">
@@ -97,7 +97,7 @@ export function CreateGroupModal({ isOpen, onClose }: CreateGroupModalProps) {
           </button>
         </div>
 
-        {/* Modal Body / Form */}
+        {}
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-6 md:p-8 space-y-7" noValidate>
           <FormFieldWrapper
             label="Group Name *"
@@ -138,7 +138,7 @@ export function CreateGroupModal({ isOpen, onClose }: CreateGroupModalProps) {
             />
           </FormFieldWrapper>
 
-          {/* Form Actions */}
+          {}
           <div className="flex gap-3 pt-6 border-t border-border transition-colors">
             <button
               type="button"

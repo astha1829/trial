@@ -24,7 +24,7 @@ export function SuccessToast({ message, toastId }: SuccessToastProps) {
           ✕
         </button>
       </div>
-      {/* Progress countdown indicator */}
+      {}
       <div className="absolute bottom-0 left-0 h-1 bg-emerald-500 animate-toast-progress w-full" />
     </div>
   );
@@ -53,7 +53,7 @@ export function ErrorToast({ message, toastId }: ErrorToastProps) {
           ✕
         </button>
       </div>
-      {/* Progress countdown indicator */}
+      {}
       <div className="absolute bottom-0 left-0 h-1 bg-rose-500 animate-toast-progress w-full" />
     </div>
   );

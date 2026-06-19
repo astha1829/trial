@@ -96,7 +96,7 @@ export function CampaignAnalyticsStats() {
               boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             }}
           >
-            {/* Top Area */}
+            {}
             <div className="flex items-center gap-[16px]">
               <div
                 className="flex items-center justify-center shrink-0"
@@ -127,7 +127,7 @@ export function CampaignAnalyticsStats() {
               </h3>
             </div>
 
-            {/* Custom Content for Card 1 */}
+            {}
             {stat.customContent ? (
               <div className="flex flex-col flex-1 justify-end">
                 <div style={{ marginTop: "20px" }}>
@@ -180,7 +180,7 @@ export function CampaignAnalyticsStats() {
                 </div>
               </div>
             ) : (
-              /* Content for other cards */
+              
               <div className="flex flex-col flex-1 justify-end">
                 <div
                   style={{
@@ -206,7 +206,7 @@ export function CampaignAnalyticsStats() {
               </div>
             )}
 
-            {/* File Path Display */}
+            {}
             {stat.filePath && (
               <div
                 title={stat.filePath}

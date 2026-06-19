@@ -108,16 +108,16 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-fade-in">
-      {/* Backdrop overlay */}
+      {}
       <div 
         className="absolute inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md"
         onClick={onClose}
       />
       
-      {/* Premium Modal Container */}
+      {}
       <div className="relative w-full max-w-[1100px] w-[80vw] max-h-[90vh] flex flex-col bg-white dark:bg-card border border-slate-200 dark:border-border rounded-3xl shadow-sm dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden animate-slide-up transition-colors">
         
-        {/* Modal Header */}
+        {}
         <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-border bg-slate-50/50 dark:bg-secondary/60 shrink-0 transition-colors">
           <div className="space-y-1">
             <h2 className="text-2xl font-black text-foreground tracking-tight leading-none transition-colors">{template.template_name}</h2>
@@ -142,11 +142,11 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
           </button>
         </div>
 
-        {/* Modal Body */}
+        {}
         <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar">
           <div className="flex flex-col lg:flex-row gap-8">
             
-            {/* LEFT COLUMN: WhatsApp Preview (approx 40%) */}
+            {}
             <div className="w-full lg:w-[40%] space-y-6 lg:sticky lg:top-0 h-fit">
               <div>
                 <h3 className="text-sm font-black uppercase text-muted-foreground tracking-widest mb-4 transition-colors">Message Preview</h3>
@@ -154,10 +154,10 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Info, Parameters, Test Actions (approx 60%) */}
+            {}
             <div className="w-full lg:w-[60%] space-y-8">
               
-              {/* Template Information Grid */}
+              {}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-secondary border border-slate-200 dark:border-border space-y-1 transition-colors">
                   <div className="flex items-center gap-2 text-muted-foreground mb-2 transition-colors">
@@ -191,7 +191,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                 </div>
               </div>
 
-              {/* Dynamic Parameters Form (Only renders if params exist) */}
+              {}
               {hasParams && (
                 <div>
                   <h3 className="text-sm font-black uppercase text-muted-foreground tracking-widest mb-4 flex items-center justify-between transition-colors">
@@ -199,7 +199,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                     {isLoadingReqs && <Loader2 className="h-4 w-4 animate-spin text-blue-600 dark:text-blue-400" />}
                   </h3>
                   <div className="space-y-4 bg-slate-50/50 dark:bg-secondary/50 p-6 rounded-3xl border border-slate-200 dark:border-border transition-colors">
-                    {/* Header Image Upload */}
+                    {}
                     {requiresImage && (
                       <div className="space-y-2">
                         <label className="text-sm font-bold text-muted-foreground flex items-center gap-2 transition-colors">
@@ -224,13 +224,13 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                       </div>
                     )}
 
-                    {/* Text Fields from Requirements or Fields */}
+                    {}
                     {Array.isArray(requirements) && requirements.length > 0 ? (
                       requirements.map((req: any, idx: number) => {
                         const paramName = req.param_name ? req.param_name.replace(/_/g, " ").replace(/\b\w/g, (l: string) => l.toUpperCase()) : "Unknown";
                         const isImageParam = req.param_name ? req.param_name.toLowerCase().includes("image") || req.param_type === "IMAGE" : false;
                         
-                        if (isImageParam || req.param_name === 'header_image') return null; // handled above
+                        if (isImageParam || req.param_name === 'header_image') return null; 
 
                         return (
                           <div key={idx} className="space-y-2">
@@ -254,7 +254,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                         const paramName = field.replace(/_/g, " ").replace(/\b\w/g, (l: string) => l.toUpperCase());
                         const isImageParam = field.toLowerCase().includes("image");
                         
-                        if (isImageParam || field === 'header_image') return null; // handled above
+                        if (isImageParam || field === 'header_image') return null; 
 
                         return (
                           <div key={idx} className="space-y-2">
@@ -274,7 +274,7 @@ export function TemplateDetailsModal({ template, onClose }: TemplateDetailsModal
                 </div>
               )}
 
-              {/* Primary Dispatch Section */}
+              {}
               <div className="pt-4 border-t border-slate-200 dark:border-border transition-colors">
                 <h3 className="text-sm font-black uppercase text-blue-600 dark:text-blue-400 tracking-widest mb-2 flex items-center gap-2">
                   <Send className="h-4 w-4" />

@@ -3,7 +3,7 @@ import { ProfileSettings, UpdateProfilePayload } from "../types";
 
 export async function fetchProfile(): Promise<ProfileSettings> {
   const response = await api.get("/api/v1/clients/profile");
-  return response.data?.data || response.data; // adjust based on API structure, usually data is nested or direct
+  return response.data?.data || response.data; 
 }
 
 export async function updateProfile(payload: UpdateProfilePayload): Promise<ProfileSettings> {

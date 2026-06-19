@@ -84,7 +84,7 @@ export function AuthLayout({ children }: Props) {
           </motion.div>
 
           <div className="relative w-[85%] mx-auto mt-4 select-none">
-            {/* New Leads card */}
+            {}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -100,7 +100,7 @@ export function AuthLayout({ children }: Props) {
               </div>
             </motion.div>
  
-            {/* Bottom Left Floating Card */}
+            {}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
@@ -116,7 +116,7 @@ export function AuthLayout({ children }: Props) {
               </div>
             </motion.div>
  
-            {/* Bottom Right Floating Card */}
+            {}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
@@ -132,7 +132,7 @@ export function AuthLayout({ children }: Props) {
               </div>
             </motion.div>
 
-            {/* Main Mock Inbox Card */}
+            {}
             <div className="glass-panel rounded-2xl p-5 border border-border shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),0_0_40px_-5px_rgba(59,130,246,0.15)] relative overflow-hidden backdrop-blur-xl bg-card dark:bg-card/60 transition-colors">
               <div className="flex items-center justify-between border-b border-border pb-3 mb-4 transition-colors">
                 <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ export function AuthLayout({ children }: Props) {
                 </span>
               </div>
 
-              {/* Chat list items mockup */}
+              {}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between py-2.5 px-4 rounded-xl bg-secondary/50 border border-border hover:bg-secondary/80 transition-all hover:scale-[1.01] duration-200">
                   <div className="flex items-center gap-3.5">
@@ -213,7 +213,7 @@ export function AuthLayout({ children }: Props) {
           </div>
         </div>
 
-        {/* Metrics Grid */}
+        {}
         <div className="relative z-10 w-full border-t border-border pt-5 grid grid-cols-4 gap-8 animate-fade-in mx-auto max-w-[850px] transition-colors">
           {CRM_METRICS.map((metric, i) => (
             <div key={i} className="space-y-0.5 transition-transform duration-300 hover:-translate-y-1 cursor-default group">
@@ -228,9 +228,9 @@ export function AuthLayout({ children }: Props) {
         </div>
       </section>
 
-      {/* Right Panel: Auth Glass Form Shell */}
+      {}
       <section className="flex flex-col justify-center items-center p-6 lg:p-12 bg-background relative h-full w-full min-h-0 overflow-y-auto transition-colors">
-        {/* Glow circles for mobile backgrounds */}
+        {}
         <div className="absolute inset-0 overflow-hidden pointer-events-none lg:hidden">
           <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-blue-600/5 blur-[80px]" />
         </div>

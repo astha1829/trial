@@ -172,7 +172,7 @@ export function QuickActionsCampaignOverview({
 
   return (
     <div className="flex flex-col lg:flex-row gap-[16px] w-full select-none">
-      {/* LEFT CARD (Quick Actions) */}
+      {}
       <div
         className="w-full lg:w-[62%] h-auto lg:h-[260px] rounded-[16px] border border-stats-card-border px-[24px] pb-[24px] pt-[28px] flex flex-col justify-between"
         style={{
@@ -180,7 +180,7 @@ export function QuickActionsCampaignOverview({
           boxShadow: "var(--stats-card-shadow)",
         }}
       >
-        {/* Header */}
+        {}
         <div className="flex flex-col gap-[4px] items-start">
           <h2 className="text-[28px] font-bold text-foreground font-sans leading-none tracking-tight">
             Quick Actions
@@ -190,7 +190,7 @@ export function QuickActionsCampaignOverview({
           </span>
         </div>
 
-        {/* Action Cards Row */}
+        {}
         <div className="w-full overflow-x-auto pb-1 -mb-1 scrollbar-none">
           <div className="flex flex-row gap-[6px] min-w-[930px] justify-between">
             {actions.map((act) => {
@@ -232,7 +232,7 @@ export function QuickActionsCampaignOverview({
         </div>
       </div>
 
-      {/* RIGHT CARD (Campaign Overview) */}
+      {}
       <div
         className="w-full lg:w-[38%] h-auto lg:h-[260px] rounded-[16px] border border-stats-card-border p-[24px] flex flex-col justify-between"
         style={{
@@ -240,7 +240,7 @@ export function QuickActionsCampaignOverview({
           boxShadow: "var(--stats-card-shadow)",
         }}
       >
-        {/* Header with Refresh button */}
+        {}
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col gap-[4px] items-start">
             <h2 className="text-[28px] font-bold text-foreground font-sans leading-none tracking-tight">
@@ -262,7 +262,7 @@ export function QuickActionsCampaignOverview({
           </button>
         </div>
 
-        {/* Status Cards */}
+        {}
         <div className="w-full overflow-x-auto pb-1 -mb-1 scrollbar-none">
           <div className="flex flex-row gap-[10px] min-w-[360px] justify-between">
             {statuses.map((status) => {
@@ -307,7 +307,7 @@ export function QuickActionsCampaignOverview({
           </div>
         </div>
 
-        {/* Bottom Link */}
+        {}
         <div className="text-left mt-[4px]">
           <button className="text-[14px] font-semibold text-accent-purple hover:underline cursor-pointer flex items-center gap-1 font-sans leading-none">
             <span>View all campaign dispatches</span>

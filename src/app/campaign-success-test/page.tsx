@@ -14,7 +14,7 @@ export default function CampaignSuccessTestPage() {
 
       <div className="w-full max-w-[1400px] mx-auto flex flex-col gap-4">
         <h2 className="text-xl font-bold text-slate-800">2. Campaign Analytics Stats Section</h2>
-        {/* We use an overflow container in case the screen is too narrow to fit 6 columns, to maintain pixel perfect sizes */}
+        {}
         <div className="w-full overflow-x-auto pb-8">
           <div className="min-w-[1200px]">
             <CampaignAnalyticsStats />

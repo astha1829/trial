@@ -59,7 +59,7 @@ export function CampaignDetails({ id }: { id: string }) {
     );
   }
 
-  // Derived Stats
+  
   const totalRecipients = report?.total_recipients || report?.total || campaign?.total || 0;
   const sentCount = report?.sent || campaign?.sent || 0;
   const deliveredCount = report?.delivered || campaign?.delivered || 0;
@@ -76,7 +76,7 @@ export function CampaignDetails({ id }: { id: string }) {
 
   const isCompleted = campaign.status?.toLowerCase() === "completed";
 
-  // Badges
+  
   const getStatusBadge = (status: string) => {
     switch (status?.toLowerCase()) {
       case "scheduled": return <span className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[13px] font-bold uppercase tracking-wider"><Calendar className="w-4 h-4" /> Scheduled</span>;
@@ -109,7 +109,7 @@ export function CampaignDetails({ id }: { id: string }) {
     <div className="w-full min-h-[calc(100vh-4rem)] flex flex-col pt-4 pb-16 px-4 sm:px-8 xl:px-12 campaign-container-bg">
       <div className="w-[98%] max-w-[1800px] mx-auto flex flex-col gap-8">
         
-        {/* 1. BREADCRUMB */}
+        {}
         <div className="flex items-center gap-2 mb-[-8px]">
           <Link href="/campaigns" className="text-[14px] font-semibold transition-colors campaign-text-muted hover:campaign-text-bright">
             Campaigns
@@ -118,20 +118,20 @@ export function CampaignDetails({ id }: { id: string }) {
           <span className="text-[14px] font-bold campaign-text-bright">{campaign.title || campaign.name || "Untitled Campaign"}</span>
         </div>
 
-        {/* 2. HERO SECTION */}
+        {}
         <div 
           style={{ backgroundColor: "var(--campaign-hero-bg)", borderColor: "var(--campaign-hero-border)" }}
           className="relative w-full rounded-[24px] border backdrop-blur-3xl overflow-hidden shadow-sm"
         >
-          {/* Subtle radial gradients (SaaS style, less intense, more refined) */}
+          {}
           <div className="absolute top-0 left-1/4 w-[800px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 opacity-50" />
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 opacity-50" />
           
           <div className="relative z-10 p-8 lg:p-10 flex flex-col lg:flex-row justify-between gap-10">
             
-            {/* LEFT: Info & Actions */}
+            {}
             <div className="flex flex-col gap-6 flex-1 justify-center">
-              {/* Status Pill above Title */}
+              {}
               <div className="flex items-center w-max">
                 {getStatusBadge(campaign.status)}
               </div>
@@ -141,7 +141,7 @@ export function CampaignDetails({ id }: { id: string }) {
                   {campaign.title || campaign.name || "Untitled Campaign"}
                 </h1>
                 
-                {/* Info Chips (Metadata) */}
+                {}
                 <div className="flex flex-wrap items-center gap-3 mt-2 text-[13px] font-medium" style={{ color: "var(--campaign-text-medium)" }}>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border" style={{ backgroundColor: "var(--campaign-btn-secondary-bg)", borderColor: "var(--campaign-btn-secondary-border)" }}>
                     <Target className="w-4 h-4" style={{ color: "var(--campaign-text-muted)" }} /> 
@@ -170,7 +170,7 @@ export function CampaignDetails({ id }: { id: string }) {
 
             </div>
 
-            {/* RIGHT: Actions & Business Summary Card */}
+            {}
             <div className="lg:w-[400px] flex flex-col gap-6 shrink-0 relative">
               <div className="w-full flex justify-end hidden lg:flex">
                 <button className="h-9 px-4 rounded-lg font-medium text-[13px] transition-all flex items-center gap-2 campaign-btn-secondary">
@@ -205,7 +205,7 @@ export function CampaignDetails({ id }: { id: string }) {
                 </div>
               </div>
 
-              {/* Progress bar representing delivery rate */}
+              {}
               <div className="w-full h-1.5 rounded-full mt-6 overflow-hidden campaign-progress-track">
                 <div 
                   className="h-full bg-emerald-500 rounded-full transition-all duration-1000" 
@@ -218,10 +218,10 @@ export function CampaignDetails({ id }: { id: string }) {
           </div>
         </div>
 
-        {/* 3. KPI SECTION */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-4 w-full">
           
-          {/* Card 1: Delivery Success Ring */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex items-center justify-between shadow-sm hover:shadow-[0_10px_40px_rgba(16,185,129,0.1)] hover:border-emerald-500/30 transition-all duration-300 group campaign-card">
             <div className="flex flex-col gap-2">
               <span className="text-[14px] font-bold uppercase tracking-wider campaign-text-medium">Delivery Success</span>
@@ -237,42 +237,42 @@ export function CampaignDetails({ id }: { id: string }) {
             </div>
           </div>
 
-          {/* Card 2: Total Recipients */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(255,255,255,0.05)] hover:border-white/20 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-white/10 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><Users className="w-4 h-4" /> Total Recipients</span>
             <span className="text-[48px] font-black leading-none mt-auto tracking-tight campaign-text-bright">{totalRecipients.toLocaleString()}</span>
           </div>
 
-          {/* Card 3: Successfully Sent */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(16,185,129,0.1)] hover:border-emerald-500/30 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-emerald-500/20 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><Send className="w-4 h-4" /> Messages Sent</span>
             <span className="text-[36px] font-black text-emerald-600 dark:text-emerald-400 leading-none mt-auto tracking-tight">{sentCount.toLocaleString()}</span>
           </div>
 
-          {/* Card 4: Delivered */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(16,185,129,0.1)] hover:border-emerald-500/30 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-emerald-500/20 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><CheckCircle2 className="w-4 h-4" /> Delivered</span>
             <span className="text-[36px] font-black text-emerald-600 dark:text-emerald-400 leading-none mt-auto tracking-tight">{deliveredCount.toLocaleString()}</span>
           </div>
 
-          {/* Card 5: Read */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(59,130,246,0.1)] hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-blue-500/20 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><CheckCircle2 className="w-4 h-4" /> Messages Read</span>
             <span className="text-[36px] font-black text-blue-600 dark:text-blue-400 leading-none mt-auto tracking-tight">{readCount.toLocaleString()}</span>
           </div>
 
-          {/* Card 6: Failed Deliveries */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(244,63,94,0.1)] hover:border-rose-500/30 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-rose-500/20 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><AlertTriangle className="w-4 h-4" /> Failed Deliveries</span>
             <span className="text-[36px] font-black text-rose-600 dark:text-rose-400 leading-none mt-auto tracking-tight">{failedCount.toLocaleString()}</span>
           </div>
 
-          {/* Card 7: Pending / Queued */}
+          {}
           <div className="h-[140px] rounded-[20px] p-6 flex flex-col shadow-sm hover:shadow-[0_10px_40px_rgba(245,158,11,0.1)] hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden group campaign-card">
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-[40px] pointer-events-none -translate-y-1/2 translate-x-1/4 group-hover:bg-amber-500/20 transition-colors duration-500" />
             <span className="text-[14px] font-bold uppercase tracking-wider flex items-center gap-2 mb-2 campaign-text-medium"><Clock className="w-4 h-4" /> Pending / Transit</span>
@@ -281,10 +281,10 @@ export function CampaignDetails({ id }: { id: string }) {
 
         </div>
 
-        {/* 4. MAIN CONTENT GRID */}
+        {}
         <div className="flex flex-col xl:flex-row gap-6 w-full mt-4 pb-4">
           
-          {/* LEFT: Activity Timeline (55%) */}
+          {}
           <div className="xl:w-[55%] flex flex-col gap-6">
             <h2 className="text-[20px] font-bold flex items-center gap-2 px-2 campaign-text-bright">
               <Calendar className="w-5 h-5 text-indigo-500 dark:text-indigo-400" /> Activity Timeline
@@ -293,7 +293,7 @@ export function CampaignDetails({ id }: { id: string }) {
             <div className="border rounded-[24px] backdrop-blur-xl p-8 sm:p-10 shadow-lg min-h-[500px] overflow-y-auto custom-scrollbar campaign-card" style={{ maxHeight: '700px' }}>
               <div className="relative pl-6 sm:pl-8 border-l-2 border-indigo-500/20 space-y-12 py-4">
                 
-                {/* Event 1: Created */}
+                {}
                 <div className="relative group">
                   <div 
                     style={{ backgroundColor: "var(--campaign-page-bg)" }}
@@ -310,7 +310,7 @@ export function CampaignDetails({ id }: { id: string }) {
                   </div>
                 </div>
 
-                {/* Event 2: Started */}
+                {}
                 {campaign.started_at && (
                   <div className="relative group">
                     <div 
@@ -329,7 +329,7 @@ export function CampaignDetails({ id }: { id: string }) {
                   </div>
                 )}
 
-                {/* Event 3: Completed */}
+                {}
                 {campaign.completed_at && (
                   <div className="relative group">
                     <div 
@@ -352,7 +352,7 @@ export function CampaignDetails({ id }: { id: string }) {
             </div>
           </div>
 
-          {/* RIGHT: Recipients Panel (45%) */}
+          {}
           <div className="xl:w-[45%] flex flex-col gap-6">
             <div className="flex items-center justify-between px-2">
               <h2 className="text-[20px] font-bold flex items-center gap-2 campaign-text-bright">
@@ -362,7 +362,7 @@ export function CampaignDetails({ id }: { id: string }) {
 
             <div className="border rounded-[24px] backdrop-blur-xl p-6 sm:p-8 shadow-lg flex flex-col min-h-[500px] campaign-card">
               
-              {/* Search & Filters */}
+              {}
               <div className="flex flex-col xl:flex-row gap-4 mb-6">
                 <div className="relative flex-1">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 campaign-text-muted" />
@@ -376,7 +376,7 @@ export function CampaignDetails({ id }: { id: string }) {
                   />
                 </div>
                 
-                {/* Status Filters */}
+                {}
                 <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-2 xl:pb-0">
                   {["All", "Sent", "Delivered", "Read", "Failed", "Pending"].map((status) => (
                     <button
@@ -394,7 +394,7 @@ export function CampaignDetails({ id }: { id: string }) {
                 </div>
               </div>
 
-              {/* Recipient Cards List */}
+              {}
               {isLoadingItems ? (
                 <div className="flex-1 flex justify-center items-center">
                   <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
@@ -507,7 +507,7 @@ export function CampaignDetails({ id }: { id: string }) {
         </div>
       </div>
       
-      {/* Modals */}
+      {}
       {selectedRecipient && (
         <RecipientDetailsModal recipient={selectedRecipient} onClose={() => setSelectedRecipient(null)} />
       )}

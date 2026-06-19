@@ -81,10 +81,10 @@ export function ContactsClient() {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 w-full h-full pb-8 animate-fade-in select-none">
-      {/* Main Content Area */}
+      {}
       <div className="flex-1 flex flex-col min-w-0 space-y-8">
         
-        {/* Header & Primary Action */}
+        {}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-2">
             <h1 className="text-[44px] font-bold tracking-tight text-foreground flex items-center gap-3">
@@ -112,7 +112,7 @@ export function ContactsClient() {
           </div>
         </div>
 
-        {/* Premium Summary Panel */}
+        {}
         {!isError && contacts && contacts.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="flex flex-col gap-2 p-4 rounded-xl contacts-summary-card">
@@ -157,7 +157,7 @@ export function ContactsClient() {
           </div>
         )}
 
-        {/* Main Contacts Table */}
+        {}
         {isFullyLoading ? (
           <ContactsSkeleton />
         ) : isError ? (
@@ -171,10 +171,10 @@ export function ContactsClient() {
         )}
       </div>
 
-      {/* Right Sidebar - Quick Actions & Recent */}
+      {}
       {!isError && contacts && contacts.length > 0 && (
         <div className="w-full lg:w-72 shrink-0 flex flex-col gap-6 pt-2">
-          {/* Quick Actions */}
+          {}
           <div className="flex flex-col gap-3">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Quick Actions</h3>
             <div className="flex flex-col gap-2">
@@ -195,7 +195,7 @@ export function ContactsClient() {
             </div>
           </div>
 
-          {/* Recently Added */}
+          {}
           <div className="flex flex-col gap-3 mt-4">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Recently Added</h3>
             <div className="flex flex-col gap-3">
@@ -219,7 +219,7 @@ export function ContactsClient() {
         </div>
       )}
 
-      {/* Create Contact Modal */}
+      {}
       <CreateContactModal 
         isOpen={isCreateModalOpen} 
         onClose={() => setIsCreateModalOpen(false)} 

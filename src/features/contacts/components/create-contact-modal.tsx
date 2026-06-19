@@ -122,16 +122,16 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 animate-fade-in select-none">
-      {/* Backdrop overlay */}
+      {}
       <div 
         className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm cursor-pointer"
         onClick={handleModalClose}
       />
       
-      {/* Modal Container */}
+      {}
       <div className="relative w-full max-w-[720px] max-h-[90vh] flex flex-col bg-card border border-border/60 rounded-2xl shadow-2xl overflow-hidden animate-slide-up transition-colors">
         
-        {/* Modal Header */}
+        {}
         <div className="flex items-center justify-between px-8 py-6 border-b border-border/50 bg-background shrink-0">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary border border-border/50 text-foreground">
@@ -154,11 +154,11 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
           </button>
         </div>
 
-        {/* Modal Body / Form */}
+        {}
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col min-h-0" noValidate>
           <div className="overflow-y-auto px-8 py-6 bg-background space-y-10">
             
-            {/* Section 1: Basic Information */}
+            {}
             <div className="space-y-6">
               <div className="border-b border-border/40 pb-2">
                 <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Basic Information</h3>
@@ -219,7 +219,7 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
               </div>
             </div>
 
-            {/* Section 2: Contact Settings */}
+            {}
             <div className="space-y-6">
               <div className="border-b border-border/40 pb-2">
                 <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Contact Settings</h3>
@@ -263,7 +263,7 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
                 </FormFieldWrapper>
               </div>
 
-              {/* Custom Searchable Multi-select Dropdown for Groups */}
+              {}
               <div className="relative" ref={dropdownRef}>
                 <FormFieldWrapper label="Assigned Groups *" htmlFor="groups" error={errors.group_ids?.message}>
                   <div 
@@ -339,7 +339,7 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
                 )}
               </div>
 
-              {/* Marketing Opt-in Toggle */}
+              {}
               <div className="p-4 rounded-xl border border-border/40 bg-secondary/10 flex items-start gap-4">
                 <Controller
                   name="marketing_opt_in"
@@ -374,7 +374,7 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
             </div>
           </div>
 
-          {/* Modal Footer (Sticky) */}
+          {}
           <div className="px-8 py-5 border-t border-border/50 bg-secondary/20 shrink-0 flex items-center justify-end gap-3">
             <button
               type="button"

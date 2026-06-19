@@ -34,7 +34,7 @@ export function SignupForm() {
 
 
 
-      {/* Core Form */}
+      {}
       <form onSubmit={onSubmit} className="flex flex-col mt-6 select-none" noValidate>
         <div className="space-y-6">
           <FormFieldWrapper
@@ -86,7 +86,7 @@ export function SignupForm() {
               error={!!errors.confirmPassword}
             />
 
-            {/* Live Password Match Validation */}
+            {}
             {passwordValue && confirmPasswordValue && (
               <div className="mt-2.5 text-xs font-semibold select-none animate-fade-in transition-colors">
                 {passwordsMatch ? (
@@ -109,7 +109,7 @@ export function SignupForm() {
           Create Account
         </SubmitButton>
 
-        {/* Redirect back to Login */}
+        {}
         <p className="text-center text-sm text-muted-foreground select-none mt-4 transition-colors">
           Already have an account?{" "}
           <Link
@@ -120,7 +120,7 @@ export function SignupForm() {
           </Link>
         </p>
 
-        {/* Trust Badges */}
+        {}
         <div className="border-t border-border pt-6 mt-8 transition-colors">
           <div className="flex items-center justify-center gap-2 px-1 flex-wrap">
             {TRUST_INDICATORS.map((badge, i) => (

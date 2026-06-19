@@ -30,7 +30,7 @@ export function LoginForm() {
 
 
 
-      {/* Core Form */}
+      {}
       <form onSubmit={onSubmit} className="flex flex-col mt-6 select-none" noValidate>
         <div className="space-y-6">
           <FormFieldWrapper
@@ -69,7 +69,7 @@ export function LoginForm() {
           </FormFieldWrapper>
         </div>
 
-        {/* Remember me & Forgot Password */}
+        {}
         <div className="flex items-center justify-between text-sm mt-5 select-none">
           <label className="flex items-center gap-2 text-muted-foreground hover:text-foreground cursor-pointer font-medium transition-colors">
             <input
@@ -92,7 +92,7 @@ export function LoginForm() {
           Sign In
         </SubmitButton>
 
-        {/* Redirect/Create Account Promotion */}
+        {}
         <p className="text-center text-sm text-muted-foreground select-none mt-4">
           Don&apos;t have a Nexus CRM account?{" "}
           <Link
@@ -103,7 +103,7 @@ export function LoginForm() {
           </Link>
         </p>
 
-        {/* Trust Badges - Horizontal pill badges below button */}
+        {}
         <div className="border-t border-border pt-6 mt-8 transition-colors">
           <div className="flex items-center justify-center gap-2 px-1 flex-wrap">
             {TRUST_INDICATORS.map((badge, i) => (

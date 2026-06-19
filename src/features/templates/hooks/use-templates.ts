@@ -25,7 +25,7 @@ export function useSyncTemplates() {
     mutationFn: syncTemplates,
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: TEMPLATES_QUERY_KEY });
-      // Backend might return success or status
+      
       const isSuccess = data.success !== false && (data as any).status !== false;
       if (isSuccess) {
         const msg = typeof data.message === 'string' ? data.message : "Templates synchronized successfully";
@@ -70,7 +70,7 @@ export function useSendTemplate() {
   return useMutation({
     mutationFn: sendTestMessage,
     onSuccess: (data) => {
-      // The backend might return success or status
+      
       const isSuccess = data.success !== false && (data as any).status !== false;
       if (isSuccess) {
         const msg = typeof data.message === 'string' ? data.message : "Test message sent successfully";

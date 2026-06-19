@@ -11,7 +11,7 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
   const marketing = templates.filter((t) => t.category.toLowerCase() === "marketing").length;
   const utility = templates.filter((t) => t.category.toLowerCase() === "utility").length;
 
-  // Derive last sync time dynamically from the most recent last_synced if available, else fallback
+  
   const lastSyncDate = templates.reduce((latest, t) => {
     if (!t.last_synced) return latest;
     const d = new Date(t.last_synced);
@@ -24,10 +24,10 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
 
   return (
     <div className="w-full rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card/60 backdrop-blur-xl p-5 shadow-sm dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] flex flex-wrap items-center gap-x-10 gap-y-4 relative overflow-hidden group transition-colors">
-      {/* Background Glow */}
+      {}
       <div className="absolute top-0 right-1/4 w-64 h-64 bg-blue-500/5 blur-[80px] pointer-events-none rounded-full" />
       
-      {/* 1. Total Templates */}
+      {}
       <div className="flex items-center gap-3 relative z-10">
         <div className="h-8 w-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
           <span className="h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)] dark:shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
@@ -40,7 +40,7 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
 
       <div className="h-8 w-[1px] bg-border hidden sm:block relative z-10 transition-colors" />
 
-      {/* 2. Approved */}
+      {}
       <div className="flex items-center gap-3 relative z-10">
         <div className="flex flex-col">
           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest transition-colors">Approved</span>
@@ -50,7 +50,7 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
 
       <div className="h-8 w-[1px] bg-border hidden sm:block relative z-10 transition-colors" />
 
-      {/* 3. Marketing */}
+      {}
       <div className="flex items-center gap-3 relative z-10">
         <div className="flex flex-col">
           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest transition-colors">Marketing</span>
@@ -60,7 +60,7 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
 
       <div className="h-8 w-[1px] bg-border hidden sm:block relative z-10 transition-colors" />
 
-      {/* 4. Utility */}
+      {}
       <div className="flex items-center gap-3 relative z-10">
         <div className="flex flex-col">
           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest transition-colors">Utility</span>
@@ -70,7 +70,7 @@ export function TemplatesMetrics({ templates }: TemplatesMetricsProps) {
 
       <div className="h-8 w-[1px] bg-border hidden sm:block relative z-10 ml-auto transition-colors" />
 
-      {/* 5. Last Sync Time */}
+      {}
       <div className="flex items-center gap-3 relative z-10 sm:ml-auto">
         <div className="flex flex-col items-end">
           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest transition-colors">Last Sync</span>

@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 export const CAMPAIGNS_QUERY_KEY = ["campaigns"];
 
-// API functions
+
 const fetchCampaigns = async () => {
   const response = await api.get("/api/v1/campaigns");
   return response.data?.data || [];
@@ -33,7 +33,7 @@ const createCampaign = async (payload: any) => {
   return response.data;
 };
 
-// Hooks
+
 export function useCampaigns() {
   return useQuery({
     queryKey: CAMPAIGNS_QUERY_KEY,

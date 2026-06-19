@@ -12,7 +12,7 @@ interface WorkspaceHealthRadarProps {
 }
 
 export function WorkspaceHealthRadar({ contacts, groups, templates, campaigns }: WorkspaceHealthRadarProps) {
-  // Compute normalized scores for realistic representation (0 to 100)
+  
   const contactsScore = Math.min(65 + (contacts > 0 ? Math.log10(contacts) * 10 : 0), 98);
   const groupsScore = Math.min(50 + (groups * 4), 95);
   const templatesScore = Math.min(60 + (templates * 3), 96);

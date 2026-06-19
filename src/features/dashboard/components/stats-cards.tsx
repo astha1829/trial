@@ -81,7 +81,7 @@ export function StatsCards({
       },
       icon: FileText,
       iconColor: "var(--accent-orange)",
-      glowColor: "var(--accent-purple)", // Purple Glow for templates bottom line
+      glowColor: "var(--accent-purple)", 
       iconGrad: "linear-gradient(135deg, var(--accent-orange-25) 0%, var(--accent-orange-5) 100%)",
       iconBorder: "var(--accent-orange-30)",
     },
@@ -116,7 +116,7 @@ export function StatsCards({
                 boxShadow: "var(--stats-card-shadow)",
               }}
             >
-              {/* Top-Left Icon Container */}
+              {}
               <div
                 className="w-[48px] h-[48px] rounded-[14px] shrink-0 flex items-center justify-center"
                 style={{
@@ -134,7 +134,7 @@ export function StatsCards({
                 />
               </div>
 
-              {/* Text Content */}
+              {}
               <div className="flex flex-col items-start justify-between h-full py-[2px] flex-1">
                 <span 
                   className="text-[14px] font-medium font-sans leading-none tracking-normal"
@@ -162,7 +162,7 @@ export function StatsCards({
                 </div>
               </div>
 
-              {/* Thin Glowing Accent Line at the Bottom */}
+              {}
               <div
                 className="absolute bottom-0 left-0 right-0 h-[2px]"
                 style={{

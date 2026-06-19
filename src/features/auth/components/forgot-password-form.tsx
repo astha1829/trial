@@ -37,10 +37,10 @@ export function ForgotPasswordForm() {
         subtitle="Enter your email address and we'll send you a password reset link." 
       />
 
-      {/* Core Form */}
+      {}
       <form onSubmit={onSubmit} className="flex flex-col mt-6" noValidate>
         
-        {/* Email Address */}
+        {}
         <FormFieldWrapper
           label="Email Address"
           htmlFor="email"
@@ -69,7 +69,7 @@ export function ForgotPasswordForm() {
           Send Reset Link
         </SubmitButton>
 
-        {/* Trust Badges */}
+        {}
         <div className="border-t border-border pt-6 mt-8 transition-colors">
           <div className="flex items-center justify-center gap-2 px-1 flex-wrap">
             {TRUST_INDICATORS.map((badge, i) => (

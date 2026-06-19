@@ -4,7 +4,7 @@ import { RefreshCw } from "lucide-react";
 export function ContactsSkeleton() {
   return (
     <div className="space-y-4 animate-pulse select-none">
-      {/* Statistics Cards Skeleton */}
+      {}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[1, 2, 3].map((i) => (
           <div key={i} className="rounded-2xl border border-border bg-card/50 dark:bg-card/20 p-4 shadow-sm h-[105px] transition-colors flex flex-col justify-between">
@@ -20,15 +20,15 @@ export function ContactsSkeleton() {
         ))}
       </div>
 
-      {/* Table Skeleton */}
+      {}
       <div className="w-full h-[550px] rounded-2xl border border-border bg-card dark:bg-card/40 shadow-sm dark:shadow-xl overflow-hidden flex flex-col transition-colors">
-        {/* Toolbar Skeleton */}
+        {}
         <div className="px-5 py-2.5 border-b border-border bg-secondary/40 flex justify-between items-center transition-colors">
           <div className="h-9 w-80 bg-secondary rounded-xl transition-colors"></div>
           <div className="h-4 w-32 bg-secondary rounded transition-colors"></div>
         </div>
         
-        {/* Header Skeleton */}
+        {}
         <div className="h-10 bg-secondary border-b border-border w-full flex items-center px-5 gap-8 transition-colors">
           <div className="h-4 w-[25%] bg-muted-foreground/20 rounded transition-colors"></div>
           <div className="h-4 w-[25%] bg-muted-foreground/20 rounded transition-colors"></div>
@@ -36,7 +36,7 @@ export function ContactsSkeleton() {
           <div className="h-4 w-[10%] bg-muted-foreground/20 rounded ml-auto transition-colors"></div>
         </div>
 
-        {/* Rows Skeleton */}
+        {}
         <div className="flex-1 px-5 py-4 space-y-4 overflow-hidden">
           {[1, 2, 3, 4, 5, 6, 7].map((i) => (
             <div key={i} className="flex items-center justify-between w-full h-8">

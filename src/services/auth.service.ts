@@ -2,12 +2,12 @@ import axios from "axios";
 import { LoginPayload, SignUpPayload } from "@/features/auth/types/auth.types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://bulkify.9brainz.com";
-// Reusable axios instance
+
 export const api = axios.create({
   baseURL: typeof window === "undefined" ? API_URL : "",
 });
 
-// Axios Request Interceptor: Automatically attach Bearer token from localStorage
+
 api.interceptors.request.use(
   (config) => {
     const token =
@@ -24,7 +24,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Token utility methods
+
 export function getToken(): string | null {
   if (typeof window === "undefined") return null;
   return localStorage.getItem("access_token");
@@ -55,7 +55,7 @@ export interface SignUpResponse {
   error?: string;
 }
 
-// Centralized login API method
+
 export async function loginUser(payload: LoginPayload): Promise<LoginResponse> {
   try {
     const response = await api.post("/api/v1/clients/login", payload);
@@ -63,7 +63,7 @@ export async function loginUser(payload: LoginPayload): Promise<LoginResponse> {
     const { status, message, data } = response.data || {};
 
     if (status === true && data?.access_token) {
-      // Store token in localStorage
+      
       setToken(data.access_token);
 
       return {
@@ -110,7 +110,7 @@ export async function loginUser(payload: LoginPayload): Promise<LoginResponse> {
   }
 }
 
-// Centralized registration API method
+
 export async function registerUser(payload: SignUpPayload): Promise<SignUpResponse> {
   const apiPayload = {
     email: payload.email,

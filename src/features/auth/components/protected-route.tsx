@@ -22,7 +22,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
   }, [router]);
 
-  // Prevent flash of protected content while validating token
+  
   if (isAuthenticated === null) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-slate-950 text-slate-100 font-sans">
