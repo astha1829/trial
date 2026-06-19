@@ -179,16 +179,6 @@ export function ContactsClient() {
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Quick Actions</h3>
             <div className="flex flex-col gap-2">
               <button 
-                disabled
-                className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-secondary/5 hover:bg-secondary/5 transition-colors opacity-50 cursor-not-allowed group"
-              >
-                <span className="flex items-center gap-2 text-[15px] font-medium text-foreground">
-                  Import CSV
-                  <span className="px-1.5 py-0.5 rounded bg-muted/60 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Coming Soon</span>
-                </span>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors" />
-              </button>
-              <button 
                 onClick={handleExportData}
                 className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-secondary/10 hover:bg-secondary/30 transition-colors group cursor-pointer"
               >

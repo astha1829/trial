@@ -24,6 +24,11 @@ interface QuickActionsCampaignOverviewProps {
     failed: number;
     scheduled: number;
   };
+  templatesCount?: number;
+  totalMessagesSent?: number;
+  campaignsCount?: number;
+  contactsCount?: number;
+  groupsCount?: number;
 }
 
 export function QuickActionsCampaignOverview({
@@ -31,12 +36,21 @@ export function QuickActionsCampaignOverview({
   handleSyncData,
   isLoading,
   campaignOverview,
+  templatesCount = 0,
+  totalMessagesSent = 0,
+  campaignsCount = 0,
+  contactsCount = 0,
+  groupsCount = 0,
 }: QuickActionsCampaignOverviewProps) {
   const actions = [
     {
       id: "create-contact",
       title: "Create Contact",
-      subtitle: "Add new contact",
+      subtitle: isLoading
+        ? "Loading..."
+        : !contactsCount
+          ? "No Contacts"
+          : `${contactsCount} Total Contact${contactsCount === 1 ? "" : "s"}`,
       icon: UserPlus,
       iconColor: "#8B5CF6",
       iconGrad: "linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.05) 100%)",
@@ -45,7 +59,11 @@ export function QuickActionsCampaignOverview({
     {
       id: "create-group",
       title: "Create Group",
-      subtitle: "Segment contacts",
+      subtitle: isLoading
+        ? "Loading..."
+        : !groupsCount
+          ? "No Active Groups"
+          : `${groupsCount} Active Group${groupsCount === 1 ? "" : "s"}`,
       icon: UserPlus,
       iconColor: "#10D876",
       iconGrad: "linear-gradient(135deg, rgba(16, 216, 118, 0.25) 0%, rgba(16, 216, 118, 0.05) 100%)",
@@ -54,7 +72,11 @@ export function QuickActionsCampaignOverview({
     {
       id: "create-campaign",
       title: "Create Campaign",
-      subtitle: "Launch campaign",
+      subtitle: isLoading
+        ? "Loading..."
+        : !campaignsCount
+          ? "No Campaigns"
+          : `${campaignsCount} Total Campaign${campaignsCount === 1 ? "" : "s"}`,
       icon: Megaphone,
       iconColor: "#3B82F6",
       iconGrad: "linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.05) 100%)",
@@ -63,7 +85,11 @@ export function QuickActionsCampaignOverview({
     {
       id: "send-message",
       title: "Send Message",
-      subtitle: "Broadcast message",
+      subtitle: isLoading
+        ? "Loading..."
+        : !totalMessagesSent
+          ? "No Messages Sent"
+          : `${totalMessagesSent} Message${totalMessagesSent === 1 ? "" : "s"} Sent`,
       icon: Send,
       iconColor: "#F59E0B",
       iconGrad: "linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.05) 100%)",
@@ -72,7 +98,11 @@ export function QuickActionsCampaignOverview({
     {
       id: "sync-templates",
       title: "Sync Templates",
-      subtitle: "Fetch latest layouts",
+      subtitle: isLoading
+        ? "Loading..."
+        : !templatesCount
+          ? "No Templates"
+          : `${templatesCount} Template${templatesCount === 1 ? "" : "s"} Available`,
       icon: Files,
       iconColor: "#8B5CF6",
       iconGrad: "linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.05) 100%)",
@@ -81,7 +111,11 @@ export function QuickActionsCampaignOverview({
     {
       id: "view-reports",
       title: "View Reports",
-      subtitle: "Campaign analytics",
+      subtitle: isLoading
+        ? "Loading..."
+        : !campaignsCount
+          ? "No Campaign Reports"
+          : `${campaignsCount} Campaign Report${campaignsCount === 1 ? "" : "s"}`,
       icon: BarChart3,
       iconColor: "#06B6D4",
       iconGrad: "linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(6, 182, 212, 0.05) 100%)",

@@ -14,6 +14,8 @@ import {
   Search, 
   Bell, 
   ChevronDown, 
+  ChevronLeft,
+  ChevronRight,
   Menu, 
   X, 
   Sun,
@@ -46,9 +48,25 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   useEffect(() => {
     setIsMounted(true);
     const savedState = localStorage.getItem("nexus_sidebar_state");
+    
+    const handleResize = () => {
+      if (localStorage.getItem("nexus_sidebar_state") !== null) return;
+      const width = window.innerWidth;
+      if (width >= 1024 && width < 1280) {
+        setIsSidebarCollapsed(true);
+      } else if (width >= 1280) {
+        setIsSidebarCollapsed(false);
+      }
+    };
+
     if (savedState) {
       setIsSidebarCollapsed(savedState === "true");
+    } else {
+      handleResize();
     }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -131,12 +149,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Desktop Sidebar (Left Panel) */}
       <aside 
-        className="hidden lg:flex flex-col border-r border-border/80 bg-[#07111F] shrink-0 z-30 relative group transition-colors duration-300"
-        style={{ width: isMounted && isSidebarCollapsed ? 80 : 220 }}
+        className="hidden lg:flex flex-col border-r border-border/80 bg-[#07111F] shrink-0 z-30 relative group"
+        style={{ 
+          width: isMounted && isSidebarCollapsed ? 80 : 240, 
+          height: "100vh",
+          transition: "all 0.25s ease"
+        }}
       >
         {/* Brand logo section */}
-        <div className="h-16 flex items-center px-6 border-b border-border/50 shrink-0 overflow-hidden transition-colors duration-300">
-          <div className="flex items-center gap-3 w-full">
+        <div 
+          className={`h-16 flex items-center ${isSidebarCollapsed ? "justify-center" : "justify-between px-6"} border-b border-border/50 shrink-0 overflow-hidden`}
+          style={{ transition: "all 0.25s ease" }}
+        >
+          <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#7C5CFF] shadow-inner shadow-[#7C5CFF]/10">
               <MessageSquare className="h-5 w-5" />
             </div>
@@ -149,7 +174,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Sidebar Nav links */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-between hide-scrollbar p-3 space-y-6">
+        <div 
+          className="flex-grow flex-1 overflow-y-auto overflow-x-hidden p-3 hide-scrollbar"
+          style={{ transition: "all 0.25s ease" }}
+        >
           <nav className="space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -159,11 +187,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   key={item.name}
                   href={item.href}
                   title={isSidebarCollapsed ? item.name : undefined}
-                  className={`flex items-center px-4 py-3 rounded-xl transition-all duration-300 relative border ${
+                  className={`flex items-center rounded-xl transition-all duration-300 relative border ${
                     isActive
                       ? "border-[#7C5CFF]/30 bg-[#7C5CFF]/10 text-[#A894FF] font-bold"
                       : "border-transparent text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                  } ${isSidebarCollapsed ? "justify-center" : "gap-3"}`}
+                  } ${isSidebarCollapsed ? "justify-center p-3" : "gap-3 px-4 py-3"}`}
+                  style={{ transition: "all 0.25s ease" }}
                 >
                   {/* Active highlight bar on the left */}
                   {isActive && (
@@ -175,56 +204,91 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   }`} />
                   
                   {!isSidebarCollapsed && (
-                     <span className="text-[13px] tracking-wide">{item.name}</span>
+                     <span className="text-[13px] tracking-wide whitespace-nowrap">{item.name}</span>
                   )}
                 </a>
               );
             })}
           </nav>
+        </div>
 
-          {/* Sidebar widgets at bottom */}
-          {!isSidebarCollapsed && (
-            <div className="space-y-3 pt-4 border-t border-border/30">
-              {/* System Status Widget */}
-              <div className="p-4 rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] shadow-inner">
-                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">System Status</span>
-                <div className="flex items-center gap-2 text-xs font-bold text-[#10D876]">
-                  <span className="h-2 w-2 rounded-full bg-[#10D876] animate-pulse" />
-                  <span>All systems operational</span>
-                </div>
-                <div className="flex items-center justify-between text-[10px] text-muted-foreground/80 mt-3 pt-2.5 border-t border-border/20">
-                  <span>Last Sync</span>
-                  <div className="flex items-center gap-1.5">
-                    <span>2 mins ago</span>
-                    <button 
-                      onClick={handleSyncStatus} 
-                      className={`hover:text-foreground transition-all cursor-pointer ${isSyncing ? "animate-spin text-[#7C5CFF]" : ""}`}
-                    >
-                      <RefreshCw className="h-3 w-3" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* User Profile Footer Card */}
-              <div 
-                onClick={handleLogout}
-                className="p-[16px] rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] flex items-center justify-between shadow-sm relative group hover:border-border transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-[12px] min-w-0">
-                  <div className="h-[44px] w-[44px] shrink-0 rounded-full bg-[#7C5CFF] text-white flex items-center justify-center font-bold text-sm shadow-inner">
-                    {initials}
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-[15px] font-semibold text-white truncate pr-1 leading-none">{userName}</h4>
-                    <p className="text-[12px] font-medium text-muted-foreground tracking-wider mt-[4px] leading-none">{userRole}</p>
-                  </div>
-                </div>
-                <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+        {/* Sidebar widgets at bottom */}
+        <div 
+          className="mt-auto p-3 space-y-3 border-t border-border/30 shrink-0"
+          style={{ transition: "all 0.25s ease" }}
+        >
+          {/* System Status Widget */}
+          <div 
+            className={`transition-all duration-300 ${
+              isSidebarCollapsed ? "opacity-0 h-0 overflow-hidden pointer-events-none mt-0 p-0 border-none" : "opacity-100 h-auto p-4 rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] shadow-inner"
+            }`}
+            style={{ transition: "all 0.25s ease" }}
+          >
+            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">System Status</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-[#10D876]">
+              <span className="h-2 w-2 rounded-full bg-[#10D876] animate-pulse" />
+              <span>All systems operational</span>
+            </div>
+            <div className="flex items-center justify-between text-[10px] text-muted-foreground/80 mt-3 pt-2.5 border-t border-border/20">
+              <span>Last Sync</span>
+              <div className="flex items-center gap-1.5">
+                <span>2 mins ago</span>
+                <button 
+                  onClick={handleSyncStatus} 
+                  className={`hover:text-foreground transition-all cursor-pointer ${isSyncing ? "animate-spin text-[#7C5CFF]" : ""}`}
+                >
+                  <RefreshCw className="h-3 w-3" />
+                </button>
               </div>
             </div>
-          )}
+          </div>
+
+          {/* User Profile Footer Card */}
+          <div 
+            onClick={handleLogout}
+            className={`rounded-[18px] transition-all duration-300 cursor-pointer ${
+              isSidebarCollapsed 
+                ? "p-1.5 flex justify-center hover:opacity-80 border-transparent bg-transparent" 
+                : "p-[16px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] flex items-center justify-between shadow-sm relative group hover:border-border"
+            }`}
+            style={{ transition: "all 0.25s ease" }}
+            title={isSidebarCollapsed ? `${userName} (Logout)` : undefined}
+          >
+            <div className="flex items-center gap-[12px] min-w-0">
+              <div className="h-[44px] w-[44px] shrink-0 rounded-full bg-[#7C5CFF] text-white flex items-center justify-center font-bold text-sm shadow-inner">
+                {initials}
+              </div>
+              <div 
+                className={`min-w-0 transition-all duration-300 ${
+                  isSidebarCollapsed ? "opacity-0 w-0 overflow-hidden" : "opacity-100 w-auto"
+                }`}
+              >
+                <h4 className="text-[15px] font-semibold text-white truncate pr-1 leading-none whitespace-nowrap">{userName}</h4>
+                <p className="text-[12px] font-medium text-muted-foreground tracking-wider mt-[4px] leading-none whitespace-nowrap">{userRole}</p>
+              </div>
+            </div>
+            {!isSidebarCollapsed && (
+              <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+            )}
+          </div>
         </div>
+
+        {/* Sidebar Toggle Floating Button on right border */}
+        <button
+          onClick={toggleSidebar}
+          className="absolute -right-3 top-[26px] z-40 h-6 w-6 rounded-full border border-border/80 bg-[#07111F] text-white flex items-center justify-center shadow-lg hover:border-[#7C5CFF]/60 hover:bg-[#101a30] cursor-pointer transition-all duration-300 opacity-0 group-hover:opacity-100"
+          style={{
+            transform: "translateX(50%)",
+            opacity: isSidebarCollapsed ? 1 : undefined,
+            pointerEvents: "auto",
+          }}
+        >
+          {isSidebarCollapsed ? (
+            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground hover:text-white" />
+          ) : (
+            <ChevronLeft className="h-3.5 w-3.5 text-muted-foreground hover:text-white" />
+          )}
+        </button>
       </aside>
 
       {/* Mobile Sidebar overlay */}

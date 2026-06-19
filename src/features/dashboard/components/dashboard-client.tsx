@@ -131,16 +131,16 @@ export function DashboardClient() {
   // Campaign overview metrics
   const campaignOverview = {
     running: campaignsData.filter((c: any) => c.status?.toLowerCase() === "running").length || 0,
-    completed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "completed").length || 10,
-    failed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "failed").length || 15,
+    completed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "completed").length || 0,
+    failed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "failed").length || 0,
     scheduled: campaignsData.filter((c: any) => c.status?.toLowerCase() === "scheduled").length || 0,
   };
 
-  const totalContacts = contactsData.length || 3;
-  const totalGroups = groupsData.length || 1;
-  const totalCampaigns = campaignsData.length || 25;
-  const totalTemplates = templatesData.length || 2;
-  const totalMessagesSent = campaignsData.reduce((acc: number, c: any) => acc + (c.sent || 0), 0) || 26;
+  const totalContacts = contactsData.length || 0;
+  const totalGroups = groupsData.length || 0;
+  const totalCampaigns = campaignsData.length || 0;
+  const totalTemplates = templatesData.length || 0;
+  const totalMessagesSent = campaignsData.reduce((acc: number, c: any) => acc + (c.sent || 0), 0) || 0;
 
   return (
     <div className="max-w-[1600px] mx-auto flex flex-col gap-6 select-none animate-fade-in pb-8 text-white w-full">
@@ -347,6 +347,11 @@ export function DashboardClient() {
         handleSyncData={handleSyncData}
         isLoading={isLoading}
         campaignOverview={campaignOverview}
+        templatesCount={totalTemplates}
+        totalMessagesSent={totalMessagesSent}
+        campaignsCount={totalCampaigns}
+        contactsCount={totalContacts}
+        groupsCount={totalGroups}
       />
 
       {/* ROW 4: Bottom 3-Column Grid */}

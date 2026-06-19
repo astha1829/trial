@@ -165,11 +165,22 @@ export function SettingsForm() {
     );
   };
 
-  const displayName = (profile as any)?.name || "Profile Configuration";
-  const companyName = (profile as any)?.workspace_name || (profile as any)?.company_name || "Account Settings";
-  const initials = (profile as any)?.name 
-    ? (profile as any).name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase() 
-    : "WC";
+  let derivedName = (profile as any)?.name;
+  if (!derivedName && profile?.email) {
+    const part = profile.email.split("@")[0];
+    derivedName = part
+      .split(/[\._\-]/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+  const displayName = derivedName || "Not Configured";
+  const companyName = (profile as any)?.workspace_name || (profile as any)?.company_name || "Not Configured";
+  const initials = displayName !== "Not Configured"
+    ? displayName.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase() 
+    : "N/A";
+  const updatedTime = (profile as any)?.updated_at 
+    ? new Date((profile as any).updated_at).toLocaleDateString() 
+    : (profile ? "No Date Available" : "Not Configured");
 
   return (
     <div className="w-full min-h-[calc(100vh-4rem)] bg-[#050816] flex flex-col items-center pt-2 pb-6 px-4 sm:px-8">
@@ -196,12 +207,14 @@ export function SettingsForm() {
               <div>
                 <div className="flex items-center gap-3 mb-1">
                   <h1 className="text-2xl font-bold text-white tracking-tight">{displayName}</h1>
-                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold uppercase tracking-widest shadow-inner">Admin</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold uppercase tracking-widest shadow-inner">
+                    {profile ? "Admin" : "Not Configured"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-4 text-[13px] text-white/50 font-medium">
                   <span className="flex items-center gap-1.5"><Building2 className="w-4 h-4" /> {companyName}</span>
                   <span className="w-1 h-1 rounded-full bg-white/20" />
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> Updated {profile ? "Today" : "Never"}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> Updated {updatedTime}</span>
                 </div>
               </div>
             </div>
@@ -406,13 +419,17 @@ export function SettingsForm() {
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-[rgba(0,0,0,0.2)] border border-[rgba(255,255,255,0.04)] shadow-inner">
                   <span className="block text-[11px] text-white/40 font-bold uppercase tracking-wider mb-1">Unique Identifier</span>
-                  <span className="block text-[13px] text-white font-mono tracking-widest">{(profile as any)?.id || "N/A"}</span>
+                  <span className="block text-[13px] text-white font-mono tracking-widest">
+                    {(profile as any)?.id || (profile as any)?.client_id || "Not Configured"}
+                  </span>
                 </div>
                 <div className="p-4 rounded-2xl bg-[rgba(0,0,0,0.2)] border border-[rgba(255,255,255,0.04)] shadow-inner">
                   <span className="block text-[11px] text-white/40 font-bold uppercase tracking-wider mb-1">Environment</span>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[13px] text-white font-medium">Production Network</span>
+                    {profile ? <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> : null}
+                    <span className="text-[13px] text-white font-medium">
+                      {profile ? "Production Network" : "Not Configured"}
+                    </span>
                   </div>
                 </div>
               </div>

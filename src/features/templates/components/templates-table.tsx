@@ -5,7 +5,6 @@ import {
   ChevronDown, 
   ChevronUp, 
   Eye, 
-  ListChecks, 
   Send, 
   Copy,
   BarChart3,
@@ -200,13 +199,6 @@ export function TemplatesTable({ templates, onSelect, selectedId }: TemplatesTab
                           className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-blue-500/20 hover:text-blue-400 transition-colors"
                         >
                           <Eye className="h-4 w-4" />
-                        </button>
-                        <button 
-                          onClick={(e) => { e.stopPropagation(); onSelect(template); }}
-                          title="View Requirements"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-purple-500/20 hover:text-purple-400 transition-colors"
-                        >
-                          <ListChecks className="h-4 w-4" />
                         </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); onSelect(template); }}
