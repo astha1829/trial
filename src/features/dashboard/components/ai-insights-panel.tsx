@@ -4,42 +4,42 @@ import React, { useState } from "react";
 import { Megaphone, ArrowRight, Play, CheckCircle2, Calendar, XCircle, RefreshCw } from "lucide-react";
 
 interface AiInsightsPanelProps {
-  contacts: number;
-  groups: number;
-  templates: number;
-  campaigns: number;
+  running: number;
+  completed: number;
+  scheduled: number;
+  failed: number;
 }
 
-export function AiInsightsPanel({ contacts, groups, templates, campaigns }: AiInsightsPanelProps) {
+export function AiInsightsPanel({ running, completed, scheduled, failed }: AiInsightsPanelProps) {
   const [isSyncing, setIsSyncing] = useState(false);
 
   const campaignMetrics = [
     {
       id: "camp-run",
       title: "Running Campaigns",
-      description: "3 campaigns actively transmitting messages. Node queues are processing at capacity.",
-      metric: "3 Active",
+      description: `${running} campaign${running === 1 ? "" : "s"} actively transmitting messages. Node queues are processing.`,
+      metric: `${running} Active`,
       badgeColor: "text-blue-400 bg-blue-500/10 border border-blue-500/20"
     },
     {
       id: "camp-comp",
       title: "Completed Campaigns",
-      description: "12 campaigns fully dispatched. Final average email and phone delivery rate is 98.4%.",
-      metric: "12 Dispatched",
+      description: `${completed} campaign${completed === 1 ? "" : "s"} fully dispatched. Final delivery rates are updated in reports.`,
+      metric: `${completed} Dispatched`,
       badgeColor: "text-emerald-400 bg-emerald-500/10 border border-emerald-500/20"
     },
     {
       id: "camp-sch",
       title: "Scheduled Campaigns",
-      description: "4 campaigns loaded in dispatch scheduler. Next target segment release in 2 hours.",
-      metric: "4 Queued",
+      description: `${scheduled} campaign${scheduled === 1 ? "" : "s"} loaded in dispatch scheduler.`,
+      metric: `${scheduled} Queued`,
       badgeColor: "text-purple-400 bg-purple-500/10 border border-purple-500/20"
     },
     {
       id: "camp-fail",
       title: "Failed Campaigns",
-      description: "1 campaign transmission aborted. Auto-retry trigger pending network verification.",
-      metric: "1 Halted",
+      description: `${failed} campaign transmission${failed === 1 ? "" : "s"} aborted or failed. Auto-retry pending network verification.`,
+      metric: `${failed} Halted`,
       badgeColor: "text-rose-400 bg-rose-500/10 border border-rose-500/20"
     }
   ];
@@ -71,19 +71,6 @@ export function AiInsightsPanel({ contacts, groups, templates, campaigns }: AiIn
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? "animate-spin text-indigo-400" : ""}`} />
           </button>
-        </div>
-
-        {/* Narrative Campaign Execution Summary */}
-        <div className="p-4 rounded-2xl bg-secondary/50 border border-border mb-4 transition-colors">
-          <div className="flex items-start gap-3">
-            <Play className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5 animate-pulse" />
-            <div>
-              <h4 className="text-xs font-bold text-indigo-300 uppercase tracking-wider">Queue Telemetry Analysis</h4>
-              <p className="text-xs text-muted-foreground mt-1 leading-relaxed transition-colors">
-                Active campaign throughput is optimal. Dispatched pipelines are writing logs. Re-routing failed packets to fallback gateways.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Campaign Metrics list */}

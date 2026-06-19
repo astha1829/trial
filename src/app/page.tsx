@@ -20,7 +20,7 @@ export default function RootPage() {
     <div className="h-screen w-screen flex items-center justify-center bg-slate-950 text-slate-100 font-sans">
       <div className="flex flex-col items-center gap-3">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-700 border-t-indigo-500" />
-        <span className="text-sm font-semibold tracking-wide text-slate-400">Loading Workspace...</span>
+        <span className="text-sm font-semibold tracking-wide text-slate-400">Loading...</span>
       </div>
     </div>
   );

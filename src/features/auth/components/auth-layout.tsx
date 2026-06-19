@@ -137,7 +137,7 @@ export function AuthLayout({ children }: Props) {
               <div className="flex items-center justify-between border-b border-border pb-3 mb-4 transition-colors">
                 <div className="flex items-center gap-2">
                   <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse-slow" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors">Live Workspace Inbox</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors">Live CRM Inbox</span>
                 </div>
                 <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-secondary text-muted-foreground transition-colors">
                   14 channels connected
@@ -150,12 +150,12 @@ export function AuthLayout({ children }: Props) {
                   <div className="flex items-center gap-3.5">
                     <div className="relative">
                       <div className="h-10 w-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center font-bold text-sm text-blue-400">
-                        JD
+                        SL
                       </div>
                       <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-background bg-emerald-500 transition-colors" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-foreground transition-colors">John Doe (Sales Inquiry)</h4>
+                      <h4 className="text-sm font-bold text-foreground transition-colors">Sales Lead (Inquiry)</h4>
                       <p className="text-xs text-muted-foreground truncate max-w-[280px] transition-colors">"Can we schedule a demo for WhatsApp API?"</p>
                     </div>
                   </div>

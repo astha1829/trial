@@ -6,7 +6,7 @@ type Props = {
   subtitle?: string;
 };
 
-export function AuthHeader({ title = "Welcome back", subtitle = "Sign in to access your CRM workspace." }: Props) {
+export function AuthHeader({ title = "Welcome back", subtitle = "Sign in to access your CRM account." }: Props) {
   return (
     <div className="flex flex-col items-center text-center mb-8">
       <div className="flex lg:hidden items-center gap-2.5 mb-6">

@@ -3,7 +3,7 @@ import { DashboardLayout } from "@/features/dashboard/components/dashboard-layou
 import { DashboardClient } from "@/features/dashboard/components/dashboard-client";
 
 export const metadata = {
-  title: "Workspace Dashboard | Nexus CRM",
+  title: "Dashboard | Nexus CRM",
   description: "Access campaign details, sync customer segments, templates, and view system logs on Nexus CRM.",
 };
 

@@ -3,7 +3,7 @@ import { SignupForm } from "../../../features/auth/components/signup-form";
 
 export const metadata = {
   title: "Sign Up | Nexus CRM",
-  description: "Create your Nexus CRM workspace and get started.",
+  description: "Create your Nexus CRM account and get started.",
 };
 
 export default function SignupPage() {

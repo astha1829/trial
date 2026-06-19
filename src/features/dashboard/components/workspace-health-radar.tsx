@@ -35,7 +35,7 @@ export function WorkspaceHealthRadar({ contacts, groups, templates, campaigns }:
             <Grid3X3 className="w-4.5 h-4.5 text-cyan-400" />
             Total Entities
           </h2>
-          <p className="text-[11px] text-muted-foreground transition-colors">Workspace record distribution matrix.</p>
+          <p className="text-[11px] text-muted-foreground transition-colors">Record distribution matrix.</p>
         </div>
         <div className="px-3 py-1 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-black text-sm">
           {totalEntities.toLocaleString()} Records

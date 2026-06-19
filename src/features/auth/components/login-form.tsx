@@ -25,7 +25,7 @@ export function LoginForm() {
     >
       <AuthHeader 
         title="Welcome Back" 
-        subtitle="Access your CRM workspace and continue managing customers, conversations, and automation." 
+        subtitle="Access your CRM account and continue managing customers, conversations, and automation." 
       />
 
 
@@ -89,7 +89,7 @@ export function LoginForm() {
         </div>
 
         <SubmitButton isLoading={isLoading} loadingText="Signing In..." className="mt-8">
-          Sign In to Workspace
+          Sign In
         </SubmitButton>
 
         {/* Redirect/Create Account Promotion */}

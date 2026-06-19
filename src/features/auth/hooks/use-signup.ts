@@ -34,7 +34,7 @@ export function useSignup() {
       });
 
       await showPromiseToast(registerPromise, {
-        loadingText: "Creating client workspace...",
+        loadingText: "Creating client account...",
         successMessage: (res) => res.message || "Client registered successfully",
         errorMessage: (err) => err.message || "Registration failed",
       });

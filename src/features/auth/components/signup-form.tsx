@@ -29,7 +29,7 @@ export function SignupForm() {
     >
       <AuthHeader 
         title="Create Your Account" 
-        subtitle="Create your CRM workspace and get started." 
+        subtitle="Create your CRM account and get started." 
       />
 
 

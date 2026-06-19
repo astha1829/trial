@@ -23,7 +23,7 @@ export function TemplatesEmptyState({ onSync, isSyncing }: TemplatesEmptyStatePr
         
         <h3 className="text-3xl font-black text-foreground mb-4 tracking-tight transition-colors">No templates synced yet</h3>
         <p className="text-sm text-muted-foreground mb-10 leading-relaxed font-medium transition-colors">
-          Your workspace doesn't have any WhatsApp templates synced. Pull your latest approved templates from Meta Business Suite to start running operational workflows and targeted campaigns.
+          Your account doesn't have any WhatsApp templates synced. Pull your latest approved templates from Meta Business Suite to start running operational workflows and targeted campaigns.
         </p>
         
         <button
@@ -32,7 +32,7 @@ export function TemplatesEmptyState({ onSync, isSyncing }: TemplatesEmptyStatePr
           className="flex items-center justify-center gap-3 h-12 px-8 rounded-xl bg-blue-600 hover:bg-blue-500 transition-all text-sm font-bold text-white shadow-[0_0_30px_rgba(37,99,235,0.3)] disabled:opacity-50 disabled:cursor-not-allowed border border-blue-500/50"
         >
           <RefreshCw className={`h-5 w-5 ${isSyncing ? "animate-spin" : ""}`} />
-          {isSyncing ? "Syncing Workspace..." : "Sync Templates Now"}
+          {isSyncing ? "Syncing..." : "Sync Templates Now"}
         </button>
       </div>
     </div>

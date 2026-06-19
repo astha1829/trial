@@ -25,7 +25,7 @@ export function GroupsClient() {
         <div className="space-y-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[10px] font-black tracking-widest uppercase self-start w-fit">
             <Layers className="h-3.5 w-3.5" />
-            <span>CRM Audience Workspace</span>
+            <span>CRM Audience Segments</span>
           </div>
           <h1 className="text-[44px] md:text-[52px] font-black tracking-tighter text-foreground leading-none transition-colors">
             Contact Groups

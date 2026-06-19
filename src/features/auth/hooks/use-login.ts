@@ -33,7 +33,7 @@ export function useLogin() {
       });
 
       await showPromiseToast(loginPromise, {
-        loadingText: "Authenticating client workspace...",
+        loadingText: "Authenticating client account...",
         successMessage: (res) => res.message || "Login successful",
         errorMessage: (err) => err.message || "Invalid credentials",
       });

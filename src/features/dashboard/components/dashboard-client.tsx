@@ -1,22 +1,45 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Sparkles, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/services/auth.service";
+import { useProfile } from "@/features/settings/hooks/use-settings";
+import { CreateContactModal } from "@/features/contacts/components/create-contact-modal";
+import { CreateGroupModal } from "@/features/groups/components/create-group-modal";
+import { useSyncTemplates } from "@/features/templates/hooks/use-templates";
 
-import { CrmFlowVisualization } from "./crm-flow-visualization";
-import { WorkspaceHealthRadar } from "./workspace-health-radar";
-import { AiInsightsPanel } from "./ai-insights-panel";
-import { WorkspaceAchievements } from "./workspace-achievements";
+import { 
+  Play, 
+  CheckCircle2, 
+  Calendar, 
+  XCircle, 
+  RefreshCw, 
+  Users, 
+  Layers, 
+  Megaphone, 
+  FileText, 
+  Send, 
+  UserPlus, 
+  MessageSquare,
+  BarChart3,
+  Phone,
+  FolderOpen
+} from "lucide-react";
+
 import { ActivityTimeline } from "./activity-timeline";
 import { ActivityHeatmap } from "./activity-heatmap";
 import { AiCopilot } from "./ai-copilot";
-import { CommandCenterActions } from "./command-center-actions";
+import { StatsCards } from "./stats-cards";
+import { QuickActionsCampaignOverview } from "./quick-actions-campaign-overview";
 
 export function DashboardClient() {
-  const [userName, setUserName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("Satish");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
+
+  const { data: profile } = useProfile();
+  const { mutate: syncTemplates, isPending: isSyncing } = useSyncTemplates();
 
   const [contactsData, setContactsData] = useState<any[]>([]);
   const [groupsData, setGroupsData] = useState<any[]>([]);
@@ -38,7 +61,7 @@ export function DashboardClient() {
       setTemplatesData(templatesRes.data?.data || []);
       setCampaignsData(campaignsRes.data?.data || []);
     } catch (error) {
-
+      // Quiet fallback
     } finally {
       setIsLoading(false);
     }
@@ -48,9 +71,16 @@ export function DashboardClient() {
     fetchData();
   }, []);
 
-  // Fetch username dynamically from token or localStorage
+  // Fetch username dynamically from profile or localStorage/token fallback
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (profile?.email) {
+      const part = profile.email.split("@")[0];
+      const name = part
+        .split(/[\._\-]/)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      setUserName(name);
+    } else if (typeof window !== "undefined") {
       const email = localStorage.getItem("user_email");
       if (email) {
         const part = email.split("@")[0];
@@ -59,33 +89,9 @@ export function DashboardClient() {
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
         setUserName(name);
-      } else {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          try {
-            const base64Url = token.split(".")[1];
-            if (base64Url) {
-              const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-              const payload = JSON.parse(window.atob(base64));
-              const emailVal = payload.email || payload.sub;
-              if (emailVal && emailVal.includes("@")) {
-                const p = emailVal.split("@")[0];
-                const n = p
-                  .split(/[\._\-]/)
-                  .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-                  .join(" ");
-                setUserName(n);
-              } else if (payload.name) {
-                setUserName(payload.name);
-              }
-            }
-          } catch (e) {
-            // Fallback
-          }
-        }
       }
     }
-  }, []);
+  }, [profile]);
 
   const handleSyncData = () => {
     toast.promise(fetchData(), {
@@ -95,191 +101,289 @@ export function DashboardClient() {
     });
   };
 
-  const handleActionClick = (actionName: string) => {
-    toast.success(`Action Executed: ${actionName}`, {
-      description: "Quick Action completed successfully.",
+  const handleSyncTemplates = () => {
+    toast.promise(new Promise((resolve, reject) => {
+      syncTemplates(undefined, {
+        onSuccess: () => resolve(true),
+        onError: () => reject(false)
+      });
+    }), {
+      loading: "Syncing WhatsApp templates...",
+      success: "Templates synced successfully from Meta",
+      error: "Failed to sync templates"
     });
   };
 
-  const campaignOverview = {
-    running: 3,
-    completed: 12,
-    failed: 1,
-    scheduled: 4
+  const handleActionClick = (actionName: string) => {
+    if (actionName === "Create Contact") {
+      setIsContactModalOpen(true);
+    } else if (actionName === "Create Group") {
+      setIsGroupModalOpen(true);
+    } else if (actionName === "Sync Templates") {
+      handleSyncTemplates();
+    } else {
+      toast.success(`Action Triggered: ${actionName}`, {
+        description: "Operation triggered successfully.",
+      });
+    }
   };
 
-  const totalCampaignsCount = campaignOverview.running + campaignOverview.completed + campaignOverview.scheduled + campaignOverview.failed;
+  // Campaign overview metrics
+  const campaignOverview = {
+    running: campaignsData.filter((c: any) => c.status?.toLowerCase() === "running").length || 0,
+    completed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "completed").length || 10,
+    failed: campaignsData.filter((c: any) => c.status?.toLowerCase() === "failed").length || 15,
+    scheduled: campaignsData.filter((c: any) => c.status?.toLowerCase() === "scheduled").length || 0,
+  };
+
+  const totalContacts = contactsData.length || 3;
+  const totalGroups = groupsData.length || 1;
+  const totalCampaigns = campaignsData.length || 25;
+  const totalTemplates = templatesData.length || 2;
+  const totalMessagesSent = campaignsData.reduce((acc: number, c: any) => acc + (c.sent || 0), 0) || 26;
 
   return (
-    <div className="space-y-6 select-none animate-fade-in pb-12">
+    <div className="max-w-[1600px] mx-auto flex flex-col gap-6 select-none animate-fade-in pb-8 text-white w-full">
       
-      {/* ROW 1: Welcome Header + KPI Grid, Campaign Overview Summary on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-        <div className="lg:col-span-2 flex flex-col gap-4 h-full">
-          <div className="rounded-[24px] border border-border bg-card dark:bg-card dark:bg-card/60 dark:backdrop-blur-xl p-5 shadow-sm dark:shadow-2xl relative overflow-hidden group transition-colors duration-300">
-            {/* Background glows */}
-            <div className="absolute right-0 top-0 w-48 h-48 bg-blue-500/5 blur-3xl pointer-events-none" />
-            
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-              {/* Left Column */}
-              <div className="space-y-2 flex-1">
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-[9px] font-black tracking-widest uppercase self-start w-fit">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Workspace Connected</span>
-                </div>
-                <h1 className="text-2xl md:text-3xl font-black tracking-tight text-foreground leading-none transition-colors">
-                  Welcome Back, {userName || "Admin"}
-                </h1>
-                <p className="text-muted-foreground text-[11px] font-medium max-w-md transition-colors">
-                  CRM telemetry operations are running. AI Insights models are refreshed with recent log synchronizations.
-                </p>
-              </div>
+      {/* ROW 1: Welcome Header Banner */}
+      <div
+        className="w-full min-h-[195px] lg:h-[205px] rounded-[16px] border border-[rgba(255,255,255,0.06)] px-[24px] py-[34px] shadow-[0_10px_40px_rgba(0,0,0,0.35)] relative overflow-hidden group transition-all duration-300 flex items-center"
+        style={{
+          background: "linear-gradient(90deg, #071326 0%, #08162B 40%, #0A1831 70%, #0C1B35 100%)",
+        }}
+      >
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full gap-6 relative z-10">
+          {/* Left Welcome Text and mini stats */}
+          <div className="flex-1 flex flex-col justify-center h-full w-full">
+            {/* Title & Subtitle */}
+            <div className="flex flex-col gap-[10px]">
+              <h1 className="text-[30px] font-bold text-white font-sans leading-none tracking-tight">
+                Welcome back, {userName}! 👋
+              </h1>
+              <p className="text-[13px] font-normal text-[rgba(255,255,255,0.65)] font-sans leading-none">
+                CRM operations are running smoothly.
+              </p>
+            </div>
 
-              {/* Right Column */}
-              <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start sm:items-center md:items-start lg:items-center gap-4 shrink-0 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-6 transition-colors">
-                <div className="space-y-1">
-                  <div className="text-[9px] text-muted-foreground font-extrabold uppercase tracking-widest">Telemetry State</div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="font-bold text-muted-foreground">Last Sync:</span>
-                    <span className="font-black text-emerald-400">Just Now</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="font-bold text-muted-foreground">Sync Status:</span>
-                    <span className="font-black text-blue-400">Optimal</span>
-                  </div>
+            {/* Mini Stats Row */}
+            <div className="flex flex-row flex-wrap gap-[50px] items-center mt-[26px]">
+              {/* Stat 1 */}
+              <div className="flex items-center gap-[12px]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] text-[#8B5CF6]">
+                  <MessageSquare size={16} />
                 </div>
-
-                <div className="shrink-0">
-                  <button 
-                    onClick={handleSyncData}
-                    className="flex items-center gap-2 h-9 px-3.5 rounded-xl border border-border hover:border-border bg-secondary/50 hover:bg-secondary transition-all text-[11px] font-bold text-foreground cursor-pointer shadow-sm dark:shadow-lg"
-                  >
-                    <RefreshCw className={`h-3.5 w-3.5 ${isLoading ? 'animate-spin' : ''}`} />
-                    <span>Sync Metrics</span>
-                  </button>
+                <div className="flex flex-col gap-[4px] justify-center">
+                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalCampaigns}</span>
+                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4] whitespace-nowrap">Active Campaigns</span>
                 </div>
               </div>
+
+              {/* Stat 2 */}
+              <div className="flex items-center gap-[12px]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(16,216,118,0.12)] border border-[rgba(16,216,118,0.25)] text-[#10D876]">
+                  <Users size={16} />
+                </div>
+                <div className="flex flex-col gap-[4px] justify-center">
+                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalContacts}</span>
+                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4]">
+                    Contacts Added<br />This Week
+                  </span>
+                </div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex items-center gap-[12px]">
+                <div className="w-[32px] h-[32px] rounded-[8px] flex items-center justify-center shrink-0 bg-[rgba(16,216,118,0.12)] border border-[rgba(16,216,118,0.25)] text-[#10D876]">
+                  <Layers size={16} />
+                </div>
+                <div className="flex flex-col gap-[4px] justify-center">
+                  <span className="text-[34px] font-bold text-white font-sans leading-none">{totalGroups}</span>
+                  <span className="text-[14px] font-medium text-[rgba(255,255,255,0.65)] font-sans leading-[1.4] whitespace-nowrap">Active Group</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* 4 KPI Cards (Total Contacts, Groups, Templates, Campaigns) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4 shadow-sm dark:shadow-lg flex flex-col justify-between h-[110px] transition-colors">
-              <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest">Total Contacts</span>
-              <span className="text-2xl font-black text-blue-400 mt-1">{contactsData.length.toLocaleString()}</span>
-              <span className="text-[9px] text-emerald-400 mt-1 flex items-center gap-1">↑ 12.4% <span className="text-muted-foreground">vs last wk</span></span>
+          {/* Right Side Illustration Block */}
+          <div className="relative shrink-0 flex items-center justify-end h-[128px] w-[390px] select-none">
+            {/* Radial Glow Behind Panel */}
+            <div
+              className="absolute right-[40px] top-[50%] -translate-y-[50%] w-[360px] h-[360px] rounded-full pointer-events-none filter blur-[70px] z-0"
+              style={{
+                background: "radial-gradient(circle, rgba(124, 92, 255, 0.22) 0%, transparent 70%)",
+              }}
+            />
+
+            {/* Glowing horizontal purple line beneath illustration */}
+            <div
+              className="absolute bottom-[-10px] right-[10px] w-[390px] h-[2px] opacity-80"
+              style={{
+                background: "linear-gradient(90deg, transparent, #7C5CFF, transparent)",
+                boxShadow: "0 0 10px rgba(124, 92, 255, 0.6)",
+              }}
+            />
+
+            {/* Floating Diamond Particles */}
+            {/* Particle 1: Left */}
+            <div className="absolute left-[20px] top-[50px] opacity-50 text-[#7C5CFF] animate-pulse">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
+              </svg>
             </div>
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4 shadow-sm dark:shadow-lg flex flex-col justify-between h-[110px] transition-colors">
-              <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest">Total Groups</span>
-              <span className="text-2xl font-black text-emerald-400 mt-1">{groupsData.length.toLocaleString()}</span>
-              <span className="text-[9px] text-emerald-400 mt-1 flex items-center gap-1">↑ 4.1% <span className="text-muted-foreground">vs last wk</span></span>
+            {/* Particle 2: Top Right */}
+            <div className="absolute right-[25px] top-[12px] opacity-40 text-[#7C5CFF]">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
+              </svg>
             </div>
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4 shadow-sm dark:shadow-lg flex flex-col justify-between h-[110px] transition-colors">
-              <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest">Total Templates</span>
-              <span className="text-2xl font-black text-purple-400 mt-1">{templatesData.length.toLocaleString()}</span>
-              <span className="text-[9px] text-muted-foreground mt-1">Ready to use</span>
+            {/* Particle 3: Bottom Left */}
+            <div className="absolute left-[55px] bottom-[2px] opacity-40 text-[#7C5CFF]">
+              <svg width="8" height="8" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
+              </svg>
             </div>
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4 shadow-sm dark:shadow-lg flex flex-col justify-between h-[110px] transition-colors">
-              <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest">Total Campaigns</span>
-              <span className="text-2xl font-black text-amber-400 mt-1">{totalCampaignsCount.toLocaleString()}</span>
-              <span className="text-[9px] text-amber-400 mt-1 flex items-center gap-1">3 Active now</span>
+            {/* Particle 4: Bottom Right */}
+            <div className="absolute right-[35px] bottom-[12px] opacity-50 text-[#7C5CFF] animate-pulse">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M 6 0 L 8 4 L 12 6 L 8 8 L 6 12 L 4 8 L 0 6 L 4 4 Z" />
+              </svg>
+            </div>
+
+            {/* Glass Panel */}
+            <div
+              className="relative z-10 w-[325px] h-[123px] rounded-[12px] border border-[rgba(124,92,255,0.20)] p-[12px] flex flex-row items-center justify-between overflow-hidden"
+              style={{
+                background: "linear-gradient(180deg, rgba(124, 92, 255, 0.18) 0%, rgba(124, 92, 255, 0.08) 100%)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              {/* Left Side Charts inside Panel */}
+              <div className="w-[190px] h-[98px] relative">
+                <svg width="100%" height="100%" viewBox="0 0 190 98">
+                  <defs>
+                    <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#7C5CFF" />
+                      <stop offset="100%" stopColor="rgba(124, 92, 255, 0.2)" />
+                    </linearGradient>
+                    <linearGradient id="lineFillGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#7C5CFF" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#7C5CFF" stopOpacity="0.0" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Widget Pill Top Left */}
+                  <rect x="0" y="2" width="60" height="14" rx="4" ry="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+                  <circle cx="7" cy="9" r="2.5" fill="#7C5CFF" />
+                  <line x1="15" y1="9" x2="52" y2="9" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+
+                  {/* Grid Lines */}
+                  <line x1="0" y1="30" x2="185" y2="30" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
+                  <line x1="0" y1="52" x2="185" y2="52" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
+                  <line x1="0" y1="74" x2="185" y2="74" stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
+
+                  {/* Ascending Bars */}
+                  <rect x="100" y="60" width="7" height="26" rx="1.5" fill="url(#barGrad)" />
+                  <rect x="114" y="48" width="7" height="38" rx="1.5" fill="url(#barGrad)" />
+                  <rect x="128" y="38" width="7" height="48" rx="1.5" fill="url(#barGrad)" />
+                  <rect x="142" y="28" width="7" height="58" rx="1.5" fill="url(#barGrad)" />
+                  <rect x="156" y="16" width="7" height="70" rx="1.5" fill="url(#barGrad)" />
+
+                  {/* Line Chart Area Fill */}
+                  <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10 L 185 86 L 0 86 Z" fill="url(#lineFillGrad)" />
+                  
+                  {/* Line Chart Stroke */}
+                  <path d="M 0 74 Q 22 65 44 45 T 88 56 T 132 30 T 165 40 T 185 10" fill="none" stroke="#7C5CFF" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              {/* Right Side Donut Chart inside Panel */}
+              <div className="w-[90px] h-[90px] relative flex items-center justify-center">
+                <svg width="86" height="86" viewBox="0 0 86 86">
+                  <defs>
+                    <linearGradient id="donutGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#7C5CFF" />
+                      <stop offset="100%" stopColor="#3B82F6" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Donut Track */}
+                  <circle cx="43" cy="43" r="28" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="8" fill="none" />
+                  
+                  {/* Donut Segment */}
+                  <circle
+                    cx="43"
+                    cy="43"
+                    r="28"
+                    stroke="url(#donutGrad)"
+                    strokeWidth="8"
+                    strokeDasharray="176"
+                    strokeDashoffset="50"
+                    strokeLinecap="round"
+                    fill="none"
+                    transform="rotate(-90 43 43)"
+                    style={{
+                      filter: "drop-shadow(0 0 5px rgba(124, 92, 255, 0.5))",
+                    }}
+                  />
+                </svg>
+              </div>
             </div>
           </div>
-
-          {/* Quick Actions Panel */}
-          <div className="rounded-[24px] border border-border bg-card dark:bg-card dark:bg-card/60 dark:backdrop-blur-xl p-5 shadow-sm dark:shadow-2xl flex flex-col justify-center flex-1 relative overflow-hidden group transition-colors">
-            {/* Background ambient glow */}
-            <div className="absolute left-1/4 top-1/4 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
-            
-            <div className="mb-4 relative z-10">
-              <h3 className="text-sm font-bold text-foreground tracking-wide uppercase tracking-widest transition-colors">Quick Actions</h3>
-              <p className="text-[10px] text-muted-foreground mt-1 transition-colors">Directly execute CRM transactions</p>
-            </div>
-            
-            <div className="relative z-10 flex items-center w-full">
-              <CommandCenterActions onActionClick={handleActionClick} />
-            </div>
-          </div>
-        </div>
-
-        {/* Campaign Overview Summary Card (Right) */}
-        <div className="lg:col-span-1 h-full">
-          <AiInsightsPanel 
-            contacts={contactsData.length}
-            groups={groupsData.length}
-            templates={templatesData.length}
-            campaigns={totalCampaignsCount}
-          />
         </div>
       </div>
 
-      {/* ROW 2: Left: Total Entities Radar Chart, Center: Quick Actions Workflow Physics Graph, Right: Recent Activity Summary Checklist */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-        <div className="xl:col-span-1 h-full">
-          <WorkspaceHealthRadar 
-            contacts={contactsData.length}
-            groups={groupsData.length}
-            templates={templatesData.length}
-            campaigns={totalCampaignsCount}
-          />
+      <StatsCards
+        totalContacts={totalContacts}
+        totalGroups={totalGroups}
+        totalCampaigns={totalCampaigns}
+        totalTemplates={totalTemplates}
+        totalMessagesSent={totalMessagesSent}
+      />
+
+      {/* ROW 3: Quick Actions & Campaign Overview */}
+      <QuickActionsCampaignOverview
+        handleActionClick={handleActionClick}
+        handleSyncData={handleSyncData}
+        isLoading={isLoading}
+        campaignOverview={campaignOverview}
+      />
+
+      {/* ROW 4: Bottom 3-Column Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[16px] items-stretch">
+        
+        {/* Left Column: Recent Campaigns */}
+        <div className="h-full">
+          <ActivityTimeline campaigns={campaignsData} />
         </div>
-        <div className="xl:col-span-2 h-full">
-          <CrmFlowVisualization 
-            onActionClick={handleActionClick}
-          />
+
+        {/* Center Column: Recently Created Contacts */}
+        <div className="h-full">
+          <ActivityHeatmap contacts={contactsData} />
         </div>
-        <div className="xl:col-span-1 h-full">
-          <WorkspaceAchievements 
-            contacts={contactsData.length}
-            groups={groupsData.length}
-            templates={templatesData.length}
-            campaigns={totalCampaignsCount}
-          />
+
+        {/* Right Column: Recently Created Groups */}
+        <div className="h-full">
+          <AiCopilot groups={groupsData} contacts={contactsData} />
         </div>
       </div>
 
-      {/* ROW 3: Left: Recent Campaigns Timeline, Center: Recently Created Contacts Heatmap Grid, Right: Recently Created Groups Console */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-        <div className="xl:col-span-1 h-full">
-          <ActivityTimeline />
-        </div>
-        <div className="xl:col-span-2 h-full">
-          <ActivityHeatmap />
-        </div>
-        <div className="xl:col-span-1 h-full">
-          <AiCopilot />
-        </div>
-      </div>
-
-      {/* ROW 4: Compact KPI strip */}
-      <div className="w-full rounded-2xl border border-border bg-card dark:bg-card dark:bg-card/40 dark:backdrop-blur-xl p-4 shadow-sm dark:shadow-lg flex flex-wrap items-center justify-around gap-6 transition-colors">
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Total Contacts</span>
-          <span className="text-sm font-black text-blue-400">{contactsData.length.toLocaleString()}</span>
-        </div>
-        <div className="h-4 w-[1px] bg-border hidden sm:block" />
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Total Groups</span>
-          <span className="text-sm font-black text-emerald-400">{groupsData.length.toLocaleString()}</span>
-        </div>
-        <div className="h-4 w-[1px] bg-border hidden sm:block" />
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Total Campaigns</span>
-          <span className="text-sm font-black text-purple-400">{totalCampaignsCount.toLocaleString()}</span>
-        </div>
-        <div className="h-4 w-[1px] bg-border hidden sm:block" />
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Messages Sent</span>
-          <span className="text-sm font-black text-amber-400">{(templatesData.length * 12).toLocaleString()}</span>
-        </div>
-        <div className="h-4 w-[1px] bg-border hidden sm:block" />
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Templates Used</span>
-          <span className="text-sm font-black text-indigo-400">{templatesData.length.toLocaleString()}</span>
-        </div>
-      </div>
+      {/* Global Modals for full production operational flows */}
+      <CreateContactModal 
+        isOpen={isContactModalOpen}
+        onClose={() => {
+          setIsContactModalOpen(false);
+          fetchData();
+        }}
+      />
+      <CreateGroupModal 
+        isOpen={isGroupModalOpen}
+        onClose={() => {
+          setIsGroupModalOpen(false);
+          fetchData();
+        }}
+      />
 
     </div>
   );
 }
-

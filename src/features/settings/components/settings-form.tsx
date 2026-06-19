@@ -165,8 +165,8 @@ export function SettingsForm() {
     );
   };
 
-  const displayName = (profile as any)?.name || "Workspace Configuration";
-  const workspaceName = (profile as any)?.workspace_name || (profile as any)?.company_name || "Workspace";
+  const displayName = (profile as any)?.name || "Profile Configuration";
+  const companyName = (profile as any)?.workspace_name || (profile as any)?.company_name || "Account Settings";
   const initials = (profile as any)?.name 
     ? (profile as any).name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase() 
     : "WC";
@@ -199,7 +199,7 @@ export function SettingsForm() {
                   <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold uppercase tracking-widest shadow-inner">Admin</span>
                 </div>
                 <div className="flex items-center gap-4 text-[13px] text-white/50 font-medium">
-                  <span className="flex items-center gap-1.5"><Building2 className="w-4 h-4" /> {workspaceName}</span>
+                  <span className="flex items-center gap-1.5"><Building2 className="w-4 h-4" /> {companyName}</span>
                   <span className="w-1 h-1 rounded-full bg-white/20" />
                   <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> Updated {profile ? "Today" : "Never"}</span>
                 </div>
@@ -246,7 +246,7 @@ export function SettingsForm() {
             <form onSubmit={handleSubmit(onSubmit)} className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.08)] rounded-[24px] p-5 sm:p-8 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)] flex flex-col relative overflow-hidden">
               
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-white tracking-wide">Workspace Integrations</h2>
+                <h2 className="text-xl font-bold text-white tracking-wide">Account Integrations</h2>
                 <p className="text-[14px] text-white/40 mt-1">Configure your primary communication and Meta routing parameters.</p>
               </div>
 
@@ -400,7 +400,7 @@ export function SettingsForm() {
             {/* Workspace Info */}
             <div className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.08)] rounded-[24px] p-6 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
               <h3 className="text-[12px] font-bold text-white/40 uppercase tracking-widest mb-6 flex items-center gap-2">
-                <Building2 className="w-4 h-4" /> Workspace Identity
+                <Building2 className="w-4 h-4" /> Account Identity
               </h3>
               
               <div className="space-y-4">

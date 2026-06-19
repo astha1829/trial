@@ -3,7 +3,7 @@ import { LoginForm } from "../../../features/auth/components/login-form";
 
 export const metadata = {
   title: "Login | Nexus CRM",
-  description: "Access your Nexus CRM workspace and continue managing customers, conversations, and automation.",
+  description: "Access your Nexus CRM account and continue managing customers, conversations, and automation.",
 };
 
 export default function LoginPage() {

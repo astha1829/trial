@@ -16,16 +16,15 @@ import {
   ChevronDown, 
   Menu, 
   X, 
-  Building,
-  HelpCircle,
-  UserCheck,
-  ChevronLeft,
-  ChevronRight
+  Sun,
+  Moon,
+  RefreshCw
 } from "lucide-react";
 import { removeToken } from "@/services/auth.service";
 import { motion, AnimatePresence } from "framer-motion";
 import { showPromiseToast } from "@/lib/toast-helper";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useProfile } from "@/features/settings/hooks/use-settings";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -35,10 +34,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const { data: profile } = useProfile();
+  const [userName, setUserName] = useState("Satish 9brainz2");
+  const [userRole, setUserRole] = useState("Administrator");
+  const [initials, setInitials] = useState("S9");
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,13 +51,39 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, []);
 
+  useEffect(() => {
+    if (profile?.email) {
+      const part = profile.email.split("@")[0];
+      const name = part
+        .split(/[\._\-]/)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      setUserName(name);
+      setUserRole("Administrator");
+      const init = name.split(" ").map((n) => n[0]).join("").substring(0, 2).toUpperCase();
+      setInitials(init || "S9");
+    } else if (typeof window !== "undefined") {
+      const email = localStorage.getItem("user_email");
+      if (email) {
+        const part = email.split("@")[0];
+        const name = part
+          .split(/[\._\-]/)
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+        setUserName(name);
+        setUserRole("Administrator");
+        const init = name.split(" ").map((n) => n[0]).join("").substring(0, 2).toUpperCase();
+        setInitials(init || "S9");
+      }
+    }
+  }, [profile]);
+
   const toggleSidebar = () => {
     const newState = !isSidebarCollapsed;
     setIsSidebarCollapsed(newState);
     localStorage.setItem("nexus_sidebar_state", String(newState));
   };
 
-  // Close mobile sidebar on pathname change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
@@ -68,7 +97,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     });
 
     await showPromiseToast(logoutPromise, {
-      loadingText: "Logging out of workspace...",
+      loadingText: "Logging out...",
       successMessage: () => "Logged out successfully",
       errorMessage: () => "Logout failed",
     });
@@ -76,193 +105,139 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     router.push("/login");
   };
 
+  const handleSyncStatus = () => {
+    setIsSyncing(true);
+    setTimeout(() => {
+      setIsSyncing(false);
+    }, 1500);
+  };
+
   const navItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Contacts", href: "/contacts", icon: Users, badge: "8.4k" },
-    { name: "Groups", href: "/groups", icon: Layers, badge: "12" },
-    { name: "Campaigns", href: "/campaigns", icon: Megaphone, badge: "Active" },
+    { name: "Contacts", href: "/contacts", icon: Users },
+    { name: "Groups", href: "/groups", icon: Layers },
+    { name: "Campaigns", href: "/campaigns", icon: Megaphone },
     { name: "Templates", href: "/templates", icon: FileText },
-    { name: "Messages", href: "#", icon: MessageSquare },
-    { name: "Analytics", href: "#", icon: LayoutDashboard },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans flex transition-colors duration-300">
-      {/* Premium Mesh Background (Hidden in light mode for cleaner enterprise look, or keep transparent) */}
+      {/* Background radial glows for premium layout */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 dark:block hidden">
-        <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-blue-600/10 blur-[120px] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[120px] mix-blend-screen" />
-        <div className="absolute top-[40%] left-[20%] w-[500px] h-[500px] rounded-full bg-cyan-600/5 blur-[100px] mix-blend-screen" />
+        <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#7C5CFF]/5 blur-[120px] mix-blend-screen" />
       </div>
 
       {/* Desktop Sidebar (Left Panel) */}
-      <motion.aside 
-        initial={false}
-        animate={{ width: isMounted && isSidebarCollapsed ? 80 : 260 }}
-        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-        className="hidden lg:flex flex-col border-r border-border bg-card/60 backdrop-blur-xl shrink-0 z-30 relative group transition-colors duration-300"
+      <aside 
+        className="hidden lg:flex flex-col border-r border-border/80 bg-[#07111F] shrink-0 z-30 relative group transition-colors duration-300"
+        style={{ width: isMounted && isSidebarCollapsed ? 80 : 220 }}
       >
-        {/* Collapse Toggle Button */}
-        <button
-          onClick={toggleSidebar}
-          className="absolute -right-3.5 top-24 z-50 flex h-7 w-7 items-center justify-center rounded-full border border-border bg-secondary text-muted-foreground hover:text-foreground shadow-md hover:scale-110 transition-all cursor-pointer opacity-0 group-hover:opacity-100"
-        >
-          {isSidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </button>
-
-        {/* Brand/Logo Section */}
-        <div className="h-16 flex items-center px-5 border-b border-border shrink-0 overflow-hidden transition-colors duration-300">
+        {/* Brand logo section */}
+        <div className="h-16 flex items-center px-6 border-b border-border/50 shrink-0 overflow-hidden transition-colors duration-300">
           <div className="flex items-center gap-3 w-full">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/20">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#7C5CFF] shadow-inner shadow-[#7C5CFF]/10">
               <MessageSquare className="h-5 w-5" />
             </div>
-            <AnimatePresence>
-              {!isSidebarCollapsed && (
-                <motion.span 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-sm font-black uppercase tracking-widest text-foreground whitespace-nowrap"
-                >
-                  NEXUS CRM
-                </motion.span>
-              )}
-            </AnimatePresence>
+            {!isSidebarCollapsed && (
+              <span className="text-sm font-black uppercase tracking-widest text-white whitespace-nowrap">
+                NEXUS CRM
+              </span>
+            )}
           </div>
         </div>
 
-        {/* Scrollable Area (Nav + Widgets) */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-between hide-scrollbar">
-          {/* Navigation Links */}
-          <nav className="px-3 py-6 space-y-1.5 shrink-0">
+        {/* Sidebar Nav links */}
+        <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-between hide-scrollbar p-3 space-y-6">
+          <nav className="space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname === item.href || (item.href === "/dashboard" && pathname === "/");
               return (
                 <a
                   key={item.name}
                   href={item.href}
                   title={isSidebarCollapsed ? item.name : undefined}
-                  className={`flex items-center px-3 py-2.5 rounded-xl transition-all duration-300 relative ${
+                  className={`flex items-center px-4 py-3 rounded-xl transition-all duration-300 relative border ${
                     isActive
-                      ? "bg-primary/10 text-primary border border-primary/20 shadow-[inset_0_0_20px_rgba(59,130,246,0.05)]"
-                      : "text-muted-foreground border border-transparent hover:text-foreground hover:bg-secondary/50 hover:border-border"
-                  } ${isSidebarCollapsed ? "justify-center" : "justify-between"}`}
+                      ? "border-[#7C5CFF]/30 bg-[#7C5CFF]/10 text-[#A894FF] font-bold"
+                      : "border-transparent text-muted-foreground hover:text-foreground hover:bg-secondary/40"
+                  } ${isSidebarCollapsed ? "justify-center" : "gap-3"}`}
                 >
+                  {/* Active highlight bar on the left */}
                   {isActive && (
-                    <motion.div layoutId="activeNavIndicator" className="absolute left-0 w-1 h-6 bg-blue-500 rounded-r-full shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-[#7C5CFF] rounded-r-full shadow-[0_0_12px_rgba(124,92,255,0.8)]" />
                   )}
                   
-                  <div className="flex items-center gap-3">
-                    <Icon className={`h-5 w-5 shrink-0 transition-all duration-300 ${
-                      isActive ? "text-primary scale-110 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" : "text-muted-foreground group-hover:text-foreground"
-                    }`} />
-                    <AnimatePresence>
-                      {!isSidebarCollapsed && (
-                        <motion.span
-                          initial={{ opacity: 0, width: 0 }}
-                          animate={{ opacity: 1, width: "auto" }}
-                          exit={{ opacity: 0, width: 0 }}
-                          className="text-sm font-bold whitespace-nowrap overflow-hidden"
-                        >
-                          {item.name}
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <Icon className={`h-4.5 w-4.5 shrink-0 transition-colors ${
+                    isActive ? "text-[#7C5CFF]" : "text-muted-foreground"
+                  }`} />
                   
-                  <AnimatePresence>
-                    {!isSidebarCollapsed && item.badge && (
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        className={`text-[10px] font-black px-2 py-0.5 rounded-full whitespace-nowrap ${
-                          item.badge === "Active"
-                            ? "bg-success/10 text-success border border-success/20"
-                            : "bg-secondary text-muted-foreground border border-border"
-                        }`}
-                      >
-                        {item.badge}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
+                  {!isSidebarCollapsed && (
+                     <span className="text-[13px] tracking-wide">{item.name}</span>
+                  )}
                 </a>
               );
             })}
           </nav>
 
-          {/* Upgrade Plan Card at Bottom */}
+          {/* Sidebar widgets at bottom */}
           {!isSidebarCollapsed && (
-            <div className="mx-4 my-6 p-4 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-600/10 border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)] relative overflow-hidden group shrink-0">
-              <div className="absolute top-[-20%] right-[-20%] w-24 h-24 rounded-full bg-indigo-500/10 blur-xl pointer-events-none" />
-              <div className="relative z-10">
-                <span className="text-[9px] font-black uppercase bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded tracking-widest">Enterprise AI</span>
-                <h4 className="text-xs font-bold text-white mt-2">Upgrade Workspace</h4>
-                <p className="text-[10px] text-muted-foreground mt-1 leading-relaxed transition-colors">Unlock advanced routing algorithms and unlimited contact pools.</p>
-                <button className="w-full mt-3 h-8 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[10px] font-bold text-white transition-all shadow-md shadow-indigo-600/10 cursor-pointer">
-                  Upgrade Plan
-                </button>
+            <div className="space-y-3 pt-4 border-t border-border/30">
+              {/* System Status Widget */}
+              <div className="p-4 rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] shadow-inner">
+                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">System Status</span>
+                <div className="flex items-center gap-2 text-xs font-bold text-[#10D876]">
+                  <span className="h-2 w-2 rounded-full bg-[#10D876] animate-pulse" />
+                  <span>All systems operational</span>
+                </div>
+                <div className="flex items-center justify-between text-[10px] text-muted-foreground/80 mt-3 pt-2.5 border-t border-border/20">
+                  <span>Last Sync</span>
+                  <div className="flex items-center gap-1.5">
+                    <span>2 mins ago</span>
+                    <button 
+                      onClick={handleSyncStatus} 
+                      className={`hover:text-foreground transition-all cursor-pointer ${isSyncing ? "animate-spin text-[#7C5CFF]" : ""}`}
+                    >
+                      <RefreshCw className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* User Profile Footer Card */}
+              <div 
+                onClick={handleLogout}
+                className="p-[16px] rounded-[18px] border border-border/60 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(10,15,30,0.95))] flex items-center justify-between shadow-sm relative group hover:border-border transition-colors cursor-pointer"
+              >
+                <div className="flex items-center gap-[12px] min-w-0">
+                  <div className="h-[44px] w-[44px] shrink-0 rounded-full bg-[#7C5CFF] text-white flex items-center justify-center font-bold text-sm shadow-inner">
+                    {initials}
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-[15px] font-semibold text-white truncate pr-1 leading-none">{userName}</h4>
+                    <p className="text-[12px] font-medium text-muted-foreground tracking-wider mt-[4px] leading-none">{userRole}</p>
+                  </div>
+                </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
               </div>
             </div>
           )}
         </div>
+      </aside>
 
-        {/* Profile Footer */}
-        <div className={`p-4 border-t border-border bg-background/40 shrink-0 ${isSidebarCollapsed ? 'flex justify-center' : ''}`}>
-          <div className={`flex items-center overflow-hidden ${isSidebarCollapsed ? 'justify-center p-0 border-transparent bg-transparent' : 'justify-between p-2.5 rounded-2xl border border-border bg-secondary/50 hover:border-border transition-colors'}`}>
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="h-9 w-9 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center font-black text-xs text-indigo-300 shadow-inner">
-                JD
-              </div>
-              <AnimatePresence>
-                {!isSidebarCollapsed && (
-                  <motion.div 
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: "auto" }}
-                    exit={{ opacity: 0, width: 0 }}
-                    className="min-w-0"
-                  >
-                    <h4 className="text-xs font-black text-foreground truncate pr-2">John Doe</h4>
-                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest truncate mt-0.5 pr-2">Admin</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            
-            <AnimatePresence>
-              {!isSidebarCollapsed && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  onClick={handleLogout}
-                  className="p-2 shrink-0 rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all border border-transparent hover:border-destructive/20 cursor-pointer"
-                  title="Logout"
-                >
-                  <LogOut className="h-4 w-4" />
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </motion.aside>
-
-      {/* Mobile Drawer Navigation (Side-Panel overlay) */}
+      {/* Mobile Sidebar overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
               className="fixed inset-0 bg-black z-40 lg:hidden"
             />
-            {/* Drawer */}
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
@@ -272,7 +247,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <div className="h-16 flex items-center justify-between px-6 border-b border-white/5">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-500 to-indigo-600 text-white">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-[#7C5CFF] to-[#3B82F6] text-white">
                     <MessageSquare className="h-5 w-5" />
                   </div>
                   <span className="text-sm font-extrabold uppercase tracking-widest text-white">
@@ -290,51 +265,41 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
                 {navItems.map((item) => {
                   const Icon = item.icon;
-                  const isActive = pathname === item.href;
+                  const isActive = pathname === item.href || (item.href === "/dashboard" && pathname === "/");
                   return (
                     <a
                       key={item.name}
                       href={item.href}
-                      className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
                         isActive
-                          ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                          ? "bg-[#7C5CFF]/10 text-white border border-[#7C5CFF]/20"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
-                        <Icon className="h-4.5 w-4.5" />
-                        <span>{item.name}</span>
-                      </div>
-                      {item.badge && (
-                        <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                          item.badge === "Active"
-                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                            : "bg-secondary text-muted-foreground border border-border transition-colors"
-                        }`}>
-                          {item.badge}
-                        </span>
-                      )}
+                      <Icon className="h-4.5 w-4.5" />
+                      <span>{item.name}</span>
                     </a>
                   );
                 })}
               </nav>
 
-              <div className="p-4 border-t border-white/5">
-                <div className="flex items-center justify-between p-2.5 rounded-xl border border-border bg-secondary/40 transition-colors">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="h-9 w-9 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center font-bold text-xs text-indigo-300">
-                      JD
+              {/* Mobile Profile Footer */}
+              <div className="p-4 border-t border-white/5 space-y-3">
+                <div className="p-3 rounded-xl border border-border bg-secondary/40 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-8.5 w-8.5 rounded-lg bg-[#7C5CFF]/20 border border-[#7C5CFF]/30 flex items-center justify-center font-bold text-xs text-[#7C5CFF]">
+                      {initials}
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="text-xs font-bold text-foreground truncate transition-colors">John Doe</h4>
-                      <p className="text-[10px] text-muted-foreground truncate transition-colors">Workspace Owner</p>
+                    <div>
+                      <h4 className="text-[11px] font-bold text-foreground">{userName}</h4>
+                      <p className="text-[9px] text-muted-foreground">{userRole}</p>
                     </div>
                   </div>
                   <button
                     onClick={handleLogout}
                     className="p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
                   >
-                    <LogOut className="h-4.5 w-4.5" />
+                    <LogOut className="h-4 w-4" />
                   </button>
                 </div>
               </div>
@@ -347,7 +312,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0 z-10 relative">
         {/* Top Header */}
         <header className="h-16 border-b border-border bg-card/40 backdrop-blur-xl flex items-center justify-between px-6 z-20 shrink-0 transition-colors duration-300">
-          {/* Mobile hamburger menu and breadcrumbs */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -355,130 +319,56 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Menu className="h-5 w-5" />
             </button>
+          </div>
 
-            {/* Workspace Switcher */}
-            <div className="relative">
-              <button 
-                onClick={() => setWorkspaceOpen(!workspaceOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-border hover:border-border bg-secondary/50 hover:bg-secondary transition-all text-xs font-bold text-foreground cursor-pointer"
-              >
-                <Building className="h-4 w-4 text-primary" />
-                <span className="hidden sm:inline">Acme Corporation</span>
-                <ChevronDown className="h-3 w-3 text-muted-foreground" />
-              </button>
-              
-              <AnimatePresence>
-                {workspaceOpen && (
-                  <>
-                    <div className="fixed inset-0 z-40" onClick={() => setWorkspaceOpen(false)} />
-                    <motion.div 
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      className="absolute left-0 mt-2 w-56 rounded-xl border border-border bg-card p-2 shadow-2xl z-50"
-                    >
-                      <div className="px-2.5 py-1.5 text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest">Switch Workspace</div>
-                      <button className="w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-bold text-foreground bg-primary/10 border border-primary/20 text-left">
-                        <span className="h-2 w-2 rounded-full bg-primary" />
-                        Acme Corporation
-                      </button>
-                      <button onClick={() => setWorkspaceOpen(false)} className="w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-bold text-muted-foreground hover:text-foreground hover:bg-secondary text-left transition-colors">
-                        <span className="h-2 w-2 rounded-full bg-muted" />
-                        Demo Sandbox
-                      </button>
-                    </motion.div>
-                  </>
-                )}
-              </AnimatePresence>
+          {/* Search bar inside header */}
+          <div className="relative w-96 xl:w-[480px] max-w-lg">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground">
+              <Search className="h-4 w-4 text-muted-foreground/80" />
+            </span>
+            <input
+              type="text"
+              placeholder="Search templates, logs, contacts..."
+              className="w-full h-9 pl-9 pr-20 rounded-xl border border-border hover:border-border/80 focus:border-[#7C5CFF]/60 bg-secondary/30 focus:bg-secondary/50 text-[12px] font-medium text-foreground placeholder-muted-foreground focus:outline-none transition-all"
+            />
+            {/* Shortcut Badge Ctrl + K */}
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center px-2 py-0.5 rounded border border-border/80 bg-secondary font-mono text-[9px] text-muted-foreground/80 font-semibold select-none">
+              Ctrl + K
             </div>
           </div>
 
-          {/* Search, Notifications & Profile actions */}
+          {/* Notifications and profile avatar inside header */}
           <div className="flex items-center gap-4">
-            {/* Search Bar - hidden on mobile */}
-            <div className="relative hidden md:block w-64 xl:w-80">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground">
-                <Search className="h-4 w-4" />
-              </span>
-              <input
-                type="text"
-                placeholder="Search templates, logs, contacts..."
-                className="w-full h-9 pl-9 pr-4 rounded-xl border border-border hover:border-border focus:border-primary bg-secondary/50 focus:bg-secondary text-xs font-medium text-foreground placeholder-muted-foreground focus:outline-none transition-all"
-              />
-            </div>
-
-            {/* Notification Center */}
+            {/* Notifications Bell */}
             <div className="relative">
-              <button 
-                onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="relative p-2 rounded-xl border border-border hover:border-border bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all cursor-pointer"
-              >
-                <Bell className="h-4.5 w-4.5" />
-                <span className="absolute top-1 right-1 flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              <button className="relative p-2 rounded-xl border border-border bg-secondary/30 hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-all cursor-pointer">
+                <Bell className="h-4 w-4 text-muted-foreground" />
+                <span className="absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#7C5CFF] text-[9px] font-black text-white border-2 border-[#0b0e22] shadow-[0_0_10px_rgba(124,92,255,0.4)]">
+                  4
                 </span>
               </button>
-
-              <AnimatePresence>
-                {notificationsOpen && (
-                  <>
-                    <div className="fixed inset-0 z-40" onClick={() => setNotificationsOpen(false)} />
-                    <motion.div 
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      className="absolute right-0 mt-2 w-80 rounded-2xl border border-border bg-card p-4 shadow-2xl z-50 space-y-3"
-                    >
-                      <div className="flex items-center justify-between border-b border-border pb-2">
-                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">Alert Center</span>
-                        <span className="text-[10px] font-bold text-primary hover:underline cursor-pointer">Mark all read</span>
-                      </div>
-                      
-                      <div className="space-y-2 max-h-60 overflow-y-auto">
-                        <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
-                          <div className="flex gap-2.5">
-                            <span className="h-2 w-2 mt-1.5 rounded-full bg-blue-500 shrink-0" />
-                            <div>
-                              <p className="text-xs font-bold text-foreground transition-colors">Campaign "Summer Wave" Completed</p>
-                              <p className="text-[10px] text-muted-foreground mt-0.5 transition-colors">Delivery rate: 98.4% • 5m ago</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
-                          <div className="flex gap-2.5">
-                            <span className="h-2 w-2 mt-1.5 rounded-full bg-amber-500 shrink-0" />
-                            <div>
-                              <p className="text-xs font-bold text-foreground transition-colors">System Warning: API Rate Limit</p>
-                              <p className="text-[10px] text-muted-foreground mt-0.5 transition-colors">Approaching 80% threshold • 20m ago</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </>
-                )}
-              </AnimatePresence>
             </div>
 
             <ThemeToggle />
 
-            {/* Quick Profile/Help Actions */}
-            <button className="hidden sm:flex p-2 rounded-xl border border-border hover:border-border bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all cursor-pointer">
-              <HelpCircle className="h-4.5 w-4.5" />
-            </button>
-
-            {/* User Avatar Badge */}
-            <div className="flex items-center gap-2 border-l border-white/5 pl-4 select-none">
-              <div className="h-8.5 w-8.5 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 text-white font-extrabold flex items-center justify-center text-xs shadow-inner">
-                JD
+            {/* User Profile avatar info inside header */}
+            <div className="flex items-center gap-3 pl-2 select-none border-l border-border/40">
+              <div className="h-9 w-9 rounded-full bg-[#7C5CFF] text-white font-extrabold flex items-center justify-center text-xs shadow-inner">
+                {initials}
+              </div>
+              <div className="hidden sm:flex flex-col text-left">
+                <span className="text-[11px] font-black text-white leading-tight flex items-center gap-1">
+                  {userName}
+                  <ChevronDown className="h-3 w-3 text-muted-foreground" />
+                </span>
+                <span className="text-[9px] font-bold text-muted-foreground/80 uppercase tracking-wider mt-0.5">{userRole}</span>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Scrollable Page Body */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
+        {/* Page Main Content Body */}
+        <main className="flex-1 overflow-y-auto p-6 space-y-6 bg-background">
           {children}
         </main>
       </div>

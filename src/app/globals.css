@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -25,27 +26,26 @@
 }
 
 .dark {
-  --background: #030712;
-  --foreground: #F8FAFC;
-  --card: #0F172A;
-  --card-foreground: #F8FAFC;
-  --popover: #0F172A;
-  --popover-foreground: #F8FAFC;
-  --primary: #3B82F6;
+  --background: #050B1A; /* deep dark blue */
+  --foreground: #FFFFFF;
+  --card: #0B1328; /* card background */
+  --popover: #07111F;
+  --popover-foreground: #FFFFFF;
+  --primary: #7C5CFF; /* primary purple */
   --primary-foreground: #FFFFFF;
-  --secondary: #1E293B;
-  --secondary-foreground: #F8FAFC;
-  --muted: #1E293B;
-  --muted-foreground: #94A3B8;
-  --accent: #1E293B;
-  --accent-foreground: #F8FAFC;
-  --destructive: #EF4444;
+  --secondary: rgba(255, 255, 255, 0.04);
+  --secondary-foreground: #FFFFFF;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: rgba(255, 255, 255, 0.65);
+  --accent: rgba(255, 255, 255, 0.04);
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF5D7A; /* red accent */
   --destructive-foreground: #FFFFFF;
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: #3B82F6;
+  --success: #10D876; /* green accent */
+  --warning: #F59E0B; /* orange accent */
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #7C5CFF;
 }
 
 @theme {

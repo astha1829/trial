@@ -142,7 +142,7 @@ export function CreateContactModal({ isOpen, onClose }: CreateContactModalProps)
                 Create Contact
               </h2>
               <p className="text-[13px] text-muted-foreground mt-1.5">
-                Add a new contact to your workspace
+                Add a new contact to your CRM
               </p>
             </div>
           </div>
